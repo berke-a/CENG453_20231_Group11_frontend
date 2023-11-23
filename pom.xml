@@ -149,7 +149,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.ceng453_20231_group11_frontend/com.example.ceng453_20231_group11_frontend.HelloApplication
+                                com.example.ceng453_20231_group11_frontend/com.example.ceng453_20231_group11_frontend.CatanApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
