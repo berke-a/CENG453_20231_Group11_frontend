@@ -11,4 +11,5 @@ public class GeneralConstants {
     // FXML Locations
     public static final String HOME_PAGE = "fxml/home.fxml";
     public static final String REGISTER_PAGE = "fxml/register.fxml";
+    public static final String LOGIN_PAGE = "fxml/login.fxml";
 }
