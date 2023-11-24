@@ -21,8 +21,14 @@ public class HomeController {
     }
 
     @FXML
-    protected void onClickRouteLogin() {
-        System.out.println("Login button clicked!");
+    protected void onClickRouteLogin(ActionEvent event) {
+        try {
+            Parent loginPage = CatanApplication.loadFXML(GeneralConstants.LOGIN_PAGE);
+            Utils.routeToPage(event, loginPage);
+            System.out.println("Succesfully routed to register page!");
+        } catch (Exception e) {
+            System.out.println("An error occured: " + e.getMessage());
+        }
     }
 
     @FXML
