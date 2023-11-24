@@ -65,19 +65,19 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onAction="#onRegisterButtonClick" text="Register" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#onClickRouteRegister" text="Register" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="28.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onLoginButtonClick" text="Login" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#onClickRouteLogin" text="Login" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="28.0" />
                      </font>
                   </Button>
                </children>
             </GridPane>
-            <Button mnemonicParsing="false" onAction="#onLeaderboardButtonClick" text="Leaderboard" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#onClickRouteLeaderboard" text="Leaderboard" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="28.0" />
                </font>
