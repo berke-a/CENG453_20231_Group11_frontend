@@ -13,8 +13,8 @@ import java.util.Objects;
 public class CatanApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent registerPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(GeneralConstants.REGISTER_PAGE)));
-        Scene scene = new Scene(registerPage, GeneralConstants.WINDOW_WIDTH, GeneralConstants.WINDOW_HEIGHT);
+        Parent homePage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(GeneralConstants.HOME_PAGE)));
+        Scene scene = new Scene(homePage, GeneralConstants.WINDOW_WIDTH, GeneralConstants.WINDOW_HEIGHT);
         stage.setTitle(GeneralConstants.WINDOW_TITLE);
         stage.setScene(scene);
         stage.setResizable(false);
