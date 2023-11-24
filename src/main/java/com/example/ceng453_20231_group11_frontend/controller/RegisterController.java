@@ -8,7 +8,7 @@ public class RegisterController {
     private Text registerTitle;
 
     @FXML
-    protected void onRegisterButtonClick() {
+    protected void onClickRegisterButton() {
         registerTitle.setText("Registered Succesfully!");
     }
 
