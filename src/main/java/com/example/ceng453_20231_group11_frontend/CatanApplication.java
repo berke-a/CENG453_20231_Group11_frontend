@@ -21,6 +21,10 @@ public class CatanApplication extends Application {
         stage.show();
     }
 
+    public static Parent loadFXML(String fxml) throws IOException {
+        return FXMLLoader.load(Objects.requireNonNull(CatanApplication.class.getResource(fxml)));
+    }
+
     public static void main(String[] args) {
         launch();
     }
