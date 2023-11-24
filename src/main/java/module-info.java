@@ -13,6 +13,7 @@ module com.example.ceng453_20231_group11_frontend {
 
     opens com.example.ceng453_20231_group11_frontend to javafx.fxml;
     exports com.example.ceng453_20231_group11_frontend;
+
     opens com.example.ceng453_20231_group11_frontend.controller to javafx.fxml;
     exports com.example.ceng453_20231_group11_frontend.controller;
 
