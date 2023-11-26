@@ -32,8 +32,13 @@ public class HomeController {
     }
 
     @FXML
-    protected void onClickRouteLeaderboard() {
-        System.out.println("Leaderboard button clicked!");
+    protected void onClickRouteLeaderboard(ActionEvent event) {
+        try {
+            Parent leaderboardPage = CatanApplication.loadFXML(GeneralConstants.LEADERBOARD_PAGE);
+            Utils.routeToPage(event, leaderboardPage);
+        } catch (Exception e) {
+            System.out.println("An error occured: " + e.getMessage());
+        }
     }
 
 }

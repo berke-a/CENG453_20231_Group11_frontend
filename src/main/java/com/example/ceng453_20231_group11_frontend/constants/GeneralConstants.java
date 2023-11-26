@@ -12,4 +12,5 @@ public class GeneralConstants {
     public static final String HOME_PAGE = "fxml/home.fxml";
     public static final String REGISTER_PAGE = "fxml/register.fxml";
     public static final String LOGIN_PAGE = "fxml/login.fxml";
+    public static final String LEADERBOARD_PAGE = "fxml/leaderboard.fxml";
 }
