@@ -82,6 +82,11 @@
                   <Font size="28.0" />
                </font>
             </Button>
+             <Button mnemonicParsing="false" onAction="#onClickRouteForgotPassword" text="Forgot Password" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                 <font>
+                     <Font size="28.0" />
+                 </font>
+             </Button>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Berke Sina Ahlatci&#10;Atinc Utku Alparslan&#10;Oguzhan Gumus" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="20.0" />

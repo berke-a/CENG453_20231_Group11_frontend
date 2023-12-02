@@ -36,4 +36,15 @@ public class HomeController {
         System.out.println("Leaderboard button clicked!");
     }
 
+    @FXML
+    protected void onClickRouteForgotPassword(ActionEvent event) {
+        try {
+            Parent forgotPasswordPage = CatanApplication.loadFXML(GeneralConstants.FORGOT_PASSWORD_PAGE);
+            Utils.routeToPage(event, forgotPasswordPage);
+            System.out.println("Succesfully routed to forgot password page!");
+        } catch (Exception e) {
+            System.out.println("An error occured: " + e.getMessage());
+        }
+    }
+
 }
