@@ -10,11 +10,26 @@ module com.example.ceng453_20231_group11_frontend {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires jakarta.ws.rs;
+    requires static lombok;
+    requires org.slf4j;
+    requires spring.context;
+    requires unirest.java;
+
+    requires com.google.gson;
+    requires java.sql;
+
+
 
     opens com.example.ceng453_20231_group11_frontend to javafx.fxml;
     exports com.example.ceng453_20231_group11_frontend;
 
     opens com.example.ceng453_20231_group11_frontend.controller to javafx.fxml;
     exports com.example.ceng453_20231_group11_frontend.controller;
+
+    opens com.example.ceng453_20231_group11_frontend.service to javafx.fxml;
+    exports com.example.ceng453_20231_group11_frontend.service;
+
+    opens com.example.ceng453_20231_group11_frontend.models to com.google.gson;
 
 }
