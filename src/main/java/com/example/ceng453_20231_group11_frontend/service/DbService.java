@@ -1,16 +1,13 @@
 package com.example.ceng453_20231_group11_frontend.service;
 
-import com.example.ceng453_20231_group11_frontend.controller.LeaderboardController;
 import com.example.ceng453_20231_group11_frontend.models.LeaderboardResponse;
 import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
