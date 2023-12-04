@@ -77,7 +77,7 @@
                </rowConstraints>
                <children>
                   <Button mnemonicParsing="false" onAction="#onClickLoginButton" text="Login" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Button mnemonicParsing="false" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#onClickBackButton" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
          </children>
