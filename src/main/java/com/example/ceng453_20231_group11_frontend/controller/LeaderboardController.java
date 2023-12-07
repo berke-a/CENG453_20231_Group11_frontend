@@ -3,6 +3,7 @@ package com.example.ceng453_20231_group11_frontend.controller;
 import com.example.ceng453_20231_group11_frontend.CatanApplication;
 import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
+import com.example.ceng453_20231_group11_frontend.models.LeaderboardItem;
 import com.example.ceng453_20231_group11_frontend.service.DbService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,21 +20,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class LeaderboardController implements Initializable {
-
-    @Getter
-    @Setter
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class LeaderboardItem {
-        private String username;
-        private Integer score;
-
-        public LeaderboardItem(Map<String, Object> map) {
-            this.username = (String) map.get("username");
-            this.score = ((Double) map.get("score")).intValue();
-        }
-    }
 
     @FXML
     private TableView<LeaderboardItem> weeklyTableView;
