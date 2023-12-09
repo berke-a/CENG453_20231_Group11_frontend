@@ -27,7 +27,7 @@ public class DbService {
         }
         return null;
     }
-//
+
     public static List<Map<String, Object>> getMonthlyLeaderboard() {
         try {
             HttpResponse<JsonNode> apiResponse = Unirest.get("http://localhost:8080/api/scoreboard?interval=MONTHLY").asJson();
