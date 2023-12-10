@@ -29,5 +29,5 @@ public class UserService {
             return new Pair<>(500, "Error processing password reset request");
         }
     }
-    
+
 }

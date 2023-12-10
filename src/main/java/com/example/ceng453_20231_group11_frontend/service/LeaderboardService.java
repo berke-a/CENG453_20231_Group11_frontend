@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class DbService {
+public class LeaderboardService {
 
     public static List<Map<String, Object>> getWeeklyLeaderboard() {
         try {

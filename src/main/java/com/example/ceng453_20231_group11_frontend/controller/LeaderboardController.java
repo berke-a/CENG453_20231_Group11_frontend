@@ -4,7 +4,7 @@ import com.example.ceng453_20231_group11_frontend.CatanApplication;
 import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.models.LeaderboardItem;
-import com.example.ceng453_20231_group11_frontend.service.DbService;
+import com.example.ceng453_20231_group11_frontend.service.LeaderboardService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TableView;
-import lombok.*;
 
 import java.net.URL;
 import java.util.List;
@@ -38,7 +37,7 @@ public class LeaderboardController implements Initializable {
     }
 
     public void onGetWeeklyClick() {
-        List<Map<String, Object>> leaderboard = DbService.getWeeklyLeaderboard();
+        List<Map<String, Object>> leaderboard = LeaderboardService.getWeeklyLeaderboard();
         if (leaderboard != null) {
             ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
             for (Map<String, Object> leaderboardItemMap: leaderboard) {
@@ -51,7 +50,7 @@ public class LeaderboardController implements Initializable {
     }
 
     public void onGetMonthlyClick() {
-        List<Map<String, Object>> leaderboard = DbService.getMonthlyLeaderboard();
+        List<Map<String, Object>> leaderboard = LeaderboardService.getMonthlyLeaderboard();
         if (leaderboard != null) {
             ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
             for (Map<String, Object> leaderboardItemMap: leaderboard) {
@@ -64,7 +63,7 @@ public class LeaderboardController implements Initializable {
     }
 
     public void onGetAlltimeClick() {
-        List<Map<String, Object>> leaderboard = DbService.getAlltimeLeaderboard();
+        List<Map<String, Object>> leaderboard = LeaderboardService.getAlltimeLeaderboard();
         if (leaderboard != null) {
             ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
             for (Map<String, Object> leaderboardItemMap: leaderboard) {
