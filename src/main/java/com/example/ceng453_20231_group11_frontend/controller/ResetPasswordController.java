@@ -1,14 +1,21 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
+import com.example.ceng453_20231_group11_frontend.CatanApplication;
 import com.example.ceng453_20231_group11_frontend.NavigationHistoryManager;
+import com.example.ceng453_20231_group11_frontend.Utils;
+import com.example.ceng453_20231_group11_frontend.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Pair;
+
+import static com.example.ceng453_20231_group11_frontend.constants.GeneralConstants.HOME_PAGE;
 
 public class ResetPasswordController {
 
@@ -27,9 +34,35 @@ public class ResetPasswordController {
         String confirmPassword = confirmPasswordField.getText();
         String token = tokenField.getText();
 
-        System.out.println(newPassword);
-        System.out.println(confirmPassword);
-        System.out.println(token);
+        if (!newPassword.equals(confirmPassword)) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Passwords do not match.");
+            return;
+        }
+
+        Pair<Integer, String> response = UserService.changePassword(token, newPassword);
+        if (response.getKey() == 200) {
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Password successfully changed.");
+            navigateToHomePage(event);
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to change password. " + response.getValue());
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private void navigateToHomePage(ActionEvent event) {
+        try {
+            Parent homePage = CatanApplication.loadFXML(HOME_PAGE);
+            Utils.routeToPage(event, homePage);
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Error navigating to the home page.");
+        }
     }
 
     @FXML
