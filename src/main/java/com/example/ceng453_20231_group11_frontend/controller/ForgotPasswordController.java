@@ -44,7 +44,7 @@ public class ForgotPasswordController {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
-        alert.showAndWait(); // This will block until the user closes the alert
+        alert.showAndWait();
     }
 
     @FXML
