@@ -30,4 +30,21 @@ public class UserService {
         }
     }
 
+    public static Pair<Integer, String> changePassword(String token, String newPassword) {
+        try {
+            HttpResponse<JsonNode> apiResponse = Unirest.post(BACKEND_BASE_URL + "/users/change-password")
+                    .queryString("token", token)
+                    .queryString("newPassword", newPassword)
+                    .asJson();
+
+            int statusCode = apiResponse.getStatus();
+            String message = apiResponse.getBody().getObject().getString("message");
+
+            return new Pair<>(statusCode, message);
+        } catch (UnirestException e) {
+            log.error("Error during password change: ", e);
+            return new Pair<>(500, "Error changing password");
+        }
+    }
+
 }
