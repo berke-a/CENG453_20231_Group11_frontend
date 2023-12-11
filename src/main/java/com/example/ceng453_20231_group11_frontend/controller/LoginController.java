@@ -1,6 +1,5 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
-import com.example.ceng453_20231_group11_frontend.CatanApplication;
 import com.example.ceng453_20231_group11_frontend.NavigationHistoryManager;
 import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
@@ -18,10 +17,10 @@ import javafx.util.Pair;
 public class LoginController {
 
     @FXML
-    TextField usernameField;
+    private TextField usernameField;
 
     @FXML
-    TextField passwordField;
+    private TextField passwordField;
 
     @FXML
     public void onClickLoginButton(ActionEvent event) {
@@ -47,8 +46,7 @@ public class LoginController {
         Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Login successful.");
 
         try {
-            Parent homePage = CatanApplication.loadFXML(GeneralConstants.HOME_PAGE);
-            Utils.routeToPage(event, homePage);
+            Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
         } catch (Exception e) {
             Utils.showAlert(Alert.AlertType.ERROR, "Error", "Error routing to home.");
         }
