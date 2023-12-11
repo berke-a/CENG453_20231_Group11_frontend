@@ -1,21 +1,68 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
+import com.example.ceng453_20231_group11_frontend.CatanApplication;
 import com.example.ceng453_20231_group11_frontend.NavigationHistoryManager;
+import com.example.ceng453_20231_group11_frontend.Utils;
+import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
+import com.example.ceng453_20231_group11_frontend.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 public class RegisterController {
-    @FXML
-    private Text registerTitle;
 
     @FXML
-    protected void onClickRegisterButton() {
-        registerTitle.setText("Registered Succesfully!");
+    TextField emailField;
+
+    @FXML
+    TextField usernameField;
+
+    @FXML
+    TextField passwordField;
+
+    @FXML
+    protected void onClickRegisterButton(ActionEvent event) {
+
+        String email = emailField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if (email.isEmpty()) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Email cannot be empty.");
+            return;
+        }
+
+        if (username.isEmpty()) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Username cannot be empty.");
+            return;
+        }
+
+        if (password.isEmpty()) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Password cannot be empty.");
+            return;
+        }
+
+        Pair<Integer, String> Response = UserService.register(email, username, password);
+
+        if (Response.getKey() != 200) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", Response.getValue());
+            return;
+        }
+
+        Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Registration successful.");
+
+        try {
+            Parent loginPage = CatanApplication.loadFXML(GeneralConstants.LOGIN_PAGE);
+            Utils.routeToPage(event, loginPage);
+        } catch (Exception e) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Error routing to login.");
+        }
     }
 
     @FXML
