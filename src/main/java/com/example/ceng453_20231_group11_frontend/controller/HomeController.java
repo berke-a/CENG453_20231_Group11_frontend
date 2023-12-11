@@ -6,8 +6,17 @@ import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 
 public class HomeController {
+
+    @FXML
+    Button playButton;
+
+    @FXML
+    protected void onClickPlay(ActionEvent event) {
+        System.out.println("Play button clicked!");
+    }
 
     @FXML
     public void onClickRouteRegister(ActionEvent event) {
