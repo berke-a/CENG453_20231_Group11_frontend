@@ -25,26 +25,18 @@ public class ForgotPasswordController {
         Pair<Integer, String> response = UserService.requestPasswordReset(email);
 
         if (response.getKey() == 200) {
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Password reset email sent successfully.");
+            Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Password reset email sent successfully.");
             try {
                 Parent resetPasswordPage = CatanApplication.loadFXML(GeneralConstants.RESET_PASSWORD_PAGE);
                 Utils.routeToPage(event, resetPasswordPage);
                 System.out.println("Successfully routed to reset password page!");
             } catch (Exception e) {
                 System.out.println("An error occurred: " + e.getMessage());
-                showAlert(Alert.AlertType.ERROR, "Error", "Error processing the request.");
+                Utils.showAlert(Alert.AlertType.ERROR, "Error", "Error processing the request.");
             }
         } else {
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to send password reset email. " + response.getValue());
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Failed to send password reset email. " + response.getValue());
         }
-    }
-
-    private void showAlert(Alert.AlertType alertType, String title, String content) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 
     @FXML
