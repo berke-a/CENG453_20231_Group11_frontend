@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 public class HomeController {
 
     @FXML
-    Button playButton;
+    private Button playButton;
 
     @FXML
     protected void onClickPlay(ActionEvent event) {

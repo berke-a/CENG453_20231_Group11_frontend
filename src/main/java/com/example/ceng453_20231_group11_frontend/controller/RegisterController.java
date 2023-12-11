@@ -18,13 +18,13 @@ import javafx.util.Pair;
 public class RegisterController {
 
     @FXML
-    TextField emailField;
+    private TextField emailField;
 
     @FXML
-    TextField usernameField;
+    private TextField usernameField;
 
     @FXML
-    TextField passwordField;
+    private TextField passwordField;
 
     @FXML
     protected void onClickRegisterButton(ActionEvent event) {

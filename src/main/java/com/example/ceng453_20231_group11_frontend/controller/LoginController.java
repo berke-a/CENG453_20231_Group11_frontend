@@ -18,10 +18,10 @@ import javafx.util.Pair;
 public class LoginController {
 
     @FXML
-    TextField usernameField;
+    private TextField usernameField;
 
     @FXML
-    TextField passwordField;
+    private TextField passwordField;
 
     @FXML
     public void onClickLoginButton(ActionEvent event) {
