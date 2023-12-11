@@ -35,33 +35,27 @@ public class ResetPasswordController {
         String token = tokenField.getText();
 
         if (!newPassword.equals(confirmPassword)) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Passwords do not match.");
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Passwords do not match.");
             return;
         }
 
         Pair<Integer, String> response = UserService.changePassword(token, newPassword);
         if (response.getKey() == 200) {
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Password successfully changed.");
+            Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Password successfully changed.");
             navigateToHomePage(event);
         } else {
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to change password. " + response.getValue());
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Failed to change password. " + response.getValue());
         }
     }
 
-    private void showAlert(Alert.AlertType alertType, String title, String content) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
+
 
     private void navigateToHomePage(ActionEvent event) {
         try {
             Parent homePage = CatanApplication.loadFXML(HOME_PAGE);
             Utils.routeToPage(event, homePage);
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Error navigating to the home page.");
+            Utils.showAlert(Alert.AlertType.ERROR, "Navigation Error", "Error navigating to the home page.");
         }
     }
 
