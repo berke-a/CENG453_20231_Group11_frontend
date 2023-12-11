@@ -18,7 +18,7 @@ module com.example.ceng453_20231_group11_frontend {
 
     requires com.google.gson;
     requires java.sql;
-
+    requires org.json;
 
 
     opens com.example.ceng453_20231_group11_frontend to javafx.fxml;
