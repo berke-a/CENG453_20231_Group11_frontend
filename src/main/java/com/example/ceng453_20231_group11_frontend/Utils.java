@@ -34,4 +34,12 @@ public class Utils {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+    public static Boolean isLoggedIn() {
+        return SessionStorage.getInstance().getToken() != null;
+    }
+
+    public static String getUsername() {
+        return SessionStorage.getInstance().getUsername();
+    }
 }
