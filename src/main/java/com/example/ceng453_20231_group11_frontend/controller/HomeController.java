@@ -19,7 +19,7 @@ public class HomeController {
     }
 
     @FXML
-    public void onClickRouteRegister(ActionEvent event) {
+    protected void onClickRouteRegister(ActionEvent event) {
         try {
             Parent registerPage = CatanApplication.loadFXML(GeneralConstants.REGISTER_PAGE);
             Utils.routeToPage(event, registerPage);
