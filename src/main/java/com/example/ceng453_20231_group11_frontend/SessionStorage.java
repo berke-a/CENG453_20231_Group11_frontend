@@ -13,6 +13,13 @@ public class SessionStorage {
 
     private static SessionStorage instance;
 
+    public static SessionStorage getInstance() {
+        if (instance == null) {
+            instance = new SessionStorage(null, null);
+        }
+        return instance;
+    }
+
     public void clear() {
         this.username = null;
         this.token = null;
