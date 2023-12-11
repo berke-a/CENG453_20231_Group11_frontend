@@ -36,7 +36,7 @@ public class Utils {
     }
 
     public static Boolean isLoggedIn() {
-        return SessionStorage.getInstance().getToken() != null;
+        return SessionStorage.getInstance().getUsername() != null;
     }
 
     public static String getUsername() {
