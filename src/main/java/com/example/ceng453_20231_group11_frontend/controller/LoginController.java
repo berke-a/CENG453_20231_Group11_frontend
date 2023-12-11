@@ -14,7 +14,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Pair;
-import org.w3c.dom.Text;
 
 public class LoginController {
 
@@ -26,34 +25,33 @@ public class LoginController {
 
     @FXML
     public void onClickLoginButton(ActionEvent event) {
-        try{
-            String username = usernameField.getText();
-            String password = passwordField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
 
-            if (username.isEmpty()) {
-                Utils.showAlert(Alert.AlertType.ERROR, "Error", "Username cannot be empty.");
-                return;
-            }
-            if (password.isEmpty()) {
-                Utils.showAlert(Alert.AlertType.ERROR, "Error", "Password cannot be empty.");
-                return;
-            }
-
-            Pair<Integer, String> Response = UserService.login(username, password);
-
-            if (Response.getKey() != 200) {
-                throw new Exception(Response.getValue());
-            }
-
-            Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Login successful.");
-            Parent homePage = CatanApplication.loadFXML(GeneralConstants.HOME_PAGE);
-            Utils.routeToPage(event, homePage);
-
-        } catch (Exception e) {
-            System.out.println("An error occured: " + e.getMessage());
-            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Login failed. ");
+        if (username.isEmpty()) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Username cannot be empty.");
+            return;
+        }
+        if (password.isEmpty()) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Password cannot be empty.");
+            return;
         }
 
+        Pair<Integer, String> Response = UserService.login(username, password);
+
+        if (Response.getKey() != 200) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", Response.getValue());
+            return;
+        }
+
+        Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Login successful.");
+
+        try {
+            Parent homePage = CatanApplication.loadFXML(GeneralConstants.HOME_PAGE);
+            Utils.routeToPage(event, homePage);
+        } catch (Exception e) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Error routing to home.");
+        }
     }
 
     @FXML

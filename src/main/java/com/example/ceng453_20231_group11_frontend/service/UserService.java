@@ -14,6 +14,24 @@ import static com.example.ceng453_20231_group11_frontend.constants.GeneralConsta
 @Service
 public class UserService {
 
+    public static Pair<Integer, String> register(String email, String username, String Password) {
+            try {
+            HttpResponse<JsonNode> apiResponse = Unirest.post(BACKEND_BASE_URL + "/users/register")
+                    .queryString("email", email)
+                    .queryString("username", username)
+                    .queryString("password", Password)
+                    .asJson();
+
+            int statusCode = apiResponse.getStatus();
+            String message = apiResponse.getBody().getObject().getString("message");
+
+            return new Pair<>(statusCode, message);
+        } catch (UnirestException e) {
+            log.error("Error during registration: ", e);
+            return new Pair<>(500, "Error registering");
+        }
+    }
+
     public static Pair<Integer, String> login(String username, String password) {
         try {
             HttpResponse<JsonNode> apiResponse = Unirest.post(BACKEND_BASE_URL + "/users/login")
