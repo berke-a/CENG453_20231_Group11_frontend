@@ -1,6 +1,5 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
-import com.example.ceng453_20231_group11_frontend.CatanApplication;
 import com.example.ceng453_20231_group11_frontend.NavigationHistoryManager;
 import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
@@ -27,8 +26,7 @@ public class ForgotPasswordController {
         if (response.getKey() == 200) {
             Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Password reset email sent successfully.");
             try {
-                Parent resetPasswordPage = CatanApplication.loadFXML(GeneralConstants.RESET_PASSWORD_PAGE);
-                Utils.routeToPage(event, resetPasswordPage);
+                Utils.routeToPage(event, GeneralConstants.RESET_PASSWORD_PAGE);
                 System.out.println("Successfully routed to reset password page!");
             } catch (Exception e) {
                 System.out.println("An error occurred: " + e.getMessage());

@@ -21,8 +21,7 @@ public class HomeController {
     @FXML
     protected void onClickRouteRegister(ActionEvent event) {
         try {
-            Parent registerPage = CatanApplication.loadFXML(GeneralConstants.REGISTER_PAGE);
-            Utils.routeToPage(event, registerPage);
+            Utils.routeToPage(event, GeneralConstants.REGISTER_PAGE);
             System.out.println("Succesfully routed to register page!");
         } catch (Exception e) {
             System.out.println("An error occured: " + e.getMessage());
@@ -32,8 +31,7 @@ public class HomeController {
     @FXML
     protected void onClickRouteLogin(ActionEvent event) {
         try {
-            Parent loginPage = CatanApplication.loadFXML(GeneralConstants.LOGIN_PAGE);
-            Utils.routeToPage(event, loginPage);
+            Utils.routeToPage(event, GeneralConstants.LOGIN_PAGE);
             System.out.println("Succesfully routed to register page!");
         } catch (Exception e) {
             System.out.println("An error occured: " + e.getMessage());
@@ -43,8 +41,7 @@ public class HomeController {
     @FXML
     protected void onClickRouteLeaderboard(ActionEvent event) {
         try {
-            Parent leaderboardPage = CatanApplication.loadFXML(GeneralConstants.LEADERBOARD_PAGE);
-            Utils.routeToPage(event, leaderboardPage);
+            Utils.routeToPage(event, GeneralConstants.LEADERBOARD_PAGE);
         } catch (Exception e) {
             System.out.println("An error occured: " + e.getMessage());
         }
@@ -53,8 +50,7 @@ public class HomeController {
     @FXML
     protected void onClickRouteForgotPassword(ActionEvent event) {
         try {
-            Parent forgotPasswordPage = CatanApplication.loadFXML(GeneralConstants.FORGOT_PASSWORD_PAGE);
-            Utils.routeToPage(event, forgotPasswordPage);
+            Utils.routeToPage(event, GeneralConstants.FORGOT_PASSWORD_PAGE);
             System.out.println("Succesfully routed to forgot password page!");
         } catch (Exception e) {
             System.out.println("An error occured: " + e.getMessage());

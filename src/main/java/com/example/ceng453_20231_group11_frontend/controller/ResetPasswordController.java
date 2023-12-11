@@ -1,8 +1,8 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
-import com.example.ceng453_20231_group11_frontend.CatanApplication;
 import com.example.ceng453_20231_group11_frontend.NavigationHistoryManager;
 import com.example.ceng453_20231_group11_frontend.Utils;
+import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,8 +14,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Pair;
-
-import static com.example.ceng453_20231_group11_frontend.constants.GeneralConstants.HOME_PAGE;
 
 public class ResetPasswordController {
 
@@ -49,11 +47,9 @@ public class ResetPasswordController {
     }
 
 
-
     private void navigateToHomePage(ActionEvent event) {
         try {
-            Parent homePage = CatanApplication.loadFXML(HOME_PAGE);
-            Utils.routeToPage(event, homePage);
+            Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
         } catch (Exception e) {
             Utils.showAlert(Alert.AlertType.ERROR, "Navigation Error", "Error navigating to the home page.");
         }

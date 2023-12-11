@@ -8,17 +8,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Utils {
-    public static void routeToPage(ActionEvent event, Parent newPage) {
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent currentRoot = currentStage.getScene().getRoot();
-        NavigationHistoryManager.push(currentRoot);
-        Scene newScene = new Scene(newPage, GeneralConstants.WINDOW_WIDTH, GeneralConstants.WINDOW_HEIGHT);
 
-        currentStage.setScene(newScene);
-        currentStage.show();
+
+    public static void routeToPage(ActionEvent event, String Page) {
+        try {
+            Parent newPage = CatanApplication.loadFXML(Page);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Parent currentRoot = currentStage.getScene().getRoot();
+            NavigationHistoryManager.push(currentRoot);
+            Scene newScene = new Scene(newPage, GeneralConstants.WINDOW_WIDTH, GeneralConstants.WINDOW_HEIGHT);
+
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (Exception e) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Navigation Error", "Error while navigating.");
+        }
+
     }
 
     public static void showAlert(Alert.AlertType alertType, String title, String content) {
