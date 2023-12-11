@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,12 +22,16 @@ public class HomeController implements Initializable {
     @FXML
     private Button routeLoginButton;
 
+    @FXML
+    private Text welcomeText;
+
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         Boolean isLoggedIn = Utils.isLoggedIn();
         if (isLoggedIn) {
             routeRegisterButton.setVisible(false);
             routeLoginButton.setVisible(false);
+            welcomeText.setText("Welcome, " + Utils.getUsername());
         } else {
             playButton.setVisible(false);
         }
