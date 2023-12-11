@@ -67,12 +67,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Button mnemonicParsing="false" onAction="#onClickRouteRegister" text="Register" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button fx:id="routeRegisterButton" mnemonicParsing="false" onAction="#onClickRouteRegister" text="Register" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <font>
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onClickRouteLogin" text="Login" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button fx:id="routeLoginButton" mnemonicParsing="false" onAction="#onClickRouteLogin" text="Login" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <font>
                                 <Font size="28.0" />
                             </font>
