@@ -61,8 +61,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField prefHeight="26.0" prefWidth="250.0" promptText="E-Mail" style="-fx-max-width: 250;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <TextField prefHeight="26.0" prefWidth="250.0" promptText="Password" style="-fx-max-width: 250;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <TextField fx:id="usernameField" prefHeight="26.0" prefWidth="250.0" promptText="Username" style="-fx-max-width: 250;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <TextField fx:id="passwordField" prefHeight="26.0" prefWidth="250.0" promptText="Password" style="-fx-max-width: 250;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
             <GridPane prefHeight="133.0" prefWidth="124.0" GridPane.rowIndex="2">
