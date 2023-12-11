@@ -1,5 +1,6 @@
 package com.example.ceng453_20231_group11_frontend.service;
 
+import com.example.ceng453_20231_group11_frontend.SessionStorage;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -15,7 +16,7 @@ import static com.example.ceng453_20231_group11_frontend.constants.GeneralConsta
 public class UserService {
 
     public static Pair<Integer, String> register(String email, String username, String Password) {
-            try {
+        try {
             HttpResponse<JsonNode> apiResponse = Unirest.post(BACKEND_BASE_URL + "/users/register")
                     .queryString("email", email)
                     .queryString("username", username)
@@ -41,6 +42,10 @@ public class UserService {
 
             int statusCode = apiResponse.getStatus();
             String message = apiResponse.getBody().getObject().getString("message");
+
+            if (statusCode == 200) {
+                SessionStorage.getInstance().setUsername(username);
+            }
 
             return new Pair<>(statusCode, message);
         } catch (UnirestException e) {
