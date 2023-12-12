@@ -37,6 +37,7 @@ public class HomeController implements Initializable {
             welcomeText.setText("Welcome, " + Utils.getUsername());
         } else {
             playButton.setVisible(false);
+            logoutButton.setVisible(false);
         }
     }
 
