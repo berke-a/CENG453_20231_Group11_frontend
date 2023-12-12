@@ -10,6 +10,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tile {
-    private ResourceType resourceType;
+    private TileType tileType;
     private int numberToken;
+
+    @Override
+    public String toString() {
+        return String.format("Tile with type %s and number token %d", tileType, numberToken);
+    }
 }
