@@ -1,8 +1,8 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
+import com.example.ceng453_20231_group11_frontend.enums.TileType;
 import com.example.ceng453_20231_group11_frontend.models.Tile;
-import com.example.ceng453_20231_group11_frontend.models.TileType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;

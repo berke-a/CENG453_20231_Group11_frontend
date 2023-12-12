@@ -1,4 +1,4 @@
-package com.example.ceng453_20231_group11_frontend.models;
+package com.example.ceng453_20231_group11_frontend.enums;
 
 public enum ResourceType {
     LUMBER,

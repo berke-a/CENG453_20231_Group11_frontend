@@ -1,5 +1,6 @@
 package com.example.ceng453_20231_group11_frontend.models;
 
+import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
