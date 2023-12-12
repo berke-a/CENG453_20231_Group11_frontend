@@ -22,6 +22,7 @@ public class Utils {
             currentStage.setScene(newScene);
             currentStage.show();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             Utils.showAlert(Alert.AlertType.ERROR, "Navigation Error", "Error while navigating.");
         }
 

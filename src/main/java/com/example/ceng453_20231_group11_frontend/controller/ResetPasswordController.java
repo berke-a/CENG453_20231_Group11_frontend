@@ -40,18 +40,9 @@ public class ResetPasswordController {
         Pair<Integer, String> response = UserService.changePassword(token, newPassword);
         if (response.getKey() == 200) {
             Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Password successfully changed.");
-            navigateToHomePage(event);
+            Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
         } else {
             Utils.showAlert(Alert.AlertType.ERROR, "Error", "Failed to change password. " + response.getValue());
-        }
-    }
-
-
-    private void navigateToHomePage(ActionEvent event) {
-        try {
-            Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
-        } catch (Exception e) {
-            Utils.showAlert(Alert.AlertType.ERROR, "Navigation Error", "Error navigating to the home page.");
         }
     }
 

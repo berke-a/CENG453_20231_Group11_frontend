@@ -25,13 +25,7 @@ public class ForgotPasswordController {
 
         if (response.getKey() == 200) {
             Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Password reset email sent successfully.");
-            try {
-                Utils.routeToPage(event, GeneralConstants.RESET_PASSWORD_PAGE);
-                System.out.println("Successfully routed to reset password page!");
-            } catch (Exception e) {
-                System.out.println("An error occurred: " + e.getMessage());
-                Utils.showAlert(Alert.AlertType.ERROR, "Error", "Error processing the request.");
-            }
+            Utils.routeToPage(event, GeneralConstants.RESET_PASSWORD_PAGE);
         } else {
             Utils.showAlert(Alert.AlertType.ERROR, "Error", "Failed to send password reset email. " + response.getValue());
         }
