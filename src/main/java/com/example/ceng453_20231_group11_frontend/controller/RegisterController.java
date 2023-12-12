@@ -4,17 +4,23 @@ import com.example.ceng453_20231_group11_frontend.NavigationHistoryManager;
 import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.service.UserService;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
-public class RegisterController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class RegisterController implements Initializable {
 
     @FXML
     private TextField emailField;
@@ -24,6 +30,14 @@ public class RegisterController {
 
     @FXML
     private TextField passwordField;
+
+    @FXML
+    private Pane pane;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        Platform.runLater(() -> pane.requestFocus());
+    }
 
     @FXML
     protected void onClickRegisterButton(ActionEvent event) {
