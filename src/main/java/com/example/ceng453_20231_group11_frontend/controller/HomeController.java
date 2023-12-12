@@ -47,7 +47,7 @@ public class HomeController implements Initializable {
 
     @FXML
     protected void onClickPlay(ActionEvent event) {
-        System.out.println("Play button clicked!");
+        Utils.routeToPage(event, GeneralConstants.BOARD_PAGE);
     }
 
     @FXML

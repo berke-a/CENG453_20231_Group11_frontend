@@ -31,5 +31,6 @@ module com.example.ceng453_20231_group11_frontend {
     exports com.example.ceng453_20231_group11_frontend.service;
 
     opens com.example.ceng453_20231_group11_frontend.models to com.google.gson;
+    opens com.example.ceng453_20231_group11_frontend.enums to com.google.gson;
 
 }

@@ -23,7 +23,7 @@ public class UserService {
                     .queryString("password", Password)
                     .asJson();
 
-            int statusCode = apiResponse.getStatus();
+            Integer statusCode = apiResponse.getStatus();
             String message = apiResponse.getBody().getObject().getString("message");
 
             return new Pair<>(statusCode, message);
@@ -40,7 +40,7 @@ public class UserService {
                     .queryString("password", password)
                     .asJson();
 
-            int statusCode = apiResponse.getStatus();
+            Integer statusCode = apiResponse.getStatus();
             String message = apiResponse.getBody().getObject().getString("message");
 
             if (statusCode == 200) {
@@ -60,7 +60,7 @@ public class UserService {
                     .queryString("email", email)
                     .asJson();
 
-            int statusCode = apiResponse.getStatus();
+            Integer statusCode = apiResponse.getStatus();
             String message = apiResponse.getBody().getObject().getString("message");
 
             return new Pair<>(statusCode, message);
@@ -77,7 +77,7 @@ public class UserService {
                     .queryString("newPassword", newPassword)
                     .asJson();
 
-            int statusCode = apiResponse.getStatus();
+            Integer statusCode = apiResponse.getStatus();
             String message = apiResponse.getBody().getObject().getString("message");
 
             return new Pair<>(statusCode, message);

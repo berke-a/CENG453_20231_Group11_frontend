@@ -26,7 +26,7 @@
         </Polygon>
         <Group layoutX="192.0" layoutY="206.0">
             <children>
-                <Polygon fill="GREEN" layoutX="104.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile1" fill="GREEN" layoutX="104.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -42,7 +42,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="208.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile2" fill="GREEN" layoutX="208.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -58,7 +58,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="312.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile3" fill="GREEN" layoutX="312.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -74,7 +74,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="52.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile4" fill="GREEN" layoutX="52.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -90,7 +90,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="156.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile5" fill="GREEN" layoutX="156.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -106,7 +106,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="260.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile6" fill="GREEN" layoutX="260.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -122,7 +122,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="364.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile7" fill="GREEN" layoutX="364.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -138,7 +138,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile8" fill="GREEN" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -154,7 +154,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="312.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile11" fill="GREEN" layoutX="312.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -170,7 +170,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="208.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile10" fill="GREEN" layoutX="208.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -186,7 +186,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="104.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile9" fill="GREEN" layoutX="104.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -202,7 +202,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="415.9999694824219" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile12" fill="GREEN" layoutX="415.9999694824219" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -218,7 +218,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="52.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile13" fill="GREEN" layoutX="52.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -234,7 +234,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="104.0" layoutY="351.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile17" fill="GREEN" layoutX="104.0" layoutY="351.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -250,7 +250,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="364.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile16" fill="GREEN" layoutX="364.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -266,7 +266,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="260.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile15" fill="GREEN" layoutX="260.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -282,7 +282,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="156.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile14" fill="GREEN" layoutX="156.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -298,7 +298,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="208.0" layoutY="351.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile18" fill="GREEN" layoutX="208.0" layoutY="351.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
@@ -314,7 +314,7 @@
                         <Double fx:value="30.0" />
                     </points>
                 </Polygon>
-                <Polygon fill="GREEN" layoutX="312.0" layoutY="351.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile19" fill="GREEN" layoutX="312.0" layoutY="351.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
                         <Double fx:value="0.0" />
                         <Double fx:value="60.0" />
