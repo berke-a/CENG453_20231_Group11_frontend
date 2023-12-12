@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Tile {
     private TileType tileType;
-    private int numberToken;
+    private Integer numberToken;
 
     @Override
     public String toString() {

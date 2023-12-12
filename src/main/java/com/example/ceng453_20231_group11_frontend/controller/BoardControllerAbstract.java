@@ -30,7 +30,7 @@ abstract class BoardControllerAbstract implements Initializable {
     protected TileType[] tileTypes = {TileType.DESERT, TileType.LUMBER, TileType.LUMBER, TileType.LUMBER, TileType.LUMBER, TileType.BRICK, TileType.BRICK, TileType.BRICK, TileType.GRAIN, TileType.GRAIN, TileType.GRAIN, TileType.GRAIN,
             TileType.WOOL, TileType.WOOL, TileType.WOOL, TileType.ORE, TileType.ORE, TileType.ORE};
 
-    protected int[] tileNumberTokens = {2, 3, 3, 4, 4, 5, 5, 6, 6, 8,
+    protected Integer[] tileNumberTokens = {2, 3, 3, 4, 4, 5, 5, 6, 6, 8,
             8, 9, 9, 10, 10, 11, 11, 12};
 
     protected void initializeTiles() {
