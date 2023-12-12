@@ -42,4 +42,8 @@ public class Utils {
     public static String getUsername() {
         return SessionStorage.getInstance().getUsername();
     }
+
+    public static void logout() {
+        SessionStorage.getInstance().clear();
+    }
 }
