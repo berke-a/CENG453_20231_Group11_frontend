@@ -5,6 +5,7 @@ import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.service.UserService;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -26,10 +29,13 @@ public class LoginController implements Initializable {
     private TextField usernameField;
 
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
 
     @FXML
     private Pane pane;
+
+    @FXML
+    private ProgressIndicator loader;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -41,6 +47,10 @@ public class LoginController implements Initializable {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        // Show the loader
+        loader.setVisible(true);
+
+        // Validate input
         if (username.isEmpty()) {
             Utils.showAlert(Alert.AlertType.ERROR, "Error", "Username cannot be empty.");
             return;
@@ -50,20 +60,42 @@ public class LoginController implements Initializable {
             return;
         }
 
-        Pair<Integer, String> Response = UserService.login(username, password);
+        // Create the background task
+        Task<Pair<Integer, String>> loginTask = new Task<Pair<Integer, String>>() {
+            @Override
+            protected Pair<Integer, String> call() {
+                return UserService.login(username, password);
+            }
+        };
 
-        if (Response.getKey() != 200) {
-            Utils.showAlert(Alert.AlertType.ERROR, "Error", Response.getValue());
-            return;
-        }
+        // Set the on succeeded event handler
+        loginTask.setOnSucceeded(e -> {
+            // Hide the loader
+            loader.setVisible(false);
 
-        Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Login successful.");
+            Pair<Integer, String> response = loginTask.getValue();
 
-        try {
-            Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
-        } catch (Exception e) {
-            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Error routing to home.");
-        }
+            if (response.getKey() == 200) {
+                Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Login successful.");
+                try {
+                    Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
+                } catch (Exception ex) {
+                    Utils.showAlert(Alert.AlertType.ERROR, "Error", "Error routing to home page.");
+                }
+            } else {
+                Utils.showAlert(Alert.AlertType.ERROR, "Error", response.getValue());
+            }
+        });
+
+        // Set the on failed event handler
+        loginTask.setOnFailed(e -> {
+            // Hide the loader and show the error message
+            loader.setVisible(false);
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "An error occurred during login.");
+        });
+
+        // Start the task on a background thread
+        new Thread(loginTask).start();
     }
 
     @FXML
