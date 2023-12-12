@@ -2,10 +2,12 @@ package com.example.ceng453_20231_group11_frontend.controller;
 
 import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -31,8 +33,12 @@ public class HomeController implements Initializable {
     @FXML
     private Text welcomeText;
 
+    @FXML
+    private Pane pane;
+
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        Platform.runLater(() -> pane.requestFocus());
         Boolean isLoggedIn = Utils.isLoggedIn();
         if (isLoggedIn) {
             routeRegisterButton.setVisible(false);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.PasswordField?>
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ceng453_20231_group11_frontend.controller.LoginController">
    <children>
       <GridPane alignment="CENTER" cache="true" layoutX="1.0" prefHeight="800.0" prefWidth="900.0">
@@ -62,7 +64,7 @@
                </rowConstraints>
                <children>
                   <TextField fx:id="usernameField" prefHeight="26.0" prefWidth="250.0" promptText="Username" style="-fx-max-width: 250;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <TextField fx:id="passwordField" prefHeight="26.0" prefWidth="250.0" promptText="Password" style="-fx-max-width: 250;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <PasswordField fx:id="passwordField" prefHeight="26.0" prefWidth="250.0" promptText="Password" style="-fx-max-width: 250;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
             <GridPane prefHeight="133.0" prefWidth="124.0" GridPane.rowIndex="2">
@@ -80,6 +82,7 @@
                   <Button mnemonicParsing="false" onAction="#onClickBackButton" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
+            <ProgressIndicator fx:id="loader" translateX="420.0" translateY="150.0" visible="false" />
          </children>
       </GridPane>
    </children>
