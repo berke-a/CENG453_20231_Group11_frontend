@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 public class Settlement extends Group {
+    private final Integer victoryPoint = 1;
     public Settlement() {
         Polygon polygon = new Polygon();
         polygon.getPoints().addAll(new Double[]{
