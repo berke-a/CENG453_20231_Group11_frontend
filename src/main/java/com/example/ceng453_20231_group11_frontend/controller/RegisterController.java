@@ -5,6 +5,7 @@ import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.service.UserService;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -34,6 +36,9 @@ public class RegisterController implements Initializable {
     @FXML
     private Pane pane;
 
+    @FXML
+    private ProgressIndicator loader;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Platform.runLater(() -> pane.requestFocus());
@@ -41,11 +46,14 @@ public class RegisterController implements Initializable {
 
     @FXML
     protected void onClickRegisterButton(ActionEvent event) {
-
         String email = emailField.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        // Show the loader
+        loader.setVisible(true);
+
+        // Validate input
         if (email.isEmpty()) {
             Utils.showAlert(Alert.AlertType.ERROR, "Error", "Email cannot be empty.");
             return;
@@ -61,15 +69,38 @@ public class RegisterController implements Initializable {
             return;
         }
 
-        Pair<Integer, String> Response = UserService.register(email, username, password);
+        // Create the background task for registration
+        Task<Pair<Integer, String>> registrationTask = new Task<Pair<Integer, String>>() {
+            @Override
+            protected Pair<Integer, String> call() {
+                return UserService.register(email, username, password);
+            }
+        };
 
-        if (Response.getKey() != 200) {
-            Utils.showAlert(Alert.AlertType.ERROR, "Error", Response.getValue());
-            return;
-        }
+        // Set the on succeeded event handler
+        registrationTask.setOnSucceeded(e -> {
+            // Hide the loader
+            loader.setVisible(false);
 
-        Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Registration successful.");
-        Utils.routeToPage(event, GeneralConstants.LOGIN_PAGE);
+            Pair<Integer, String> response = registrationTask.getValue();
+
+            if (response.getKey() == 200) {
+                Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Registration successful.");
+                Utils.routeToPage(event, GeneralConstants.LOGIN_PAGE);
+            } else {
+                Utils.showAlert(Alert.AlertType.ERROR, "Error", response.getValue());
+            }
+        });
+
+        // Set the on failed event handler
+        registrationTask.setOnFailed(e -> {
+            // Hide the loader and show the error message
+            loader.setVisible(false);
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "An error occurred during registration.");
+        });
+
+        // Start the task on a background thread
+        new Thread(registrationTask).start();
     }
 
     @FXML
