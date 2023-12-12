@@ -23,6 +23,9 @@ public class HomeController implements Initializable {
     private Button routeLoginButton;
 
     @FXML
+    private Button logoutButton;
+
+    @FXML
     private Text welcomeText;
 
     @Override
@@ -40,6 +43,12 @@ public class HomeController implements Initializable {
     @FXML
     protected void onClickPlay(ActionEvent event) {
         System.out.println("Play button clicked!");
+    }
+
+    @FXML
+    protected void onClickLogout(ActionEvent event) {
+        Utils.logout();
+        Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
     }
 
     @FXML
