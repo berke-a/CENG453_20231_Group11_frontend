@@ -11,15 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Resource {
     private ResourceType type;
-    private int quantity = 0;
-
-    public void add(int amount) {
-        this.quantity += amount;
-    }
-
-    public void subtract(int amount) {
-        this.quantity = Math.max(0, this.quantity - amount);
-    }
 
     @Override
     public String toString() {
