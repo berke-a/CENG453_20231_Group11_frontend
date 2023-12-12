@@ -23,6 +23,9 @@ public class HomeController implements Initializable {
     private Button routeLoginButton;
 
     @FXML
+    private Button routeForgotPasswordButton;
+
+    @FXML
     private Button logoutButton;
 
     @FXML
@@ -34,6 +37,7 @@ public class HomeController implements Initializable {
         if (isLoggedIn) {
             routeRegisterButton.setVisible(false);
             routeLoginButton.setVisible(false);
+            routeForgotPasswordButton.setVisible(false);
             welcomeText.setText("Welcome, " + Utils.getUsername());
         } else {
             playButton.setVisible(false);
