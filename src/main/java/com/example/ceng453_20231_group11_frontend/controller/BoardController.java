@@ -1,11 +1,7 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
-import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-
 import java.net.URL;
-import java.util.*;
+import java.util.ResourceBundle;
 
 public class BoardController extends BoardControllerAbstract {
     // Hexagon
@@ -20,19 +16,9 @@ public class BoardController extends BoardControllerAbstract {
     // Roll Dice Action Listener
     // Buy Game Piece Action Listener
 
-    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List keys = new ArrayList(this.tileMap.keySet());
-        Collections.shuffle(keys);
-        for (Object o : keys) {
-            this.tileMap.get(o);
-        }
-
         try {
-            Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.TILE_DESERT)));
-            System.out.println(img);
-            System.out.println(new ImagePattern(img));
-            this.tile1.setFill(new ImagePattern(img));
+            this.initializeTiles();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
