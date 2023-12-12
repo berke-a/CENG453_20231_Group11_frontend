@@ -7,7 +7,7 @@ import javafx.scene.shape.Rectangle;
 public class Road extends Group {
     public Road() {
         Rectangle rectangle = new Rectangle(50, 10);
-        rectangle.setFill(Color.GRAY); // Set the color of the road
-        this.getChildren().add(rectangle); // Add the rectangle to the group
+        rectangle.setFill(Color.GRAY);
+        this.getChildren().add(rectangle);
     }
 }

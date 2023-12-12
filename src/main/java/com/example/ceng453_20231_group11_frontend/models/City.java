@@ -7,7 +7,7 @@ import javafx.scene.shape.Rectangle;
 public class City extends Group {
     public City() {
         Rectangle rectangle = new Rectangle(20, 20);
-        rectangle.setFill(Color.RED); // Set the color of the city
-        this.getChildren().add(rectangle); // Add the rectangle to the group
+        rectangle.setFill(Color.RED);
+        this.getChildren().add(rectangle);
     }
 }
