@@ -55,12 +55,7 @@ public class RegisterController {
         }
 
         Utils.showAlert(Alert.AlertType.INFORMATION, "Success", "Registration successful.");
-
-        try {
-            Utils.routeToPage(event, GeneralConstants.LOGIN_PAGE);
-        } catch (Exception e) {
-            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Error routing to login.");
-        }
+        Utils.routeToPage(event, GeneralConstants.LOGIN_PAGE);
     }
 
     @FXML

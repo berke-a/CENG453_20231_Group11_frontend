@@ -22,6 +22,7 @@ public class Utils {
             currentStage.setScene(newScene);
             currentStage.show();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             Utils.showAlert(Alert.AlertType.ERROR, "Navigation Error", "Error while navigating.");
         }
 
@@ -41,5 +42,9 @@ public class Utils {
 
     public static String getUsername() {
         return SessionStorage.getInstance().getUsername();
+    }
+
+    public static void logout() {
+        SessionStorage.getInstance().clear();
     }
 }

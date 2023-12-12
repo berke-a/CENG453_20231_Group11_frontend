@@ -23,6 +23,12 @@ public class HomeController implements Initializable {
     private Button routeLoginButton;
 
     @FXML
+    private Button routeForgotPasswordButton;
+
+    @FXML
+    private Button logoutButton;
+
+    @FXML
     private Text welcomeText;
 
     @Override
@@ -31,9 +37,11 @@ public class HomeController implements Initializable {
         if (isLoggedIn) {
             routeRegisterButton.setVisible(false);
             routeLoginButton.setVisible(false);
+            routeForgotPasswordButton.setVisible(false);
             welcomeText.setText("Welcome, " + Utils.getUsername());
         } else {
             playButton.setVisible(false);
+            logoutButton.setVisible(false);
         }
     }
 
@@ -43,42 +51,29 @@ public class HomeController implements Initializable {
     }
 
     @FXML
+    protected void onClickLogout(ActionEvent event) {
+        Utils.logout();
+        Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
+    }
+
+    @FXML
     protected void onClickRouteRegister(ActionEvent event) {
-        try {
-            Utils.routeToPage(event, GeneralConstants.REGISTER_PAGE);
-            System.out.println("Succesfully routed to register page!");
-        } catch (Exception e) {
-            System.out.println("An error occured: " + e.getMessage());
-        }
+        Utils.routeToPage(event, GeneralConstants.REGISTER_PAGE);
     }
 
     @FXML
     protected void onClickRouteLogin(ActionEvent event) {
-        try {
-            Utils.routeToPage(event, GeneralConstants.LOGIN_PAGE);
-            System.out.println("Succesfully routed to register page!");
-        } catch (Exception e) {
-            System.out.println("An error occured: " + e.getMessage());
-        }
+        Utils.routeToPage(event, GeneralConstants.LOGIN_PAGE);
     }
 
     @FXML
     protected void onClickRouteLeaderboard(ActionEvent event) {
-        try {
-            Utils.routeToPage(event, GeneralConstants.LEADERBOARD_PAGE);
-        } catch (Exception e) {
-            System.out.println("An error occured: " + e.getMessage());
-        }
+        Utils.routeToPage(event, GeneralConstants.LEADERBOARD_PAGE);
     }
 
     @FXML
     protected void onClickRouteForgotPassword(ActionEvent event) {
-        try {
-            Utils.routeToPage(event, GeneralConstants.FORGOT_PASSWORD_PAGE);
-            System.out.println("Succesfully routed to forgot password page!");
-        } catch (Exception e) {
-            System.out.println("An error occured: " + e.getMessage());
-        }
+        Utils.routeToPage(event, GeneralConstants.FORGOT_PASSWORD_PAGE);
     }
 
 }
