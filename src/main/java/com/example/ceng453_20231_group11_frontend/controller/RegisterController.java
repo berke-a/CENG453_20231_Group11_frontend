@@ -50,9 +50,6 @@ public class RegisterController implements Initializable {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Show the loader
-        loader.setVisible(true);
-
         // Validate input
         if (email.isEmpty()) {
             Utils.showAlert(Alert.AlertType.ERROR, "Error", "Email cannot be empty.");
@@ -68,6 +65,9 @@ public class RegisterController implements Initializable {
             Utils.showAlert(Alert.AlertType.ERROR, "Error", "Password cannot be empty.");
             return;
         }
+
+        // Show the loader
+        loader.setVisible(true);
 
         // Create the background task for registration
         Task<Pair<Integer, String>> registrationTask = new Task<Pair<Integer, String>>() {

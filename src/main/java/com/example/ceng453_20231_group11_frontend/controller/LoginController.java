@@ -47,9 +47,6 @@ public class LoginController implements Initializable {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Show the loader
-        loader.setVisible(true);
-
         // Validate input
         if (username.isEmpty()) {
             Utils.showAlert(Alert.AlertType.ERROR, "Error", "Username cannot be empty.");
@@ -59,6 +56,9 @@ public class LoginController implements Initializable {
             Utils.showAlert(Alert.AlertType.ERROR, "Error", "Password cannot be empty.");
             return;
         }
+
+        // Show the loader
+        loader.setVisible(true);
 
         // Create the background task
         Task<Pair<Integer, String>> loginTask = new Task<Pair<Integer, String>>() {
