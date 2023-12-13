@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 
 import java.net.URL;
@@ -19,6 +20,12 @@ import java.util.ResourceBundle;
 public class LeaderboardController implements Initializable {
 
     @FXML
+    private Tab monthlyTab;
+
+    @FXML
+    private Tab alltimeTab;
+
+    @FXML
     private TableView<LeaderboardItem> weeklyTableView;
 
     @FXML
@@ -27,14 +34,16 @@ public class LeaderboardController implements Initializable {
     @FXML
     private TableView<LeaderboardItem> alltimeTableView;
 
+    private boolean monthlyDataFetched = false;
+    private boolean alltimeDataFetched = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resource) {
-        System.out.println("init");
-        // TODO weekly init sirasinda doldurulacak.
+        getWeekly();
         // TODO loader gosterilecek
     }
 
-    public void onGetWeeklyClick() {
+    public void getWeekly() {
         List<Map<String, Object>> leaderboard = LeaderboardService.getWeeklyLeaderboard();
         if (leaderboard != null) {
             ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
@@ -47,7 +56,7 @@ public class LeaderboardController implements Initializable {
         }
     }
 
-    public void onGetMonthlyClick() {
+    public void getMonthly() {
         List<Map<String, Object>> leaderboard = LeaderboardService.getMonthlyLeaderboard();
         if (leaderboard != null) {
             ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
@@ -57,19 +66,21 @@ public class LeaderboardController implements Initializable {
             }
             monthlyTableView.getItems().clear();
             monthlyTableView.setItems(leaderboardItemList);
+            monthlyDataFetched = true;
         }
     }
 
-    public void onGetAlltimeClick() {
+    public void getAlltime() {
         List<Map<String, Object>> leaderboard = LeaderboardService.getAlltimeLeaderboard();
         if (leaderboard != null) {
             ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
-            for (Map<String, Object> leaderboardItemMap : leaderboard) {
+            for (Map<String, Object> leaderboardItemMap: leaderboard) {
                 LeaderboardItem newItem = new LeaderboardItem(leaderboardItemMap);
                 leaderboardItemList.add(newItem);
             }
             alltimeTableView.getItems().clear();
             alltimeTableView.setItems(leaderboardItemList);
+            alltimeDataFetched = true;
         }
     }
 
@@ -79,6 +90,18 @@ public class LeaderboardController implements Initializable {
             Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
         } catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    public void onMonthlySelectionChange() {
+        if (monthlyTab.isSelected() && !monthlyDataFetched) {
+            getMonthly();
+        }
+    }
+
+    public void onAlltimeSelectionChange() {
+        if (alltimeTab.isSelected() && !alltimeDataFetched) {
+            getAlltime();
         }
     }
 }
