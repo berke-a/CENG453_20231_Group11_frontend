@@ -17,9 +17,9 @@ public class CPUPlayer {
     private int grains = 0;
     private int wools = 0;
 
-    private int roads;
-    private int settlements;
-    private int cities;
+    private int roads; //TODO
+    private int settlements; //TODO
+    private int cities; //TODO
 
     public void play() { // TODO play'in argumani olarak bir seyler verip road availablitye mi bakalim
         if (canBuildRoad()) {
@@ -51,7 +51,7 @@ public class CPUPlayer {
     private void buildRoad() {
         lumbers--;
         bricks--;
-        // TODO add road to board and roads of this class
+        // TODO add random road to board and roads of this class
     }
 
     private boolean canBuildSettlement() {
@@ -65,7 +65,7 @@ public class CPUPlayer {
         grains--;
         wools--;
         score++;
-        // TODO add settlement to board and settlements of this class
+        // TODO add random settlement to board and settlements of this class
     }
 
     private boolean canBuildCity() {
@@ -77,7 +77,7 @@ public class CPUPlayer {
         ores -= 3;
         grains -= 2;
         score++;
-        // TODO select a settlement and transform it into a city
+        // TODO select a random settlement and transform it into a city
     }
 
 }
