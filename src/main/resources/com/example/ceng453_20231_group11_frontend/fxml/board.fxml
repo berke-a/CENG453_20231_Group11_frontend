@@ -2,9 +2,13 @@
 
 <?import java.lang.Double?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ceng453_20231_group11_frontend.controller.BoardController">
     <children>
@@ -384,6 +388,215 @@
                 <Circle fill="#dfff1f" layoutX="52.0" layoutY="205.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                 <Circle fill="#dfff1f" layoutX="467.95996948242185" layoutY="207.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
                 <Circle fill="#dfff1f" layoutX="208.0" layoutY="-60.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <StackPane layoutX="188.0" layoutY="-23.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel2" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText2" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="83.0" layoutY="-18.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileNumber1" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText1" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="296.0" layoutY="-19.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel3" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText3" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="33.0" layoutY="69.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel4" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText4" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="134.0" layoutY="69.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel5" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText5" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="241.0" layoutY="71.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel6" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText6" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="345.0" layoutY="67.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel7" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText7" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="396.0" layoutY="158.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel12" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText12" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="292.0" layoutY="157.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel11" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText11" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="191.0" layoutY="160.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel10" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText10" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="83.0" layoutY="156.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel9" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText9" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="-21.0" layoutY="155.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel8" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText8" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="29.0" layoutY="245.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel13" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText13" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="135.0" layoutY="245.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel14" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText14" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="242.0" layoutY="244.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel15" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText15" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="82.0" layoutY="332.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel17" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText17" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="187.0" layoutY="329.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel18" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText18" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="292.0" layoutY="331.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel19" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText19" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="344.0" layoutY="242.0" prefHeight="26.0" prefWidth="31.0">
+               <children>
+                  <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <Label fx:id="tileLabel16" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="tileText16" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
             </children>
         </Group>
     </children>
