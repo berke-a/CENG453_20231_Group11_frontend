@@ -46,7 +46,7 @@ public class HomeController implements Initializable {
             routeForgotPasswordButton.setVisible(false);
             welcomeText.setText("Welcome, " + Utils.getUsername());
         } else {
-            playButton.setVisible(false);
+            //playButton.setVisible(false);
             logoutButton.setVisible(false);
         }
     }
