@@ -91,8 +91,8 @@ abstract class BoardControllerAbstract implements Initializable {
 
         Polygon desertTile = keys.get(0);
         this.tileMap.get(desertTile).setTileType(TileType.DESERT);
-        this.tileLabelMap.get(desertTile).getFirst().setVisible(false);
-        this.tileLabelMap.get(desertTile).getSecond().setVisible(false);
+        this.tileLabelMap.get(desertTile).getFirst().setText("D");
+        this.tileLabelMap.get(desertTile).getSecond().setText("━");
         desertTile.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.tileTypeToImage.get(TileType.DESERT))))));
 
         for (int i = 1; i < keys.size(); i++) {
