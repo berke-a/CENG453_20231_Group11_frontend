@@ -47,4 +47,16 @@ public class Utils {
     public static void logout() {
         SessionStorage.getInstance().clear();
     }
+
+    public static String generateTileNumberPoints(Integer number) {
+        return switch (number) {
+            case 2, 12 -> "*";
+            case 3, 11 -> "**";
+            case 4, 10 -> "***";
+            case 5, 9 -> "****";
+            case 6, 8 -> "*****";
+            default -> "";
+        };
+    }
+
 }
