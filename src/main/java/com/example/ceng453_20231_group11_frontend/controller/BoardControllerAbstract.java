@@ -46,7 +46,6 @@ abstract class BoardControllerAbstract implements Initializable {
     protected HashMap<Circle, CircleVertex> circleMap = new HashMap<>();
 
 
-
     protected void initializeTiles() {
         tileLabelTextPairs = new Pair[]{new Pair<>(tileLabel1, tileText1), new Pair<>(tileLabel2, tileText2), new Pair<>(tileLabel3, tileText3), new Pair<>(tileLabel4, tileText4), new Pair<>(tileLabel5, tileText5), new Pair<>(tileLabel6, tileText6), new Pair<>(tileLabel7, tileText7), new Pair<>(tileLabel8, tileText8), new Pair<>(tileLabel9, tileText9), new Pair<>(tileLabel10, tileText10),
                 new Pair<>(tileLabel11, tileText11), new Pair<>(tileLabel12, tileText12), new Pair<>(tileLabel13, tileText13), new Pair<>(tileLabel14, tileText14), new Pair<>(tileLabel15, tileText15), new Pair<>(tileLabel16, tileText16), new Pair<>(tileLabel17, tileText17), new Pair<>(tileLabel18, tileText18), new Pair<>(tileLabel19, tileText19)};
@@ -128,23 +127,23 @@ abstract class BoardControllerAbstract implements Initializable {
         circleMap.put(circle1, new CircleVertex(List.of(circle14, circle26, circle40), List.of(tile9, tile10, tile14)));
         circleMap.put(circle2, new CircleVertex(List.of(circle32, circle24, circle27), List.of(tile11, tile12, tile16)));
         circleMap.put(circle3, new CircleVertex(List.of(circle25, circle34, circle49), List.of(tile17, tile18)));
-        circleMap.put(circle4, new CircleVertex());
-        circleMap.put(circle5, new CircleVertex());
+        circleMap.put(circle4, new CircleVertex(List.of(circle42, circle18, circle51), List.of(tile3, tile7)));
+        circleMap.put(circle5, new CircleVertex(List.of(circle9, circle30, circle7), List.of(tile1, tile4, tile5)));
         circleMap.put(circle6, new CircleVertex(List.of(circle49, circle35), List.of(tile17)));
-        circleMap.put(circle7, new CircleVertex());
+        circleMap.put(circle7, new CircleVertex(List.of(circle5, circle44, circle38), List.of(tile1, tile2, tile5)));
         circleMap.put(circle8, new CircleVertex(List.of(circle33, circle10, circle37), List.of(tile19, tile15, tile18)));
-        circleMap.put(circle9, new CircleVertex());
+        circleMap.put(circle9, new CircleVertex(List.of(circle13, circle47, circle5), List.of(tile1, tile4)));
         circleMap.put(circle10, new CircleVertex(List.of(circle8, circle28, circle21), List.of(tile19, tile18)));
-        circleMap.put(circle11, new CircleVertex());
+        circleMap.put(circle11, new CircleVertex(List.of(circle50, circle38, circle18), List.of(tile2, tile3, tile6)));
         circleMap.put(circle12, new CircleVertex(List.of(circle29, circle48, circle52), List.of(tile8, tile13)));
-        circleMap.put(circle13, new CircleVertex());
+        circleMap.put(circle13, new CircleVertex(List.of(circle9, circle31), List.of(tile4)));
         circleMap.put(circle14, new CircleVertex(List.of(circle1, circle21, circle37), List.of(tile10, tile14, tile15)));
         circleMap.put(circle15, new CircleVertex(List.of(circle29, circle31), List.of(tile8)));
         circleMap.put(circle16, new CircleVertex(List.of(circle26, circle25, circle35), List.of(tile17, tile14, tile13)));
-        circleMap.put(circle17, new CircleVertex());
-        circleMap.put(circle18, new CircleVertex());
+        circleMap.put(circle17, new CircleVertex(List.of(circle47, circle44), List.of(tile1)));
+        circleMap.put(circle18, new CircleVertex(List.of(circle11, circle19, circle4), List.of(tile3, tile6, tile7)));
         circleMap.put(circle19, new CircleVertex(List.of(circle18, circle32, circle46), List.of(tile6, tile7, tile11)));
-        circleMap.put(circle20, new CircleVertex());
+        circleMap.put(circle20, new CircleVertex(List.of(circle31, circle52, circle30), List.of(tile4, tile8, tile9)));
         circleMap.put(circle21, new CircleVertex(List.of(circle14, circle27, circle46), List.of(tile10, tile11, tile15)));
         circleMap.put(circle22, new CircleVertex(List.of(circle38, circle40, circle46), List.of(tile5, tile6, tile10)));
         circleMap.put(circle23, new CircleVertex(List.of(circle32, circle43, circle51), List.of(tile7, tile12)));
@@ -154,30 +153,30 @@ abstract class BoardControllerAbstract implements Initializable {
         circleMap.put(circle27, new CircleVertex(List.of(circle2, circle21, circle33), List.of(tile16, tile15, tile11)));
         circleMap.put(circle28, new CircleVertex(List.of(circle41, circle10), List.of(tile19)));
         circleMap.put(circle29, new CircleVertex(List.of(circle12, circle15), List.of(tile8)));
-        circleMap.put(circle30, new CircleVertex());
-        circleMap.put(circle31, new CircleVertex());
+        circleMap.put(circle30, new CircleVertex(List.of(circle5, circle20, circle40), List.of(tile4, tile5, tile9)));
+        circleMap.put(circle31, new CircleVertex(List.of(circle13, circle15, circle20), List.of(tile4, tile8)));
         circleMap.put(circle32, new CircleVertex(List.of(circle2, circle19, circle23), List.of(tile7, tile11, tile12)));
         circleMap.put(circle33, new CircleVertex(List.of(circle27, circle39, circle8), List.of(tile16, tile19, tile15)));
         circleMap.put(circle34, new CircleVertex(List.of(circle3, circle10), List.of(tile18)));
         circleMap.put(circle35, new CircleVertex(List.of(circle6, circle16, circle48), List.of(tile17, tile13)));
         circleMap.put(circle36, new CircleVertex(List.of(circle24, circle39), List.of(tile16)));
         circleMap.put(circle37, new CircleVertex(List.of(circle8, circle14, circle25), List.of(tile18, tile15, tile14)));
-        circleMap.put(circle38, new CircleVertex());
+        circleMap.put(circle38, new CircleVertex(List.of(circle7, circle22, circle11), List.of(tile2, tile5, tile6)));
         circleMap.put(circle39, new CircleVertex(List.of(circle36, circle41, circle33), List.of(tile16, tile19)));
         circleMap.put(circle40, new CircleVertex(List.of(circle1, circle22, circle30), List.of(tile5, tile9, tile10)));
         circleMap.put(circle41, new CircleVertex(List.of(circle39, circle28), List.of(tile19)));
-        circleMap.put(circle42, new CircleVertex());
+        circleMap.put(circle42, new CircleVertex(List.of(circle45, circle4), List.of(tile3)));
         circleMap.put(circle43, new CircleVertex(List.of(circle23, circle53), List.of(tile12)));
-        circleMap.put(circle44, new CircleVertex());
-        circleMap.put(circle45, new CircleVertex());
+        circleMap.put(circle44, new CircleVertex(List.of(circle17, circle7, circle54), List.of(tile1, tile2)));
+        circleMap.put(circle45, new CircleVertex(List.of(circle50, circle42), List.of(tile3)));
         circleMap.put(circle46, new CircleVertex(List.of(circle19, circle21, circle22), List.of(tile6, tile10, tile11)));
-        circleMap.put(circle47, new CircleVertex());
+        circleMap.put(circle47, new CircleVertex(List.of(circle9, circle17), List.of(tile1)));
         circleMap.put(circle48, new CircleVertex(List.of(circle12, circle35), List.of(tile13)));
         circleMap.put(circle49, new CircleVertex(List.of(circle3, circle6), List.of(tile17)));
-        circleMap.put(circle50, new CircleVertex());
-        circleMap.put(circle51, new CircleVertex());
+        circleMap.put(circle50, new CircleVertex(List.of(circle54, circle45), List.of(tile2, tile3)));
+        circleMap.put(circle51, new CircleVertex(List.of(circle4, circle23), List.of(tile7)));
         circleMap.put(circle52, new CircleVertex(List.of(circle12, circle20, circle26), List.of(tile8, tile9, tile13)));
         circleMap.put(circle53, new CircleVertex(List.of(circle24, circle43), List.of(tile12)));
-        circleMap.put(circle54, new CircleVertex());
+        circleMap.put(circle54, new CircleVertex(List.of(circle44, circle50), List.of(tile2)));
     }
 }
