@@ -50,5 +50,7 @@ public class GeneralConstants {
     public static final TileType[] tileTypesOnBoard = {TileType.LUMBER, TileType.LUMBER, TileType.LUMBER, TileType.LUMBER, TileType.BRICK, TileType.BRICK, TileType.BRICK, TileType.GRAIN, TileType.GRAIN, TileType.GRAIN, TileType.GRAIN,
             TileType.WOOL, TileType.WOOL, TileType.WOOL, TileType.WOOL, TileType.ORE, TileType.ORE, TileType.ORE};
 
+    public static final Integer[] tileNumberTokensOnBoard = {2, 3, 3, 4, 4, 5, 5, 6, 6, 8,
+            8, 9, 9, 10, 10, 11, 11, 12};
 
 }

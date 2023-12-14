@@ -34,8 +34,6 @@ abstract class BoardControllerAbstract implements Initializable {
 
     protected HashMap<Polygon, Pair<Label, Text>> tileLabelMap = new HashMap<Polygon, Pair<Label, Text>>();
 
-    protected Integer[] tileNumberTokens = {2, 3, 3, 4, 4, 5, 5, 6, 6, 8,
-            8, 9, 9, 10, 10, 11, 11, 12};
 
     protected void initializeTiles() {
         tileLabelTextPairs = new Pair[]{new Pair<>(tileLabel1, tileText1), new Pair<>(tileLabel2, tileText2), new Pair<>(tileLabel3, tileText3), new Pair<>(tileLabel4, tileText4), new Pair<>(tileLabel5, tileText5), new Pair<>(tileLabel6, tileText6), new Pair<>(tileLabel7, tileText7), new Pair<>(tileLabel8, tileText8), new Pair<>(tileLabel9, tileText9), new Pair<>(tileLabel10, tileText10),
@@ -100,7 +98,7 @@ abstract class BoardControllerAbstract implements Initializable {
         for (int i = 1; i < keys.size(); i++) {
             TileType tileType = GeneralConstants.tileTypesOnBoard[i - 1];
             Image tileImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.tileTypeToImage.get(tileType))));
-            Integer tileNumberToken = this.tileNumberTokens[i - 1];
+            Integer tileNumberToken = GeneralConstants.tileNumberTokensOnBoard[i - 1];
             String tileNumberPoints = Utils.generateTileNumberPoints(tileNumberToken);
             Polygon tile = keys.get(i);
 
