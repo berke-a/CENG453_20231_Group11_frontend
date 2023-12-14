@@ -402,7 +402,7 @@
             <StackPane layoutX="83.0" layoutY="-18.0" prefHeight="26.0" prefWidth="31.0">
                <children>
                   <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                  <Label fx:id="tileNumber1" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                  <Label fx:id="tileLabel1" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
