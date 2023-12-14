@@ -1,5 +1,9 @@
 package com.example.ceng453_20231_group11_frontend.constants;
 
+import com.example.ceng453_20231_group11_frontend.enums.TileType;
+
+import java.util.HashMap;
+
 public class GeneralConstants {
 
     // App Properties
@@ -31,5 +35,20 @@ public class GeneralConstants {
     public static final String RESOURCE_ORE = "/com/example/ceng453_20231_group11_frontend/images/resource_ore.png";
     public static final String RESOURCE_WOOL = "/com/example/ceng453_20231_group11_frontend/images/resource_wool.png";
     public static final String RESOURCE_GRAIN = "/com/example/ceng453_20231_group11_frontend/images/resource_grain.png";
+
+
+    // Constant Data
+    public static final HashMap<TileType, String> tileTypeToImage = new HashMap<TileType, String>() {{
+        put(TileType.DESERT, GeneralConstants.TILE_DESERT);
+        put(TileType.LUMBER, GeneralConstants.TILE_LUMBER);
+        put(TileType.BRICK, GeneralConstants.TILE_BRICK);
+        put(TileType.GRAIN, GeneralConstants.TILE_GRAIN);
+        put(TileType.WOOL, GeneralConstants.TILE_WOOL);
+        put(TileType.ORE, GeneralConstants.TILE_ORE);
+    }};
+
+    public static final TileType[] tileTypesOnBoard = {TileType.DESERT, TileType.LUMBER, TileType.LUMBER, TileType.LUMBER, TileType.LUMBER, TileType.BRICK, TileType.BRICK, TileType.BRICK, TileType.GRAIN, TileType.GRAIN, TileType.GRAIN, TileType.GRAIN,
+            TileType.WOOL, TileType.WOOL, TileType.WOOL, TileType.ORE, TileType.ORE, TileType.ORE};
+
 
 }

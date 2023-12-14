@@ -18,18 +18,6 @@ abstract class BoardControllerAbstract implements Initializable {
 
     protected HashMap<Polygon, Tile> tileMap = new HashMap<Polygon, Tile>();
 
-    protected HashMap<TileType, String> tileTypeToImage = new HashMap<TileType, String>() {{
-        put(TileType.DESERT, GeneralConstants.TILE_DESERT);
-        put(TileType.LUMBER, GeneralConstants.TILE_LUMBER);
-        put(TileType.BRICK, GeneralConstants.TILE_BRICK);
-        put(TileType.GRAIN, GeneralConstants.TILE_GRAIN);
-        put(TileType.WOOL, GeneralConstants.TILE_WOOL);
-        put(TileType.ORE, GeneralConstants.TILE_ORE);
-    }};
-
-    protected TileType[] tileTypes = {TileType.DESERT, TileType.LUMBER, TileType.LUMBER, TileType.LUMBER, TileType.LUMBER, TileType.BRICK, TileType.BRICK, TileType.BRICK, TileType.GRAIN, TileType.GRAIN, TileType.GRAIN, TileType.GRAIN,
-            TileType.WOOL, TileType.WOOL, TileType.WOOL, TileType.ORE, TileType.ORE, TileType.ORE};
-
     protected Integer[] tileNumberTokens = {2, 3, 3, 4, 4, 5, 5, 6, 6, 8,
             8, 9, 9, 10, 10, 11, 11, 12};
 
@@ -63,9 +51,9 @@ abstract class BoardControllerAbstract implements Initializable {
         this.tileMap.get(keys.get(0)).setTileType(TileType.DESERT);
 
         for (int i = 1; i < keys.size(); i++) {
-            this.tileMap.get(keys.get(i)).setTileType(this.tileTypes[i]);
+            this.tileMap.get(keys.get(i)).setTileType(GeneralConstants.tileTypesOnBoard[i]);
             this.tileMap.get(keys.get(i)).setNumberToken(this.tileNumberTokens[i - 1]);
-            Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream(this.tileTypeToImage.get(this.tileTypes[i]))));
+            Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.tileTypeToImage.get(GeneralConstants.tileTypesOnBoard[i]))));
             keys.get(i).setFill(new ImagePattern(img));
         }
 
