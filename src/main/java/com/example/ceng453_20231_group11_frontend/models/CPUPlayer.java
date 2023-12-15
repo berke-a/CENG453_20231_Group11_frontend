@@ -7,29 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CPUPlayer {
-    private int score = 0;
-    private boolean hasLongestRoad = false;
-
-    private int bricks = 0;
-    private int lumbers = 0;
-    private int ores = 0;
-    private int grains = 0;
-    private int wools = 0;
-
-    private int roads; //TODO
-    private int settlements; //TODO
-    private int cities; //TODO
-
-    public void play() { // TODO play'in argumani olarak bir seyler verip road availablitye mi bakalim
-        if (canBuildRoad()) {
-            buildRoad();
-        } else if (canBuildSettlement()) {
-            buildSettlement();
-        } else if (canBuildCity()) {
-            buildCity();
-        }
-    }
+public class CPUPlayer extends PlayerAbstract {
 
     // TODO in the board call play
     // TODO then check and reassign the longest road boolean
@@ -43,41 +21,18 @@ public class CPUPlayer {
         }
     }
 
-    private boolean canBuildRoad() {
-        boolean isSpaceExists = true; // TODO road available logic
-        return (lumbers > 0 && bricks > 0 && isSpaceExists);
+    @Override
+    boolean isRoadBuildable(Integer edgeId) {
+        return false;
     }
 
-    private void buildRoad() {
-        lumbers--;
-        bricks--;
-        // TODO add random road to board and roads of this class
+    @Override
+    boolean isCityBuildable(Integer edgeId) {
+        return false;
     }
 
-    private boolean canBuildSettlement() {
-        boolean isSpaceExists = true; // TODO settlement available logic
-        return (lumbers > 0 && bricks > 0 && grains > 0 && wools > 0 && isSpaceExists);
+    @Override
+    boolean isSettlementBuildable(Integer edgeId) {
+        return false;
     }
-
-    private void buildSettlement() {
-        lumbers--;
-        bricks--;
-        grains--;
-        wools--;
-        score++;
-        // TODO add random settlement to board and settlements of this class
-    }
-
-    private boolean canBuildCity() {
-        boolean isSettlementExists = true; // TODO
-        return (ores > 2 && grains > 1 && isSettlementExists);
-    }
-
-    private void buildCity() {
-        ores -= 3;
-        grains -= 2;
-        score++;
-        // TODO select a random settlement and transform it into a city
-    }
-
 }

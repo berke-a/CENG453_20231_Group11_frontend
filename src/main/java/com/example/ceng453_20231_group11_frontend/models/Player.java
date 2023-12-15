@@ -1,31 +1,13 @@
 package com.example.ceng453_20231_group11_frontend.models;
 
-import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashMap;
-
 @Getter
 @Setter
 @NoArgsConstructor
-public class Player {
-    private int score = 0;
-    private boolean hasLongestRoad = false;
-
-    private HashMap<ResourceType, Integer> resources = new HashMap<>() {{
-        put(ResourceType.LUMBER, 0);
-        put(ResourceType.BRICK, 0);
-        put(ResourceType.GRAIN, 0);
-        put(ResourceType.WOOL, 0);
-        put(ResourceType.ORE, 0);
-    }};
-
-    // TODO: Update type to circles
-    private int roads; //TODO
-    private int settlements; //TODO
-    private int cities; //TODO
+public class Player extends PlayerAbstract {
 
     public boolean hasWonTheGame() {
         if (hasLongestRoad) {
@@ -33,6 +15,21 @@ public class Player {
         } else {
             return score >= 8;
         }
+    }
+
+    @Override
+    public boolean isRoadBuildable(Integer edgeId) {
+        return false;
+    }
+
+    @Override
+    boolean isCityBuildable(Integer edgeId) {
+        return false;
+    }
+
+    @Override
+    boolean isSettlementBuildable(Integer edgeId) {
+        return false;
     }
 
     private boolean canBuildRoad() {
@@ -63,10 +60,6 @@ public class Player {
         //return (lumbers > 0 && bricks > 0 && grains > 0 && wools > 0 && isSpaceExists);
     }
 
-    private boolean isSettlementBuildable(Integer vertexId) {
-        return true; // TODO
-    }
-
     private boolean buildSettlement(Integer vertexId) {
         if (isSettlementBuildable(vertexId)) {
             // lumbers--;
@@ -86,10 +79,6 @@ public class Player {
         boolean isSettlementExists = true; // TODO
         return true;
         // return (ores > 2 && grains > 1 && isSettlementExists);
-    }
-
-    private boolean isCityBuildable(Integer vertexId) {
-        return true; // TODO
     }
 
     private boolean buildCity(Integer vertexId) {
