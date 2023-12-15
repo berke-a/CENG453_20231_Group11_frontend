@@ -53,4 +53,10 @@ public class GeneralConstants {
     public static final Integer[] tileNumberTokensOnBoard = {2, 3, 3, 4, 4, 5, 5, 6, 6, 8,
             8, 9, 9, 10, 10, 11, 11, 12};
 
+
+    public static final String bluePlayerColor = "#218DFA";
+    public static final String greenPlayerColor = "#12CF06";
+    public static final String orangePlayerColor = "#E38505";
+    public static final String redPlayerColor = "#FF1F1F";
+
 }
