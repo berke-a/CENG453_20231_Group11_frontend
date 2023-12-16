@@ -94,10 +94,10 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void distributeResources() {
+        this.logTextArea.appendText("- Distribute Resources\n");
+
         this.distributeResourcesPlayer();
         this.distributeResourcesCPU();
-
-        this.logTextArea.appendText("- Distribute Resources\n");
     }
 
     public void distributeResourcesPlayer() {
@@ -162,10 +162,8 @@ public class BoardController extends BoardControllerAbstract {
             if (diceRollTimer != null) {
                 diceRollTimer.stop(); // Stop the timer if it's not the red player's turn
             }
+            // TODO: Implement CPU Dice Roll
         }
-
-        // TODO: Implement resource distribution
-        // TODO: Implement
     }
 
     private void startDiceRollTimer() {
@@ -183,6 +181,10 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void onClickRollDice() {
+        if (diceRollTimer != null) {
+            diceRollTimer.stop(); // Stop the timer if the button is clicked
+        }
+
         this.manageDiceUpdate();
     }
 
