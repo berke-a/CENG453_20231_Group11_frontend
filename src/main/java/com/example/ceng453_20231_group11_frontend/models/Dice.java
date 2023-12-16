@@ -6,10 +6,10 @@ import java.util.Random;
 
 @NoArgsConstructor
 public class Dice {
-    Integer die1;
-    Integer die2;
+    Integer die1 = 0;
+    Integer die2 = 0;
 
-    Integer diceTotal;
+    Integer diceTotal = 0;
 
     public void roll() {
         Random random = new Random();
