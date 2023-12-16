@@ -44,7 +44,6 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <Button mnemonicParsing="false" onAction="#onGetWeeklyClick" text="get weekly"/>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="WEEKLY LEADERBOARD"
                                       GridPane.columnIndex="2">
                                     <font>
@@ -83,7 +82,7 @@
                 </Pane>
             </content>
         </Tab>
-        <Tab closable="false" text="MONTHLY">
+        <Tab fx:id="monthlyTab" onSelectionChanged="#onMonthlySelectionChange" closable="false" text="MONTHLY">
             <content>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
@@ -108,7 +107,6 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <Button mnemonicParsing="false" onAction="#onGetMonthlyClick" text="get monthly"/>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MONTHLY LEADERBOARD"
                                       GridPane.columnIndex="2">
                                     <font>
@@ -147,7 +145,7 @@
                 </Pane>
             </content>
         </Tab>
-        <Tab closable="false" text="ALL-TIME">
+        <Tab fx:id="alltimeTab" onSelectionChanged="#onAlltimeSelectionChange" closable="false" text="ALL-TIME">
             <content>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
@@ -172,7 +170,6 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <Button mnemonicParsing="false" onAction="#onGetAlltimeClick" text="get alltime"/>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ALL-TIME LEADERBOARD"
                                       GridPane.columnIndex="2">
                                     <font>
