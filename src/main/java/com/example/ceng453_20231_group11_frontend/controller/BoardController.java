@@ -72,7 +72,6 @@ public class BoardController extends BoardControllerAbstract {
                 this.managePlayerTurn();
                 break;
         }
-        gameManager.turnState = gameManager.turnState.next();
     }
 
     private void managePlayerTurn() {
