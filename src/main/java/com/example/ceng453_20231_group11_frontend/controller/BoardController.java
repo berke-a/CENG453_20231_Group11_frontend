@@ -1,6 +1,7 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
+import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
 import com.example.ceng453_20231_group11_frontend.enums.TurnState;
 import com.example.ceng453_20231_group11_frontend.models.*;
 import javafx.animation.KeyFrame;
@@ -109,6 +110,7 @@ public class BoardController extends BoardControllerAbstract {
 
         this.distributeResourcesPlayer();
         this.distributeResourcesCPU();
+        this.updateCardCounts();
 
         this.gameManager.turnState = TurnState.TURN_PLAYER;
         this.updateGameState();
@@ -199,6 +201,33 @@ public class BoardController extends BoardControllerAbstract {
         this.diceText1.setText(dice.getStringDie1());
         this.diceText2.setText(dice.getStringDie2());
         this.diceTotalText.setText(dice.getStringDieTotal());
+    }
+
+    private void updateCardCounts() {
+        for (CPUPlayer cpuPlayer : this.cpuPlayers) {
+            switch (cpuPlayer.color) {
+                case RED:
+                    this.updatePlayerResourceCount();
+                    break;
+                case BLUE:
+                    this.cpuBlueCardCount.setText(cpuPlayer.getTotalResource().toString());
+                    break;
+                case ORANGE:
+                    this.cpuOrangeCardCount.setText(cpuPlayer.getTotalResource().toString());
+                    break;
+                case GREEN:
+                    this.cpuGreenCardCount.setText(cpuPlayer.getTotalResource().toString());
+                    break;
+            }
+        }
+    }
+
+    private void updatePlayerResourceCount() {
+        this.playerWoolCount.setText(this.player.getResource(ResourceType.WOOL).toString());
+        this.playerLumberCount.setText(this.player.getResource(ResourceType.LUMBER).toString());
+        this.playerBrickCount.setText(this.player.getResource(ResourceType.BRICK).toString());
+        this.playerGrainCount.setText(this.player.getResource(ResourceType.GRAIN).toString());
+        this.playerOreCount.setText(this.player.getResource(ResourceType.ORE).toString());
     }
 
     private void startDiceRollTimer(Integer seconds) {
