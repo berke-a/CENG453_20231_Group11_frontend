@@ -20,8 +20,8 @@ abstract class PlayerAbstract {
 
     // TODO: Update type to circles
     Integer roads = 0; //TODO
-    public CircleVertex[] settlements;
-    public CircleVertex[] cities;
+    public CircleVertex[] settlements = new CircleVertex[0];
+    public CircleVertex[] cities = new CircleVertex[0];
 
     abstract boolean hasWonTheGame();
 

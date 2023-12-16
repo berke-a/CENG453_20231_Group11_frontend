@@ -22,8 +22,8 @@ public enum TurnPlayerState {
         }
     }
 
-    public TurnState next() {
-        int nextIndex = (this.ordinal() + 1) % TurnState.values().length;
-        return TurnState.values()[nextIndex];
+    public TurnPlayerState next() {
+        int nextIndex = (this.ordinal() + 1) % TurnPlayerState.values().length;
+        return TurnPlayerState.values()[nextIndex];
     }
 }

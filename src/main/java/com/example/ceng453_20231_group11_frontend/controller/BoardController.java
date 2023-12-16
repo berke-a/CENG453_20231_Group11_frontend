@@ -38,7 +38,9 @@ public class BoardController extends BoardControllerAbstract {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             this.initializeTiles();
+            this.initializeCpuPlayers();
             this.rollDiceButton.setDisable(true);
+            this.gameManager.turnState = TurnState.ROLL_DICE;
             this.updateGameState();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -90,8 +92,16 @@ public class BoardController extends BoardControllerAbstract {
                 break;
         }
 
-        this.gameManager.turnPlayerState.next();
+        this.gameManager.turnPlayerState = this.gameManager.turnPlayerState.next();
         this.gameManager.turnState = TurnState.ROLL_DICE;
+        this.updateGameState();
+    }
+
+
+    private void initializeCpuPlayers() {
+        this.cpuPlayers[0] = new CPUPlayer();
+        this.cpuPlayers[1] = new CPUPlayer();
+        this.cpuPlayers[2] = new CPUPlayer();
     }
 
     private void distributeResources() {
@@ -99,24 +109,27 @@ public class BoardController extends BoardControllerAbstract {
 
         this.distributeResourcesPlayer();
         this.distributeResourcesCPU();
+
+        this.gameManager.turnState = TurnState.TURN_PLAYER;
+        this.updateGameState();
     }
 
     private void manageDiceRoll() {
         if (this.gameManager.turnPlayerState == this.gameManager.turnPlayerState.TURN_RED) {
             this.rollDiceButton.setDisable(false);
-            this.logTextArea.appendText("- Please Roll Dice\n");
+            this.logTextArea.appendText("- Please Roll Dice: 10 Seconds\n");
             this.animateDiceButton();
 
             // Start or restart the timer
-            startDiceRollTimer();
+            startDiceRollTimer(10);
 
         } else {
             this.logTextArea.appendText("- Please Wait For Your Turn\n");
             this.rollDiceButton.setDisable(true);
 
-            if (diceRollTimer != null) {
-                diceRollTimer.stop(); // Stop the timer if it's not the red player's turn
-            }
+            startDiceRollTimer(2);
+
+
             // TODO: Implement CPU Dice Roll
         }
     }
@@ -125,9 +138,9 @@ public class BoardController extends BoardControllerAbstract {
     private void manageDiceUpdate() {
         dice.roll();
         this.updateDiceText();
-        this.logTextArea.appendText("- Dice Rolled\n");
+        this.logTextArea.appendText("- Player " + this.gameManager.turnPlayerState.toString() + " rolled the dice\n");
         this.gameManager.turnState = TurnState.RESOURCE_DISTRIBUTION;
-        updateGameState();
+        this.updateGameState();
     }
 
     private void playerInitialPlacement() {
@@ -188,13 +201,13 @@ public class BoardController extends BoardControllerAbstract {
         this.diceTotalText.setText(dice.getStringDieTotal());
     }
 
-    private void startDiceRollTimer() {
+    private void startDiceRollTimer(Integer seconds) {
         if (diceRollTimer != null) {
             diceRollTimer.stop(); // Stop any existing timer
         }
 
         diceRollTimer = new Timeline(new KeyFrame(
-                Duration.seconds(10),
+                Duration.seconds(seconds),
                 ae -> onClickRollDice()
         ));
 
