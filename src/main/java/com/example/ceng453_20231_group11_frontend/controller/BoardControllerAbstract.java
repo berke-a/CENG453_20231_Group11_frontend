@@ -38,6 +38,9 @@ abstract class BoardControllerAbstract implements Initializable {
     protected Text tileText1, tileText2, tileText3, tileText4, tileText5, tileText6, tileText7, tileText8, tileText9, tileText10,
             tileText11, tileText12, tileText13, tileText14, tileText15, tileText16, tileText17, tileText18, tileText19;
 
+    @FXML
+    Text diceText1, diceText2, diceTotalText;
+
     protected Pair<Label, Text>[] tileLabelTextPairs;
 
     protected HashMap<Polygon, Tile> tileMap = new HashMap<Polygon, Tile>();

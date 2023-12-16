@@ -1,5 +1,6 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
+import com.example.ceng453_20231_group11_frontend.models.Dice;
 import com.example.ceng453_20231_group11_frontend.models.GameManager;
 
 import java.net.URL;
@@ -10,6 +11,8 @@ public class BoardController extends BoardControllerAbstract {
     // Player
     // Dice
     // Card
+
+    Dice dice = new Dice();
 
 
     // Initialize Hexagons
@@ -29,6 +32,10 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void onClickRollDice() {
+        dice.roll();
+        this.diceText1.setText(dice.getDie1());
+        this.diceText2.setText(dice.getDie2());
+        this.diceTotalText.setText(dice.getDiceTotal());
     }
 
     public void onClickHelpButton() {
