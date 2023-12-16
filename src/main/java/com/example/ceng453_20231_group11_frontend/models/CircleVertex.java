@@ -16,7 +16,7 @@ public class CircleVertex {
     private boolean hasSettlement;
     private boolean hasCity;
     private List<Circle> adjacentCircles;
-    private List<Polygon> adjacentTiles;
+    public List<Polygon> adjacentTiles;
 
     public CircleVertex() {
         this.hasSettlement = false;

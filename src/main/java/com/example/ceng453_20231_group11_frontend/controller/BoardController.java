@@ -1,14 +1,16 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
+import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.enums.TurnState;
-import com.example.ceng453_20231_group11_frontend.models.Dice;
-import com.example.ceng453_20231_group11_frontend.models.GameManager;
+import com.example.ceng453_20231_group11_frontend.models.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class BoardController extends BoardControllerAbstract {
@@ -30,6 +32,9 @@ public class BoardController extends BoardControllerAbstract {
 
     private Timeline diceRollTimer;
 
+    private Player player = new Player();
+    private CPUPlayer[] cpuPlayers = new CPUPlayer[3];
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             this.initializeTiles();
@@ -40,14 +45,28 @@ public class BoardController extends BoardControllerAbstract {
         }
     }
 
-    public void updateGameState() {
-        this.updateDiceText();
+    public void onClickHelpButton() {
+        this.helpContentTable.setVisible(!this.helpContentTable.isVisible());
+    }
+
+    public void onClickRollDice() {
+        if (diceRollTimer != null) {
+            diceRollTimer.stop(); // Stop the timer if the button is clicked
+        }
+
+        this.manageDiceUpdate();
+    }
+
+    private void updateGameState() {
         switch (gameManager.turnState) {
             case INITIALIZATION:
                 this.playerInitialPlacement();
                 break;
             case ROLL_DICE:
                 this.manageDiceRoll();
+                break;
+            case RESOURCE_DISTRIBUTION:
+                this.distributeResources();
                 break;
             case TURN_PLAYER:
                 this.managePlayerTurn();
@@ -56,17 +75,7 @@ public class BoardController extends BoardControllerAbstract {
         gameManager.turnState = gameManager.turnState.next();
     }
 
-    public void animateDiceButton() {
-        ScaleTransition st1 = new ScaleTransition(Duration.millis(1000), this.rollDiceButton);
-        st1.setByX(1.05);
-        st1.setByY(1.05);
-        st1.setCycleCount((int) 4f);
-        st1.setAutoReverse(true);
-
-        st1.play();
-    }
-
-    public void managePlayerTurn() {
+    private void managePlayerTurn() {
         this.logTextArea.appendText("- Player " + this.gameManager.turnPlayerState.toString() + " Turn\n");
 
         // TODO: Implement Player Turn
@@ -86,7 +95,14 @@ public class BoardController extends BoardControllerAbstract {
         this.gameManager.turnState = TurnState.ROLL_DICE;
     }
 
-    public void manageDiceRoll() {
+    private void distributeResources() {
+        this.logTextArea.appendText("- Distribute Resources\n");
+
+        this.distributeResourcesPlayer();
+        this.distributeResourcesCPU();
+    }
+
+    private void manageDiceRoll() {
         if (this.gameManager.turnPlayerState == this.gameManager.turnPlayerState.TURN_RED) {
             this.rollDiceButton.setDisable(false);
             this.logTextArea.appendText("- Please Roll Dice\n");
@@ -102,10 +118,75 @@ public class BoardController extends BoardControllerAbstract {
             if (diceRollTimer != null) {
                 diceRollTimer.stop(); // Stop the timer if it's not the red player's turn
             }
+            // TODO: Implement CPU Dice Roll
+        }
+    }
+
+
+    private void manageDiceUpdate() {
+        dice.roll();
+        this.updateDiceText();
+        this.logTextArea.appendText("- Dice Rolled\n");
+        this.gameManager.turnState = TurnState.RESOURCE_DISTRIBUTION;
+        updateGameState();
+    }
+
+    private void playerInitialPlacement() {
+        this.logTextArea.appendText("- Player Initial Placement\n");
+        // TODO: Implement Player Initial Placement
+        this.gameManager.turnState = TurnState.ROLL_DICE;
+    }
+
+    private void distributeResourcesPlayer() {
+        for (CircleVertex playerSettlement : this.player.settlements) {
+            for (Polygon polygon : playerSettlement.adjacentTiles) {
+                Tile adjacentTile = this.polygonTileHashMap.get(polygon);
+
+                if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
+                    this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                }
+            }
         }
 
-        // TODO: Implement resource distribution
-        // TODO: Implement
+        for (CircleVertex playerCity : this.player.cities) {
+            for (Polygon polygon : playerCity.adjacentTiles) {
+                Tile adjacentTile = this.polygonTileHashMap.get(polygon);
+
+                if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
+                    this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                }
+            }
+        }
+    }
+
+    private void distributeResourcesCPU() {
+        for (CPUPlayer cpuPlayer : this.cpuPlayers) {
+            for (CircleVertex cpuSettlement : cpuPlayer.settlements) {
+                for (Polygon polygon : cpuSettlement.adjacentTiles) {
+                    Tile adjacentTile = this.polygonTileHashMap.get(polygon);
+
+                    if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
+                        this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                    }
+                }
+            }
+
+            for (CircleVertex cpuCity : cpuPlayer.cities) {
+                for (Polygon polygon : cpuCity.adjacentTiles) {
+                    Tile adjacentTile = this.polygonTileHashMap.get(polygon);
+
+                    if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
+                        this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                    }
+                }
+            }
+        }
+    }
+
+    private void updateDiceText() {
+        this.diceText1.setText(dice.getStringDie1());
+        this.diceText2.setText(dice.getStringDie2());
+        this.diceTotalText.setText(dice.getStringDieTotal());
     }
 
     private void startDiceRollTimer() {
@@ -115,37 +196,20 @@ public class BoardController extends BoardControllerAbstract {
 
         diceRollTimer = new Timeline(new KeyFrame(
                 Duration.seconds(10),
-                ae -> autoRollDice()
+                ae -> onClickRollDice()
         ));
 
         diceRollTimer.setCycleCount(1); // Only run once
         diceRollTimer.play();
     }
 
-    private void autoRollDice() {
-        this.onClickRollDice();
-    }
+    private void animateDiceButton() {
+        ScaleTransition st1 = new ScaleTransition(Duration.millis(1000), this.rollDiceButton);
+        st1.setByX(1.05);
+        st1.setByY(1.05);
+        st1.setCycleCount((int) 4f);
+        st1.setAutoReverse(true);
 
-
-    public void onClickRollDice() {
-        dice.roll();
-        this.gameManager.turnState = TurnState.TURN_PLAYER;
-        updateGameState();
-    }
-
-    public void playerInitialPlacement() {
-        this.logTextArea.appendText("- Player Initial Placement\n");
-        // TODO: Implement Player Initial Placement
-        this.gameManager.turnState = TurnState.ROLL_DICE;
-    }
-
-    public void onClickHelpButton() {
-        this.helpContentTable.setVisible(!this.helpContentTable.isVisible());
-    }
-
-    private void updateDiceText() {
-        this.diceText1.setText(dice.getDie1());
-        this.diceText2.setText(dice.getDie2());
-        this.diceTotalText.setText(dice.getDiceTotal());
+        st1.play();
     }
 }
