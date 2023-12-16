@@ -27,4 +27,10 @@ public class BoardController extends BoardControllerAbstract {
             System.out.println(e.getMessage());
         }
     }
+
+    public void onClickRollDice() {
+    }
+
+    public void onClickHelpButton() {
+    }
 }
