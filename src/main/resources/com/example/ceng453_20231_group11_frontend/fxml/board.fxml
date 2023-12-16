@@ -23,7 +23,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ceng453_20231_group11_frontend.controller.BoardController">
     <children>
-        <Polygon fx:id="rollDiceButton" fill="DODGERBLUE" layoutX="370.0" layoutY="341.0" rotate="30.0" scaleX="6.0" scaleY="6.0" stroke="BLACK" strokeType="INSIDE">
+        <Polygon fill="DODGERBLUE" layoutX="370.0" layoutY="341.0" rotate="30.0" scaleX="6.0" scaleY="6.0" stroke="BLACK" strokeType="INSIDE">
             <points>
                 <Double fx:value="0.0" />
                 <Double fx:value="60.0" />
@@ -744,12 +744,17 @@
                     <font>
                         <Font name="System Bold Italic" size="13.0" />
                     </font>
-               <cursor>
-                  <Cursor fx:constant="NONE" />
-               </cursor>
+                    <cursor>
+                        <Cursor fx:constant="NONE" />
+                    </cursor>
                 </TextArea>
             </children>
         </Group>
+        <Button fx:id="rollDiceButton" layoutX="629.0" layoutY="602.0" mnemonicParsing="false" onAction="#onClickRollDice" text="Roll Dice">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Button>
         <Pane layoutX="-6.0" layoutY="657.0" prefHeight="143.0" prefWidth="908.0" style="-fx-background-color: #dfe6ed;">
             <children>
                 <GridPane layoutX="18.0" layoutY="13.0" prefHeight="118.0" prefWidth="520.0">
@@ -792,7 +797,7 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                             <children>
                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -802,7 +807,7 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="1">
                             <children>
                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -812,7 +817,7 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="2">
                             <children>
                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -822,7 +827,7 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="3">
                             <children>
                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -832,7 +837,7 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="4">
                             <children>
                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -962,7 +967,7 @@
                                         <Image url="@../images/trophy_icon.png" />
                                     </image>
                                 </ImageView>
-                                <Text fill="#12cf06" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Text fill="#12cf06" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU2" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
@@ -1003,7 +1008,7 @@
                                         <Image url="@../images/trophy_icon.png" />
                                     </image>
                                 </ImageView>
-                                <Text fill="#e38505" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                <Text fill="#e38505" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU3" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
@@ -1029,7 +1034,7 @@
                 </GridPane>
             </children>
         </Pane>
-        <GridPane layoutX="634.0" layoutY="586.0" prefHeight="69.0" prefWidth="131.0">
+        <GridPane layoutX="730.0" layoutY="584.0" prefHeight="69.0" prefWidth="131.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1038,29 +1043,34 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0" stroke="BLACK" strokeType="INSIDE" width="64.0" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0" stroke="BLACK" strokeType="INSIDE" width="64.0" GridPane.columnIndex="1" />
-                <Text fx:id="diceText1" strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <Rectangle fx:id="diceRectangle1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0" stroke="BLACK" strokeType="INSIDE" width="64.0" />
+                <Rectangle fx:id="diceRectangle2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0" stroke="BLACK" strokeType="INSIDE" width="64.0" GridPane.columnIndex="1" />
+                <Text fx:id="diceText1" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <font>
                         <Font name="System Bold" size="25.0" />
                     </font>
                 </Text>
-                <Text fx:id="diceText2" strokeType="OUTSIDE" strokeWidth="0.0" text="5" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <Text fx:id="diceText2" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <font>
                         <Font name="System Bold" size="25.0" />
                     </font>
                 </Text>
             </children>
         </GridPane>
-        <Button layoutX="793.0" layoutY="608.0" mnemonicParsing="false" onAction="#onClickRollDice" text="Roll Dice">
+        <Button mnemonicParsing="false" onAction="#onClickHelpButton" text="HELP">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Button>
-        <Button layoutX="10.0" layoutY="6.0" mnemonicParsing="false" onAction="#onClickHelpButton" text="HELP">
+        <Text fx:id="diceTotalText" layoutX="876.0" layoutY="624.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="19.0" />
             </font>
-        </Button>
+        </Text>
+        <Text layoutX="861.0" layoutY="623.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Text>
     </children>
 </AnchorPane>

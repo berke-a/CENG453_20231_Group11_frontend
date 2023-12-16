@@ -6,11 +6,27 @@ import java.util.Random;
 
 @NoArgsConstructor
 public class Dice {
+    Integer die1 = 0;
+    Integer die2 = 0;
 
-    public Integer roll() {
+    Integer diceTotal = 0;
+
+    public void roll() {
         Random random = new Random();
-        Integer die1 = random.nextInt(6) + 1;
-        Integer die2 = random.nextInt(6) + 1;
-        return die1 + die2;
+        this.die1 = random.nextInt(6) + 1;
+        this.die2 = random.nextInt(6) + 1;
+        this.diceTotal = this.die1 + this.die2;
+    }
+
+    public String getDie1() {
+        return this.die1.toString();
+    }
+
+    public String getDie2() {
+        return this.die2.toString();
+    }
+
+    public String getDiceTotal() {
+        return this.diceTotal.toString();
     }
 }

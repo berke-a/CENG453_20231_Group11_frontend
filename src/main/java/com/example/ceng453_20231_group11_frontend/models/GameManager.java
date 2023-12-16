@@ -1,5 +1,6 @@
 package com.example.ceng453_20231_group11_frontend.models;
 
+import com.example.ceng453_20231_group11_frontend.enums.TurnPlayerState;
 import com.example.ceng453_20231_group11_frontend.enums.TurnState;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +10,8 @@ import lombok.Setter;
 public class GameManager {
 
     private static GameManager instance;
-    private static TurnState turnState = TurnState.INITIALIZATION;
+    public TurnState turnState = TurnState.INITIALIZATION;
+    public TurnPlayerState turnPlayerState = TurnPlayerState.TURN_BLUE;
 
 
     public static GameManager getInstance() {
