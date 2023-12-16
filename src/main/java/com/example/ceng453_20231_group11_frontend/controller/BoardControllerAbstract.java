@@ -43,6 +43,12 @@ abstract class BoardControllerAbstract implements Initializable {
             tileText11, tileText12, tileText13, tileText14, tileText15, tileText16, tileText17, tileText18, tileText19;
 
     @FXML
+    protected Text playerWoolCount, playerLumberCount, playerBrickCount, playerGrainCount, playerOreCount;
+
+    @FXML
+    protected Text cpuBlueCardCount, cpuOrangeCardCount, cpuGreenCardCount;
+
+    @FXML
     protected Pane helpContentTable;
 
     @FXML
