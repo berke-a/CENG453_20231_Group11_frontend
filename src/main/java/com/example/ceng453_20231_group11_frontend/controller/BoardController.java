@@ -3,7 +3,9 @@ package com.example.ceng453_20231_group11_frontend.controller;
 import com.example.ceng453_20231_group11_frontend.enums.TurnState;
 import com.example.ceng453_20231_group11_frontend.models.Dice;
 import com.example.ceng453_20231_group11_frontend.models.GameManager;
+import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -25,6 +27,8 @@ public class BoardController extends BoardControllerAbstract {
     // Buy Game Piece Action Listener
 
     private final GameManager gameManager = GameManager.getInstance();
+
+    private Timeline diceRollTimer;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -87,12 +91,41 @@ public class BoardController extends BoardControllerAbstract {
             this.rollDiceButton.setDisable(false);
             this.logTextArea.appendText("- Please Roll Dice\n");
             this.animateDiceButton();
+
+            // Start or restart the timer
+            startDiceRollTimer();
+
         } else {
             this.logTextArea.appendText("- Please Wait For Your Turn\n");
             this.rollDiceButton.setDisable(true);
-            // TODO: Implement CPU Roll Dice and plays
+
+            if (diceRollTimer != null) {
+                diceRollTimer.stop(); // Stop the timer if it's not the red player's turn
+            }
         }
+
+        // TODO: Implement resource distribution
+        // TODO: Implement
     }
+
+    private void startDiceRollTimer() {
+        if (diceRollTimer != null) {
+            diceRollTimer.stop(); // Stop any existing timer
+        }
+
+        diceRollTimer = new Timeline(new KeyFrame(
+                Duration.seconds(10),
+                ae -> autoRollDice()
+        ));
+
+        diceRollTimer.setCycleCount(1); // Only run once
+        diceRollTimer.play();
+    }
+
+    private void autoRollDice() {
+        this.onClickRollDice();
+    }
+
 
     public void onClickRollDice() {
         dice.roll();
