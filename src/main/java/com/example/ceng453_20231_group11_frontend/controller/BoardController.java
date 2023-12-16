@@ -107,6 +107,7 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void onClickHelpButton() {
+        this.helpContentTable.setVisible(!this.helpContentTable.isVisible());
     }
 
     private void updateDiceText() {

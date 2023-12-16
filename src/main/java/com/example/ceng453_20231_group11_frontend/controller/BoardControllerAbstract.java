@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -40,6 +41,9 @@ abstract class BoardControllerAbstract implements Initializable {
     @FXML
     protected Text tileText1, tileText2, tileText3, tileText4, tileText5, tileText6, tileText7, tileText8, tileText9, tileText10,
             tileText11, tileText12, tileText13, tileText14, tileText15, tileText16, tileText17, tileText18, tileText19;
+
+    @FXML
+    protected Pane helpContentTable;
 
     @FXML
     protected Text diceText1, diceText2, diceTotalText;
