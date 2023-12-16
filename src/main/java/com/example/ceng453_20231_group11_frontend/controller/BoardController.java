@@ -45,7 +45,19 @@ public class BoardController extends BoardControllerAbstract {
         }
     }
 
-    public void updateGameState() {
+    public void onClickHelpButton() {
+        this.helpContentTable.setVisible(!this.helpContentTable.isVisible());
+    }
+
+    public void onClickRollDice() {
+        if (diceRollTimer != null) {
+            diceRollTimer.stop(); // Stop the timer if the button is clicked
+        }
+
+        this.manageDiceUpdate();
+    }
+
+    private void updateGameState() {
         switch (gameManager.turnState) {
             case INITIALIZATION:
                 this.playerInitialPlacement();
@@ -63,17 +75,7 @@ public class BoardController extends BoardControllerAbstract {
         gameManager.turnState = gameManager.turnState.next();
     }
 
-    public void animateDiceButton() {
-        ScaleTransition st1 = new ScaleTransition(Duration.millis(1000), this.rollDiceButton);
-        st1.setByX(1.05);
-        st1.setByY(1.05);
-        st1.setCycleCount((int) 4f);
-        st1.setAutoReverse(true);
-
-        st1.play();
-    }
-
-    public void managePlayerTurn() {
+    private void managePlayerTurn() {
         this.logTextArea.appendText("- Player " + this.gameManager.turnPlayerState.toString() + " Turn\n");
 
         // TODO: Implement Player Turn
@@ -93,14 +95,49 @@ public class BoardController extends BoardControllerAbstract {
         this.gameManager.turnState = TurnState.ROLL_DICE;
     }
 
-    public void distributeResources() {
+    private void distributeResources() {
         this.logTextArea.appendText("- Distribute Resources\n");
 
         this.distributeResourcesPlayer();
         this.distributeResourcesCPU();
     }
 
-    public void distributeResourcesPlayer() {
+    private void manageDiceRoll() {
+        if (this.gameManager.turnPlayerState == this.gameManager.turnPlayerState.TURN_RED) {
+            this.rollDiceButton.setDisable(false);
+            this.logTextArea.appendText("- Please Roll Dice\n");
+            this.animateDiceButton();
+
+            // Start or restart the timer
+            startDiceRollTimer();
+
+        } else {
+            this.logTextArea.appendText("- Please Wait For Your Turn\n");
+            this.rollDiceButton.setDisable(true);
+
+            if (diceRollTimer != null) {
+                diceRollTimer.stop(); // Stop the timer if it's not the red player's turn
+            }
+            // TODO: Implement CPU Dice Roll
+        }
+    }
+
+
+    private void manageDiceUpdate() {
+        dice.roll();
+        this.updateDiceText();
+        this.logTextArea.appendText("- Dice Rolled\n");
+        this.gameManager.turnState = TurnState.RESOURCE_DISTRIBUTION;
+        updateGameState();
+    }
+
+    private void playerInitialPlacement() {
+        this.logTextArea.appendText("- Player Initial Placement\n");
+        // TODO: Implement Player Initial Placement
+        this.gameManager.turnState = TurnState.ROLL_DICE;
+    }
+
+    private void distributeResourcesPlayer() {
         for (CircleVertex playerSettlement : this.player.settlements) {
             for (Polygon polygon : playerSettlement.adjacentTiles) {
                 Tile adjacentTile = this.polygonTileHashMap.get(polygon);
@@ -122,7 +159,7 @@ public class BoardController extends BoardControllerAbstract {
         }
     }
 
-    public void distributeResourcesCPU() {
+    private void distributeResourcesCPU() {
         for (CPUPlayer cpuPlayer : this.cpuPlayers) {
             for (CircleVertex cpuSettlement : cpuPlayer.settlements) {
                 for (Polygon polygon : cpuSettlement.adjacentTiles) {
@@ -146,24 +183,10 @@ public class BoardController extends BoardControllerAbstract {
         }
     }
 
-    public void manageDiceRoll() {
-        if (this.gameManager.turnPlayerState == this.gameManager.turnPlayerState.TURN_RED) {
-            this.rollDiceButton.setDisable(false);
-            this.logTextArea.appendText("- Please Roll Dice\n");
-            this.animateDiceButton();
-
-            // Start or restart the timer
-            startDiceRollTimer();
-
-        } else {
-            this.logTextArea.appendText("- Please Wait For Your Turn\n");
-            this.rollDiceButton.setDisable(true);
-
-            if (diceRollTimer != null) {
-                diceRollTimer.stop(); // Stop the timer if it's not the red player's turn
-            }
-            // TODO: Implement CPU Dice Roll
-        }
+    private void updateDiceText() {
+        this.diceText1.setText(dice.getStringDie1());
+        this.diceText2.setText(dice.getStringDie2());
+        this.diceTotalText.setText(dice.getStringDieTotal());
     }
 
     private void startDiceRollTimer() {
@@ -180,35 +203,13 @@ public class BoardController extends BoardControllerAbstract {
         diceRollTimer.play();
     }
 
-    public void onClickRollDice() {
-        if (diceRollTimer != null) {
-            diceRollTimer.stop(); // Stop the timer if the button is clicked
-        }
+    private void animateDiceButton() {
+        ScaleTransition st1 = new ScaleTransition(Duration.millis(1000), this.rollDiceButton);
+        st1.setByX(1.05);
+        st1.setByY(1.05);
+        st1.setCycleCount((int) 4f);
+        st1.setAutoReverse(true);
 
-        this.manageDiceUpdate();
-    }
-
-    public void manageDiceUpdate() {
-        dice.roll();
-        this.updateDiceText();
-        this.logTextArea.appendText("- Dice Rolled\n");
-        this.gameManager.turnState = TurnState.RESOURCE_DISTRIBUTION;
-        updateGameState();
-    }
-
-    public void playerInitialPlacement() {
-        this.logTextArea.appendText("- Player Initial Placement\n");
-        // TODO: Implement Player Initial Placement
-        this.gameManager.turnState = TurnState.ROLL_DICE;
-    }
-
-    public void onClickHelpButton() {
-        this.helpContentTable.setVisible(!this.helpContentTable.isVisible());
-    }
-
-    private void updateDiceText() {
-        this.diceText1.setText(dice.getStringDie1());
-        this.diceText2.setText(dice.getStringDie2());
-        this.diceTotalText.setText(dice.getStringDieTotal());
+        st1.play();
     }
 }
