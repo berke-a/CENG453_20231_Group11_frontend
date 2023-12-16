@@ -1,737 +1,850 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.Double?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ceng453_20231_group11_frontend.controller.BoardController">
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+            prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.ceng453_20231_group11_frontend.controller.BoardController">
     <children>
-        <Polygon fx:id="rollDiceButton" fill="DODGERBLUE" layoutX="370.0" layoutY="341.0" rotate="30.0" scaleX="6.0" scaleY="6.0" stroke="BLACK" strokeType="INSIDE">
+        <Polygon fill="DODGERBLUE" layoutX="370.0" layoutY="341.0" rotate="30.0" scaleX="6.0" scaleY="6.0"
+                 stroke="BLACK" strokeType="INSIDE">
             <points>
-                <Double fx:value="0.0" />
-                <Double fx:value="60.0" />
-                <Double fx:value="51.96" />
-                <Double fx:value="30.0" />
-                <Double fx:value="51.96" />
-                <Double fx:value="-30.0" />
-                <Double fx:value="0.0" />
-                <Double fx:value="-60.0" />
-                <Double fx:value="-51.96" />
-                <Double fx:value="-30.0" />
-                <Double fx:value="-51.96" />
-                <Double fx:value="30.0" />
+                <Double fx:value="0.0"/>
+                <Double fx:value="60.0"/>
+                <Double fx:value="51.96"/>
+                <Double fx:value="30.0"/>
+                <Double fx:value="51.96"/>
+                <Double fx:value="-30.0"/>
+                <Double fx:value="0.0"/>
+                <Double fx:value="-60.0"/>
+                <Double fx:value="-51.96"/>
+                <Double fx:value="-30.0"/>
+                <Double fx:value="-51.96"/>
+                <Double fx:value="30.0"/>
             </points>
         </Polygon>
         <Group layoutX="169.0" layoutY="166.0">
             <children>
                 <Polygon fx:id="tile1" fill="GREEN" layoutX="104.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile2" fill="GREEN" layoutX="208.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile3" fill="GREEN" layoutX="312.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile4" fill="GREEN" layoutX="52.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile5" fill="GREEN" layoutX="156.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile6" fill="GREEN" layoutX="260.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile7" fill="GREEN" layoutX="364.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile8" fill="GREEN" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile11" fill="GREEN" layoutX="312.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile10" fill="GREEN" layoutX="208.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile9" fill="GREEN" layoutX="104.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
-                <Polygon fx:id="tile12" fill="GREEN" layoutX="415.9999694824219" layoutY="177.0" stroke="BLACK" strokeType="INSIDE">
+                <Polygon fx:id="tile12" fill="GREEN" layoutX="415.9999694824219" layoutY="177.0" stroke="BLACK"
+                         strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile13" fill="GREEN" layoutX="52.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile17" fill="GREEN" layoutX="104.0" layoutY="351.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile16" fill="GREEN" layoutX="364.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile15" fill="GREEN" layoutX="260.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile14" fill="GREEN" layoutX="156.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile18" fill="GREEN" layoutX="208.0" layoutY="351.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
                 <Polygon fx:id="tile19" fill="GREEN" layoutX="312.0" layoutY="351.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
-                        <Double fx:value="0.0" />
-                        <Double fx:value="60.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="30.0" />
-                        <Double fx:value="51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="0.0" />
-                        <Double fx:value="-60.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="-30.0" />
-                        <Double fx:value="-51.96" />
-                        <Double fx:value="30.0" />
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="60.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="30.0"/>
+                        <Double fx:value="51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="0.0"/>
+                        <Double fx:value="-60.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="-30.0"/>
+                        <Double fx:value="-51.96"/>
+                        <Double fx:value="30.0"/>
                     </points>
                 </Polygon>
-                <Circle fx:id="circle1" fill="#dfff1f" layoutX="156.04" layoutY="207.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle2" fill="#dfff1f" layoutX="364.0399694824219" layoutY="207.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle3" fill="#dfff1f" layoutX="155.96" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle4" fill="#dfff1f" layoutX="363.96" layoutY="30.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle5" fill="#dfff1f" layoutX="104.03999999999999" layoutY="59.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle6" fill="#dfff1f" layoutX="52.04" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle7" fill="#dfff1f" layoutX="155.96" layoutY="30.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle8" fill="#dfff1f" layoutX="260.0" layoutY="325.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle9" fill="#dfff1f" layoutX="52.04" layoutY="30.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle10" fill="#dfff1f" layoutX="260.04" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle11" fill="#dfff1f" layoutX="260.0" layoutY="29.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle12" fill="#dfff1f" layoutY="237.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle13" fill="#dfff1f" layoutX="0.03999999999999915" layoutY="59.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle14" fill="#dfff1f" layoutX="207.96" layoutY="235.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle15" fill="#dfff1f" layoutX="-51.96" layoutY="147.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle16" fill="#dfff1f" layoutX="104.0" layoutY="291.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle17" fill="#dfff1f" layoutX="104.0" layoutY="-60.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle18" fill="#dfff1f" layoutX="311.96" layoutY="59.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle19" fill="#dfff1f" layoutX="312.04" layoutY="119.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle20" fill="#dfff1f" layoutX="52.0" layoutY="149.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle21" fill="#dfff1f" layoutX="259.96" layoutY="207.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle22" fill="#dfff1f" layoutX="208.04" layoutY="119.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle23" fill="#dfff1f" layoutX="415.96" layoutY="119.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle24" fill="#dfff1f" layoutX="415.96" layoutY="235.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle25" fill="#dfff1f" layoutX="156.0" layoutY="325.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle26" fill="#dfff1f" layoutX="104.03999999999999" layoutY="235.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle27" fill="#dfff1f" layoutX="312.0" layoutY="237.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle28" fill="#dfff1f" layoutX="312.0" layoutY="411.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle29" fill="#dfff1f" layoutX="-51.96" layoutY="207.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle30" fill="#dfff1f" layoutX="103.96000000000001" layoutY="119.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle31" fill="#dfff1f" layoutY="117.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle32" fill="#dfff1f" layoutX="364.0" layoutY="149.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle33" fill="#dfff1f" layoutX="312.04" layoutY="295.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle34" fill="#dfff1f" layoutX="208.0" layoutY="411.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle35" fill="#dfff1f" layoutX="52.0" layoutY="325.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle36" fill="#dfff1f" layoutX="415.96" layoutY="295.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle37" fill="#dfff1f" layoutX="208.04" layoutY="295.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle38" fill="#dfff1f" layoutX="208.0" layoutY="60.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle39" fill="#dfff1f" layoutX="363.96" layoutY="321.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle40" fill="#dfff1f" layoutX="156.04" layoutY="147.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle41" fill="#dfff1f" layoutX="363.96" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle42" fill="#dfff1f" layoutX="363.96" layoutY="-30.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle43" fill="#dfff1f" layoutX="467.95996948242185" layoutY="147.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle44" fill="#dfff1f" layoutX="156.04" layoutY="-30.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle45" fill="#dfff1f" layoutX="312.0" layoutY="-60.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle46" fill="#dfff1f" layoutX="260.0" layoutY="149.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle47" fill="#dfff1f" layoutX="52.04" layoutY="-30.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle48" fill="#dfff1f" layoutX="0.03999999999999915" layoutY="295.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle49" fill="#dfff1f" layoutX="104.0" layoutY="411.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle50" fill="#dfff1f" layoutX="260.04" layoutY="-30.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle51" fill="#dfff1f" layoutX="415.96" layoutY="59.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle52" fill="#dfff1f" layoutX="52.0" layoutY="205.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle53" fill="#dfff1f" layoutX="467.95996948242185" layoutY="207.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-                <Circle fx:id="circle54" fill="#dfff1f" layoutX="208.0" layoutY="-60.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+                <Circle fx:id="circle1" fill="#dfff1f" layoutX="156.04" layoutY="207.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle2" fill="#dfff1f" layoutX="364.0399694824219" layoutY="207.0" radius="12.0"
+                        stroke="BLACK" strokeType="INSIDE"/>
+                <Circle fx:id="circle3" fill="#dfff1f" layoutX="155.96" layoutY="381.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle4" fill="#dfff1f" layoutX="363.96" layoutY="30.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle5" fill="#dfff1f" layoutX="104.03999999999999" layoutY="59.0" radius="12.0"
+                        stroke="BLACK" strokeType="INSIDE"/>
+                <Circle fx:id="circle6" fill="#dfff1f" layoutX="52.04" layoutY="381.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle7" fill="#dfff1f" layoutX="155.96" layoutY="30.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle8" fill="#dfff1f" layoutX="260.0" layoutY="325.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle9" fill="#dfff1f" layoutX="52.04" layoutY="30.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle10" fill="#dfff1f" layoutX="260.04" layoutY="381.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle11" fill="#dfff1f" layoutX="260.0" layoutY="29.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle12" fill="#dfff1f" layoutY="237.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle13" fill="#dfff1f" layoutX="0.03999999999999915" layoutY="59.0" radius="12.0"
+                        stroke="BLACK" strokeType="INSIDE"/>
+                <Circle fx:id="circle14" fill="#dfff1f" layoutX="207.96" layoutY="235.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle15" fill="#dfff1f" layoutX="-51.96" layoutY="147.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle16" fill="#dfff1f" layoutX="104.0" layoutY="291.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle17" fill="#dfff1f" layoutX="104.0" layoutY="-60.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle18" fill="#dfff1f" layoutX="311.96" layoutY="59.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle19" fill="#dfff1f" layoutX="312.04" layoutY="119.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle20" fill="#dfff1f" layoutX="52.0" layoutY="149.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle21" fill="#dfff1f" layoutX="259.96" layoutY="207.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle22" fill="#dfff1f" layoutX="208.04" layoutY="119.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle23" fill="#dfff1f" layoutX="415.96" layoutY="119.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle24" fill="#dfff1f" layoutX="415.96" layoutY="235.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle25" fill="#dfff1f" layoutX="156.0" layoutY="325.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle26" fill="#dfff1f" layoutX="104.03999999999999" layoutY="235.0" radius="12.0"
+                        stroke="BLACK" strokeType="INSIDE"/>
+                <Circle fx:id="circle27" fill="#dfff1f" layoutX="312.0" layoutY="237.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle28" fill="#dfff1f" layoutX="312.0" layoutY="411.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle29" fill="#dfff1f" layoutX="-51.96" layoutY="207.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle30" fill="#dfff1f" layoutX="103.96000000000001" layoutY="119.0" radius="12.0"
+                        stroke="BLACK" strokeType="INSIDE"/>
+                <Circle fx:id="circle31" fill="#dfff1f" layoutY="117.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle32" fill="#dfff1f" layoutX="364.0" layoutY="149.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle33" fill="#dfff1f" layoutX="312.04" layoutY="295.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle34" fill="#dfff1f" layoutX="208.0" layoutY="411.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle35" fill="#dfff1f" layoutX="52.0" layoutY="325.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle36" fill="#dfff1f" layoutX="415.96" layoutY="295.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle37" fill="#dfff1f" layoutX="208.04" layoutY="295.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle38" fill="#dfff1f" layoutX="208.0" layoutY="60.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle39" fill="#dfff1f" layoutX="363.96" layoutY="321.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle40" fill="#dfff1f" layoutX="156.04" layoutY="147.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle41" fill="#dfff1f" layoutX="363.96" layoutY="381.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle42" fill="#dfff1f" layoutX="363.96" layoutY="-30.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle43" fill="#dfff1f" layoutX="467.95996948242185" layoutY="147.0" radius="12.0"
+                        stroke="BLACK" strokeType="INSIDE"/>
+                <Circle fx:id="circle44" fill="#dfff1f" layoutX="156.04" layoutY="-30.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle45" fill="#dfff1f" layoutX="312.0" layoutY="-60.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle46" fill="#dfff1f" layoutX="260.0" layoutY="149.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle47" fill="#dfff1f" layoutX="52.04" layoutY="-30.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle48" fill="#dfff1f" layoutX="0.03999999999999915" layoutY="295.0" radius="12.0"
+                        stroke="BLACK" strokeType="INSIDE"/>
+                <Circle fx:id="circle49" fill="#dfff1f" layoutX="104.0" layoutY="411.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle50" fill="#dfff1f" layoutX="260.04" layoutY="-30.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle51" fill="#dfff1f" layoutX="415.96" layoutY="59.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle52" fill="#dfff1f" layoutX="52.0" layoutY="205.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
+                <Circle fx:id="circle53" fill="#dfff1f" layoutX="467.95996948242185" layoutY="207.0" radius="12.0"
+                        stroke="BLACK" strokeType="INSIDE"/>
+                <Circle fx:id="circle54" fill="#dfff1f" layoutX="208.0" layoutY="-60.0" radius="12.0" stroke="BLACK"
+                        strokeType="INSIDE"/>
                 <StackPane layoutX="188.0" layoutY="-23.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel2" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel2" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText2" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText2" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="83.0" layoutY="-18.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel1" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel1" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText1" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText1" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="296.0" layoutY="-19.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel3" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel3" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText3" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText3" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="33.0" layoutY="69.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel4" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel4" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText4" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText4" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="134.0" layoutY="69.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel5" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel5" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText5" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText5" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="241.0" layoutY="71.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel6" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel6" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText6" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText6" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="345.0" layoutY="67.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel7" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel7" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText7" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText7" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="396.0" layoutY="158.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel12" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel12" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText12" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText12" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="292.0" layoutY="157.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel11" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel11" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText11" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText11" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="191.0" layoutY="160.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel10" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel10" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText10" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText10" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="83.0" layoutY="156.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel9" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel9" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText9" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText9" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="-21.0" layoutY="155.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel8" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel8" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText8" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText8" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="29.0" layoutY="245.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel13" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel13" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText13" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText13" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="135.0" layoutY="245.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel14" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel14" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText14" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText14" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="242.0" layoutY="244.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel15" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel15" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText15" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText15" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="82.0" layoutY="332.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel17" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel17" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText17" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText17" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="187.0" layoutY="329.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel18" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel18" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText18" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText18" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="292.0" layoutY="331.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel19" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel19" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText19" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText19" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
                 <StackPane layoutX="344.0" layoutY="242.0" prefHeight="26.0" prefWidth="31.0">
                     <children>
-                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                        <Label fx:id="tileLabel16" alignment="CENTER" text="10" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+                        <Circle fill="#dfff1f" radius="20.0" stroke="BLACK" strokeType="INSIDE"
+                                StackPane.alignment="CENTER"/>
+                        <Label fx:id="tileLabel16" alignment="CENTER" text="10" textAlignment="CENTER"
+                               StackPane.alignment="TOP_CENTER">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Text fx:id="tileText16" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
+                        <Text fx:id="tileText16" strokeType="OUTSIDE" strokeWidth="0.0" text="*****"
+                              textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER"/>
                     </children>
                 </StackPane>
-                <Pane fx:id="helpContentTable" layoutX="-157.0" layoutY="-134.0" prefHeight="240.0" prefWidth="296.0" style="-fx-background-color: #dfe6ed;">
+                <Pane fx:id="helpContentTable" layoutX="-157.0" layoutY="-134.0" prefHeight="240.0" prefWidth="296.0"
+                      style="-fx-background-color: #dfe6ed;">
                     <children>
                         <GridPane layoutX="3.0" prefHeight="239.0" prefWidth="291.0">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.16598510742188" minWidth="10.0" prefWidth="88.49339294433594" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.50660705566406" minWidth="10.0" prefWidth="202.50660705566406" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.16598510742188" minWidth="10.0"
+                                                   prefWidth="88.49339294433594"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.50660705566406" minWidth="10.0"
+                                                   prefWidth="202.50660705566406"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints maxHeight="76.50057220458984" minHeight="10.0" prefHeight="76.50057220458984" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="122.84146118164062" minHeight="10.0" prefHeight="88.99942779541016" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="128.9994354248047" minHeight="10.0" prefHeight="74.99884033203125" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="76.50057220458984" minHeight="10.0"
+                                                prefHeight="76.50057220458984" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="122.84146118164062" minHeight="10.0"
+                                                prefHeight="88.99942779541016" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="128.9994354248047" minHeight="10.0"
+                                                prefHeight="74.99884033203125" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settlement" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settlement"
+                                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City" GridPane.halignment="CENTER"
+                                      GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Road" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Road" GridPane.halignment="CENTER"
+                                      GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
                                 <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <ImageView fitHeight="57.0" fitWidth="46.0" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                        <ImageView fitHeight="57.0" fitWidth="46.0" GridPane.columnIndex="2"
+                                                   GridPane.halignment="CENTER">
                                             <image>
-                                                <Image url="@../images/resource_lumber.png" />
+                                                <Image url="@../images/resource_lumber.png"/>
                                             </image>
                                         </ImageView>
-                                        <ImageView fitHeight="56.0" fitWidth="41.0" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                                        <ImageView fitHeight="56.0" fitWidth="41.0" GridPane.columnIndex="3"
+                                                   GridPane.halignment="CENTER">
                                             <image>
-                                                <Image url="@../images/resource_brick.png" />
+                                                <Image url="@../images/resource_brick.png"/>
                                             </image>
                                         </ImageView>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
                                         <ImageView fitHeight="53.0" fitWidth="35.0" GridPane.columnIndex="1">
                                             <image>
-                                                <Image url="@../images/resource_ore.png" />
+                                                <Image url="@../images/resource_ore.png"/>
                                             </image>
                                         </ImageView>
                                         <ImageView fitHeight="53.0" fitWidth="32.0" GridPane.columnIndex="3">
                                             <image>
-                                                <Image url="@../images/resource_ore.png" />
+                                                <Image url="@../images/resource_ore.png"/>
                                             </image>
                                         </ImageView>
                                         <ImageView fitHeight="53.0" fitWidth="35.0" GridPane.columnIndex="2">
                                             <image>
-                                                <Image url="@../images/resource_ore.png" />
+                                                <Image url="@../images/resource_ore.png"/>
                                             </image>
                                         </ImageView>
                                         <ImageView fitHeight="52.0" fitWidth="35.0" GridPane.columnIndex="4">
                                             <image>
-                                                <Image url="@../images/resource_grain.png" />
+                                                <Image url="@../images/resource_grain.png"/>
                                             </image>
                                         </ImageView>
                                         <ImageView fitHeight="52.0" fitWidth="35.0" GridPane.columnIndex="5">
                                             <image>
-                                                <Image url="@../images/resource_grain.png" />
+                                                <Image url="@../images/resource_grain.png"/>
                                             </image>
                                         </ImageView>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.columnIndex="1">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
                                         <ImageView fitHeight="50.0" fitWidth="34.0" GridPane.columnIndex="1">
                                             <image>
-                                                <Image url="@../images/resource_wool.png" />
+                                                <Image url="@../images/resource_wool.png"/>
                                             </image>
                                         </ImageView>
                                         <ImageView fitHeight="49.0" fitWidth="34.0" GridPane.columnIndex="2">
                                             <image>
-                                                <Image url="@../images/resource_brick.png" />
+                                                <Image url="@../images/resource_brick.png"/>
                                             </image>
                                         </ImageView>
                                         <ImageView fitHeight="47.0" fitWidth="35.0" GridPane.columnIndex="3">
                                             <image>
-                                                <Image url="@../images/resource_lumber.png" />
+                                                <Image url="@../images/resource_lumber.png"/>
                                             </image>
                                         </ImageView>
                                         <ImageView fitHeight="47.0" fitWidth="34.0" GridPane.columnIndex="4">
                                             <image>
-                                                <Image url="@../images/resource_grain.png" />
+                                                <Image url="@../images/resource_grain.png"/>
                                             </image>
                                         </ImageView>
                                     </children>
@@ -740,106 +853,119 @@
                         </GridPane>
                     </children>
                 </Pane>
-                <TextArea fx:id="logTextArea" editable="false" layoutX="356.0" layoutY="-161.0" opacity="0.7" prefHeight="107.0" prefWidth="206.0">
+                <TextArea fx:id="logTextArea" editable="false" layoutX="356.0" layoutY="-161.0" opacity="0.7"
+                          prefHeight="107.0" prefWidth="206.0">
                     <font>
-                        <Font name="System Bold Italic" size="13.0" />
+                        <Font name="System Bold Italic" size="13.0"/>
                     </font>
-               <cursor>
-                  <Cursor fx:constant="NONE" />
-               </cursor>
+                    <cursor>
+                        <Cursor fx:constant="NONE"/>
+                    </cursor>
                 </TextArea>
             </children>
         </Group>
-        <Button layoutX="629.0" layoutY="602.0" mnemonicParsing="false" onAction="#onClickRollDice" text="Roll Dice">
+        <Button fx:id="rollDiceButton" layoutX="629.0" layoutY="602.0" mnemonicParsing="false"
+                onAction="#onClickRollDice" text="Roll Dice">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="16.0"/>
             </font>
         </Button>
-        <Pane layoutX="-6.0" layoutY="657.0" prefHeight="143.0" prefWidth="908.0" style="-fx-background-color: #dfe6ed;">
+        <Pane layoutX="-6.0" layoutY="657.0" prefHeight="143.0" prefWidth="908.0"
+              style="-fx-background-color: #dfe6ed;">
             <children>
                 <GridPane layoutX="18.0" layoutY="13.0" prefHeight="118.0" prefWidth="520.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
                         <ImageView fitHeight="142.0" fitWidth="105.0">
                             <image>
-                                <Image url="@../images/resource_wool.png" />
+                                <Image url="@../images/resource_wool.png"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="142.0" fitWidth="105.0" GridPane.columnIndex="1">
                             <image>
-                                <Image url="@../images/resource_ore.png" />
+                                <Image url="@../images/resource_ore.png"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="142.0" fitWidth="105.0" GridPane.columnIndex="3">
                             <image>
-                                <Image url="@../images/resource_lumber.png" />
+                                <Image url="@../images/resource_lumber.png"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="142.0" fitWidth="105.0" GridPane.columnIndex="2">
                             <image>
-                                <Image url="@../images/resource_grain.png" />
+                                <Image url="@../images/resource_grain.png"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="142.0" fitWidth="105.0" GridPane.columnIndex="4">
                             <image>
-                                <Image url="@../images/resource_brick.png" />
+                                <Image url="@../images/resource_brick.png"/>
                             </image>
                         </ImageView>
-                        <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                        <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0"
+                                   GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                             <children>
-                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK"
+                                           strokeType="INSIDE" width="25.0"/>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
                             </children>
                         </StackPane>
-                        <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="1">
+                        <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0"
+                                   GridPane.columnIndex="1">
                             <children>
-                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK"
+                                           strokeType="INSIDE" width="25.0"/>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
                             </children>
                         </StackPane>
-                        <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="2">
+                        <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0"
+                                   GridPane.columnIndex="2">
                             <children>
-                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK"
+                                           strokeType="INSIDE" width="25.0"/>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
                             </children>
                         </StackPane>
-                        <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="3">
+                        <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0"
+                                   GridPane.columnIndex="3">
                             <children>
-                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK"
+                                           strokeType="INSIDE" width="25.0"/>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
                             </children>
                         </StackPane>
-                        <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="4">
+                        <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0"
+                                   GridPane.columnIndex="4">
                             <children>
-                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK"
+                                           strokeType="INSIDE" width="25.0"/>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
                             </children>
@@ -848,47 +974,58 @@
                 </GridPane>
                 <GridPane layoutX="555.0" layoutY="3.0" prefHeight="129.0" prefWidth="231.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="78.0" stroke="BLACK" strokeType="INSIDE" width="77.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settlement" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="78.0" stroke="BLACK"
+                                   strokeType="INSIDE" width="77.0"/>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settlement" GridPane.halignment="CENTER"
+                              GridPane.valignment="BOTTOM">
                             <font>
-                                <Font name="System Bold" size="16.0" />
+                                <Font name="System Bold" size="16.0"/>
                             </font>
                         </Text>
-                        <Polygon fill="#ff1f1f" points="66.8953857421875, 17.408203125, 16.8953857421875, 17.74029541015625, 41.11920166015625, -42.852294921875" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                        <Polygon fill="#ff1f1f"
+                                 points="66.8953857421875, 17.408203125, 16.8953857421875, 17.74029541015625, 41.11920166015625, -42.852294921875"
+                                 stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1"
+                                 GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City" GridPane.columnIndex="1"
+                              GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                             <font>
-                                <Font name="System Bold" size="16.0" />
+                                <Font name="System Bold" size="16.0"/>
                             </font>
                         </Text>
-                        <Line endX="-38.944480895996094" endY="-0.14227294921875" startX="-100.0" stroke="#ff1f1f" strokeWidth="10.0" GridPane.columnIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Road" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                        <Line endX="-38.944480895996094" endY="-0.14227294921875" startX="-100.0" stroke="#ff1f1f"
+                              strokeWidth="10.0" GridPane.columnIndex="2"/>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Road" GridPane.columnIndex="2"
+                              GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                             <font>
-                                <Font name="System Bold" size="16.0" />
+                                <Font name="System Bold" size="16.0"/>
                             </font>
                         </Text>
                     </children>
                 </GridPane>
-                <Line endX="-100.0" endY="146.0" layoutX="646.0" layoutY="-3.0" startX="-100.0" startY="6.4993896484375" strokeWidth="5.0" />
-                <Line endX="-100.0" endY="146.0" layoutX="899.0" layoutY="-5.0" startX="-100.0" startY="6.4993896484375" strokeWidth="5.0" />
-                <Text fx:id="playerVictoryPointsText" layoutX="820.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8" textAlignment="CENTER" wrappingWidth="67.28836621953792">
+                <Line endX="-100.0" endY="146.0" layoutX="646.0" layoutY="-3.0" startX="-100.0" startY="6.4993896484375"
+                      strokeWidth="5.0"/>
+                <Line endX="-100.0" endY="146.0" layoutX="899.0" layoutY="-5.0" startX="-100.0" startY="6.4993896484375"
+                      strokeWidth="5.0"/>
+                <Text fx:id="playerVictoryPointsText" layoutX="820.0" layoutY="128.0" strokeType="OUTSIDE"
+                      strokeWidth="0.0" text="8" textAlignment="CENTER" wrappingWidth="67.28836621953792">
                     <font>
-                        <Font name="System Bold" size="36.0" />
+                        <Font name="System Bold" size="36.0"/>
                     </font>
                 </Text>
                 <ImageView fitHeight="101.0" fitWidth="97.0" layoutX="805.0" layoutY="8.0">
                     <image>
-                        <Image url="@../images/trophy_icon.png" />
+                        <Image url="@../images/trophy_icon.png"/>
                     </image>
                     <cursor>
-                        <Cursor fx:constant="NONE" />
+                        <Cursor fx:constant="NONE"/>
                     </cursor>
                 </ImageView>
             </children>
@@ -897,135 +1034,153 @@
             <children>
                 <GridPane layoutX="1.0" layoutY="-2.0" prefHeight="578.0" prefWidth="162.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
                         <GridPane>
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <ImageView fitHeight="60.0" fitWidth="72.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                <ImageView fitHeight="60.0" fitWidth="72.0" GridPane.halignment="CENTER"
+                                           GridPane.rowIndex="1">
                                     <image>
-                                        <Image url="@../images/trophy_icon.png" />
+                                        <Image url="@../images/trophy_icon.png"/>
                                     </image>
                                 </ImageView>
-                                <Text fill="#218dfa" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                <Text fill="#218dfa" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1"
+                                      textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1"
+                                      GridPane.rowIndex="1">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
-                                <ImageView fitHeight="54.0" fitWidth="44.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <ImageView fitHeight="54.0" fitWidth="44.0" GridPane.halignment="CENTER"
+                                           GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <image>
-                                        <Image url="@../images/cpu_card.png" />
+                                        <Image url="@../images/cpu_card.png"/>
                                     </image>
                                 </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
-                                <Line endX="61.18011474609375" endY="6.4994049072265625" startX="-100.0" startY="6.4993896484375" strokeWidth="5.0" GridPane.rowIndex="5" />
+                                <Line endX="61.18011474609375" endY="6.4994049072265625" startX="-100.0"
+                                      startY="6.4993896484375" strokeWidth="5.0" GridPane.rowIndex="5"/>
                             </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="1">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <ImageView fitHeight="60.0" fitWidth="72.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                <ImageView fitHeight="60.0" fitWidth="72.0" GridPane.halignment="CENTER"
+                                           GridPane.rowIndex="2">
                                     <image>
-                                        <Image url="@../images/trophy_icon.png" />
+                                        <Image url="@../images/trophy_icon.png"/>
                                     </image>
                                 </ImageView>
-                                <Text fill="#12cf06" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Text fill="#12cf06" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1"
+                                      textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                                      GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1"
+                                      GridPane.rowIndex="2">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
-                                <ImageView fitHeight="54.0" fitWidth="44.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                <ImageView fitHeight="54.0" fitWidth="44.0" GridPane.halignment="CENTER"
+                                           GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                     <image>
-                                        <Image url="@../images/cpu_card.png" />
+                                        <Image url="@../images/cpu_card.png"/>
                                     </image>
                                 </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
-                                <Line endX="61.18011474609375" endY="6.4994049072265625" startX="-100.0" startY="6.4993896484375" strokeWidth="5.0" GridPane.rowIndex="6" />
+                                <Line endX="61.18011474609375" endY="6.4994049072265625" startX="-100.0"
+                                      startY="6.4993896484375" strokeWidth="5.0" GridPane.rowIndex="6"/>
                             </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="2">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <ImageView fitHeight="60.0" fitWidth="72.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                <ImageView fitHeight="60.0" fitWidth="72.0" GridPane.halignment="CENTER"
+                                           GridPane.rowIndex="1">
                                     <image>
-                                        <Image url="@../images/trophy_icon.png" />
+                                        <Image url="@../images/trophy_icon.png"/>
                                     </image>
                                 </ImageView>
-                                <Text fill="#e38505" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                <Text fill="#e38505" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1"
+                                      textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1"
+                                      GridPane.rowIndex="1">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
-                                <ImageView fitHeight="54.0" fitWidth="44.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <ImageView fitHeight="54.0" fitWidth="44.0" GridPane.halignment="CENTER"
+                                           GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <image>
-                                        <Image url="@../images/cpu_card.png" />
+                                        <Image url="@../images/cpu_card.png"/>
                                     </image>
                                 </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="13.0"/>
                                     </font>
                                 </Text>
                             </children>
@@ -1036,41 +1191,45 @@
         </Pane>
         <GridPane layoutX="730.0" layoutY="584.0" prefHeight="69.0" prefWidth="131.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0" stroke="BLACK" strokeType="INSIDE" width="64.0" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0" stroke="BLACK" strokeType="INSIDE" width="64.0" GridPane.columnIndex="1" />
-                <Text fx:id="diceText1" strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <Rectangle fx:id="diceRectangle1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0"
+                           stroke="BLACK" strokeType="INSIDE" width="64.0"/>
+                <Rectangle fx:id="diceRectangle2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0"
+                           stroke="BLACK" strokeType="INSIDE" width="64.0" GridPane.columnIndex="1"/>
+                <Text fx:id="diceText1" strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <font>
-                        <Font name="System Bold" size="25.0" />
+                        <Font name="System Bold" size="25.0"/>
                     </font>
                 </Text>
-                <Text fx:id="diceText2" strokeType="OUTSIDE" strokeWidth="0.0" text="5" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <Text fx:id="diceText2" strokeType="OUTSIDE" strokeWidth="0.0" text="5" textAlignment="CENTER"
+                      GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <font>
-                        <Font name="System Bold" size="25.0" />
+                        <Font name="System Bold" size="25.0"/>
                     </font>
                 </Text>
             </children>
         </GridPane>
         <Button mnemonicParsing="false" onAction="#onClickHelpButton" text="HELP">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="16.0"/>
             </font>
         </Button>
-      <Text fx:id="diceTotalText" layoutX="876.0" layoutY="624.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Text>
-      <Text layoutX="861.0" layoutY="623.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Text>
+        <Text fx:id="diceTotalText" layoutX="876.0" layoutY="624.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12">
+            <font>
+                <Font name="System Bold" size="19.0"/>
+            </font>
+        </Text>
+        <Text layoutX="861.0" layoutY="623.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=">
+            <font>
+                <Font size="19.0"/>
+            </font>
+        </Text>
     </children>
 </AnchorPane>
