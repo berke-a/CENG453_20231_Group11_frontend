@@ -48,6 +48,9 @@ public class BoardController extends BoardControllerAbstract {
             case ROLL_DICE:
                 this.manageDiceRoll();
                 break;
+            case RESOURCE_DISTRIBUTION:
+                this.distributeResources();
+                break;
             case TURN_PLAYER:
                 this.managePlayerTurn();
                 break;
@@ -83,6 +86,10 @@ public class BoardController extends BoardControllerAbstract {
 
         this.gameManager.turnPlayerState.next();
         this.gameManager.turnState = TurnState.ROLL_DICE;
+    }
+
+    public void distributeResources() {
+        this.logTextArea.appendText("- Distribute Resources\n");
     }
 
     public void manageDiceRoll() {
@@ -128,6 +135,7 @@ public class BoardController extends BoardControllerAbstract {
     public void manageDiceUpdate() {
         dice.roll();
         this.updateDiceText();
+        this.logTextArea.appendText("- Dice Rolled\n");
         this.gameManager.turnState = TurnState.RESOURCE_DISTRIBUTION;
         updateGameState();
     }
