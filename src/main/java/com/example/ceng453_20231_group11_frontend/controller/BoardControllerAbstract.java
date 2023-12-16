@@ -59,7 +59,7 @@ abstract class BoardControllerAbstract implements Initializable {
 
     protected Pair<Label, Text>[] tileLabelTextPairs;
 
-    protected HashMap<Polygon, Tile> tileMap = new HashMap<Polygon, Tile>();
+    protected HashMap<Polygon, Tile> polygonTileHashMap = new HashMap<Polygon, Tile>();
 
     protected HashMap<Polygon, Pair<Label, Text>> tileLabelMap = new HashMap<Polygon, Pair<Label, Text>>();
     protected HashMap<Circle, CircleVertex> circleMap = new HashMap<>();
@@ -90,7 +90,7 @@ abstract class BoardControllerAbstract implements Initializable {
             put(tile18, new Pair<>(tileLabel18, tileText18));
             put(tile19, new Pair<>(tileLabel19, tileText19));
         }};
-        tileMap = new HashMap<Polygon, Tile>() {{
+        polygonTileHashMap = new HashMap<Polygon, Tile>() {{
             put(tile1, new Tile());
             put(tile2, new Tile());
             put(tile3, new Tile());
@@ -116,11 +116,11 @@ abstract class BoardControllerAbstract implements Initializable {
     }
 
     protected void populateRandomTiles() {
-        List<Polygon> keys = new ArrayList<>(this.tileMap.keySet());
+        List<Polygon> keys = new ArrayList<>(this.polygonTileHashMap.keySet());
         Collections.shuffle(keys);
 
         Polygon desertTile = keys.get(0);
-        this.tileMap.get(desertTile).setTileType(TileType.DESERT);
+        this.polygonTileHashMap.get(desertTile).setTileType(TileType.DESERT);
         this.tileLabelMap.get(desertTile).getFirst().setText("D");
         this.tileLabelMap.get(desertTile).getSecond().setText("━");
         desertTile.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.tileTypeToImage.get(TileType.DESERT))))));
@@ -132,8 +132,8 @@ abstract class BoardControllerAbstract implements Initializable {
             String tileNumberPoints = Utils.generateTileNumberPoints(tileNumberToken);
             Polygon tile = keys.get(i);
 
-            this.tileMap.get(tile).setTileType(tileType);
-            this.tileMap.get(tile).setNumberToken(tileNumberToken);
+            this.polygonTileHashMap.get(tile).setTileType(tileType);
+            this.polygonTileHashMap.get(tile).setNumberToken(tileNumberToken);
             tile.setFill(new ImagePattern(tileImage));
 
             this.tileLabelMap.get(tile).getFirst().setText(String.valueOf(tileNumberToken));

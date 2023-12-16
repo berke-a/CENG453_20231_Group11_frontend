@@ -1,5 +1,6 @@
 package com.example.ceng453_20231_group11_frontend.constants;
 
+import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
 import com.example.ceng453_20231_group11_frontend.enums.TileType;
 
 import java.util.HashMap;
@@ -47,6 +48,15 @@ public class GeneralConstants {
         put(TileType.ORE, GeneralConstants.TILE_ORE);
     }};
 
+    public static final HashMap<TileType, ResourceType> tileTypeToResourceType = new HashMap<TileType, ResourceType>() {{
+        put(TileType.DESERT, null);
+        put(TileType.LUMBER, ResourceType.LUMBER);
+        put(TileType.BRICK, ResourceType.BRICK);
+        put(TileType.GRAIN, ResourceType.GRAIN);
+        put(TileType.WOOL, ResourceType.WOOL);
+        put(TileType.ORE, ResourceType.ORE);
+    }};
+
     public static final TileType[] tileTypesOnBoard = {TileType.LUMBER, TileType.LUMBER, TileType.LUMBER, TileType.LUMBER, TileType.BRICK, TileType.BRICK, TileType.BRICK, TileType.GRAIN, TileType.GRAIN, TileType.GRAIN, TileType.GRAIN,
             TileType.WOOL, TileType.WOOL, TileType.WOOL, TileType.WOOL, TileType.ORE, TileType.ORE, TileType.ORE};
 
@@ -58,5 +68,4 @@ public class GeneralConstants {
     public static final String greenPlayerColor = "#12CF06";
     public static final String orangePlayerColor = "#E38505";
     public static final String redPlayerColor = "#FF1F1F";
-
 }
