@@ -750,6 +750,11 @@
                 </TextArea>
             </children>
         </Group>
+        <Button layoutX="629.0" layoutY="602.0" mnemonicParsing="false" onAction="#onClickRollDice" text="Roll Dice">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Button>
         <Pane layoutX="-6.0" layoutY="657.0" prefHeight="143.0" prefWidth="908.0" style="-fx-background-color: #dfe6ed;">
             <children>
                 <GridPane layoutX="18.0" layoutY="13.0" prefHeight="118.0" prefWidth="520.0">
@@ -1029,7 +1034,7 @@
                 </GridPane>
             </children>
         </Pane>
-        <GridPane layoutX="634.0" layoutY="586.0" prefHeight="69.0" prefWidth="131.0">
+        <GridPane layoutX="730.0" layoutY="584.0" prefHeight="69.0" prefWidth="131.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1052,15 +1057,20 @@
                 </Text>
             </children>
         </GridPane>
-        <Button layoutX="793.0" layoutY="608.0" mnemonicParsing="false" onAction="#onClickRollDice" text="Roll Dice">
+        <Button mnemonicParsing="false" onAction="#onClickHelpButton" text="HELP">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Button>
-        <Button layoutX="10.0" layoutY="6.0" mnemonicParsing="false" onAction="#onClickHelpButton" text="HELP">
-            <font>
-                <Font name="System Bold" size="16.0" />
-            </font>
-        </Button>
+      <Text fx:id="diceTotalText" layoutX="876.0" layoutY="624.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="861.0" layoutY="623.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
