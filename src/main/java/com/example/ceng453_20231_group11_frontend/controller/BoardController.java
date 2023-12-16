@@ -41,7 +41,6 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void updateGameState() {
-        this.updateDiceText();
         switch (gameManager.turnState) {
             case INITIALIZATION:
                 this.playerInitialPlacement();
@@ -115,21 +114,21 @@ public class BoardController extends BoardControllerAbstract {
 
         diceRollTimer = new Timeline(new KeyFrame(
                 Duration.seconds(10),
-                ae -> autoRollDice()
+                ae -> onClickRollDice()
         ));
 
         diceRollTimer.setCycleCount(1); // Only run once
         diceRollTimer.play();
     }
 
-    private void autoRollDice() {
-        this.onClickRollDice();
+    public void onClickRollDice() {
+        this.manageDiceUpdate();
     }
 
-
-    public void onClickRollDice() {
+    public void manageDiceUpdate() {
         dice.roll();
-        this.gameManager.turnState = TurnState.TURN_PLAYER;
+        this.updateDiceText();
+        this.gameManager.turnState = TurnState.RESOURCE_DISTRIBUTION;
         updateGameState();
     }
 
