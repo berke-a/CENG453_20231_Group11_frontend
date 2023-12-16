@@ -1,14 +1,16 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
+import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.enums.TurnState;
-import com.example.ceng453_20231_group11_frontend.models.Dice;
-import com.example.ceng453_20231_group11_frontend.models.GameManager;
+import com.example.ceng453_20231_group11_frontend.models.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class BoardController extends BoardControllerAbstract {
@@ -29,6 +31,9 @@ public class BoardController extends BoardControllerAbstract {
     private final GameManager gameManager = GameManager.getInstance();
 
     private Timeline diceRollTimer;
+
+    private Player player = new Player();
+    private CPUPlayer[] cpuPlayers = new CPUPlayer[3];
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -89,7 +94,56 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void distributeResources() {
+        this.distributeResourcesPlayer();
+        this.distributeResourcesCPU();
+
         this.logTextArea.appendText("- Distribute Resources\n");
+    }
+
+    public void distributeResourcesPlayer() {
+        for (CircleVertex playerSettlement : this.player.settlements) {
+            for (Polygon polygon : playerSettlement.adjacentTiles) {
+                Tile adjacentTile = this.polygonTileHashMap.get(polygon);
+
+                if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
+                    this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                }
+            }
+        }
+
+        for (CircleVertex playerCity : this.player.cities) {
+            for (Polygon polygon : playerCity.adjacentTiles) {
+                Tile adjacentTile = this.polygonTileHashMap.get(polygon);
+
+                if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
+                    this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                }
+            }
+        }
+    }
+
+    public void distributeResourcesCPU() {
+        for (CPUPlayer cpuPlayer : this.cpuPlayers) {
+            for (CircleVertex cpuSettlement : cpuPlayer.settlements) {
+                for (Polygon polygon : cpuSettlement.adjacentTiles) {
+                    Tile adjacentTile = this.polygonTileHashMap.get(polygon);
+
+                    if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
+                        this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                    }
+                }
+            }
+
+            for (CircleVertex cpuCity : cpuPlayer.cities) {
+                for (Polygon polygon : cpuCity.adjacentTiles) {
+                    Tile adjacentTile = this.polygonTileHashMap.get(polygon);
+
+                    if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
+                        this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                    }
+                }
+            }
+        }
     }
 
     public void manageDiceRoll() {
@@ -151,8 +205,8 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void updateDiceText() {
-        this.diceText1.setText(dice.getDie1());
-        this.diceText2.setText(dice.getDie2());
-        this.diceTotalText.setText(dice.getDiceTotal());
+        this.diceText1.setText(dice.getStringDie1());
+        this.diceText2.setText(dice.getStringDie2());
+        this.diceTotalText.setText(dice.getStringDieTotal());
     }
 }
