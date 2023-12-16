@@ -31,4 +31,8 @@ abstract class PlayerAbstract {
 
     abstract boolean isSettlementBuildable(Integer edgeId);
 
+    public void addResource(ResourceType resourceType, Integer amount) {
+        resources.put(resourceType, resources.get(resourceType) + amount);
+    }
+
 }
