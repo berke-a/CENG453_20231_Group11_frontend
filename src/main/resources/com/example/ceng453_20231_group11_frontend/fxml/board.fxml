@@ -796,8 +796,8 @@
                         </ImageView>
                         <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                             <children>
-                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
+                                <Rectangle fx:id="playerWoolCountText" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                                <Text fx:id="playerWoolCount" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -807,7 +807,7 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="1">
                             <children>
                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
+                                <Text fx:id="playerOreCount" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -817,7 +817,7 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="2">
                             <children>
                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
+                                <Text fx:id="playerGrainCount" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -827,7 +827,7 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="3">
                             <children>
                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
+                                <Text fx:id="playerLumberCount" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -837,7 +837,7 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0" translateX="35.0" translateY="-50.0" GridPane.columnIndex="4">
                             <children>
                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="23.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
+                                <Text fx:id="playerBrickCount" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -939,7 +939,7 @@
                                         <Image url="@../images/cpu_card.png" />
                                     </image>
                                 </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Text fx:id="CpuBlueCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -982,7 +982,7 @@
                                         <Image url="@../images/cpu_card.png" />
                                     </image>
                                 </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                <Text fx:id="CpuGreenCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -1023,7 +1023,7 @@
                                         <Image url="@../images/cpu_card.png" />
                                     </image>
                                 </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Text fx:id="CpuOrangeCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
