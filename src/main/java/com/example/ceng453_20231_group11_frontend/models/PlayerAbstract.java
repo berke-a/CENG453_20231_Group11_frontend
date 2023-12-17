@@ -10,6 +10,10 @@ abstract class PlayerAbstract {
     boolean hasLongestRoad = false;
     public PlayerColor color;
 
+    public PlayerAbstract(PlayerColor color) {
+        this.color = color;
+    }
+
     HashMap<ResourceType, Integer> resources = new HashMap<>() {{
         put(ResourceType.LUMBER, 0);
         put(ResourceType.BRICK, 0);

@@ -2,21 +2,18 @@ package com.example.ceng453_20231_group11_frontend.models;
 
 import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class CPUPlayer extends PlayerAbstract {
+    public CPUPlayer(PlayerColor color) {
+        super(color);
+    }
 
     // TODO in the board call play
     // TODO then check and reassign the longest road boolean
     // TODO then call hasWonTheGame
-
-    public CPUPlayer(PlayerColor color) {
-        this.color = color;
-    }
 
     public boolean hasWonTheGame() {
         if (hasLongestRoad) {

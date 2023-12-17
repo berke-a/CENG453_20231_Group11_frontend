@@ -34,7 +34,7 @@ public class BoardController extends BoardControllerAbstract {
 
     private Timeline diceRollTimer;
 
-    private Player player = new Player();
+    private Player player = new Player(PlayerColor.RED);
     private CPUPlayer[] cpuPlayers = new CPUPlayer[3];
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
