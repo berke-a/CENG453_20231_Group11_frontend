@@ -1,13 +1,16 @@
 package com.example.ceng453_20231_group11_frontend.models;
 
+import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class Player extends PlayerAbstract {
+
+    public Player(PlayerColor color) {
+        super(color);
+    }
 
     public boolean hasWonTheGame() {
         if (hasLongestRoad) {

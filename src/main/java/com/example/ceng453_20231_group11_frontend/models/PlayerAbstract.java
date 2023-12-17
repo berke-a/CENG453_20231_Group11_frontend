@@ -8,7 +8,11 @@ import java.util.HashMap;
 abstract class PlayerAbstract {
     Integer score = 0;
     boolean hasLongestRoad = false;
-    PlayerColor color;
+    public PlayerColor color;
+
+    public PlayerAbstract(PlayerColor color) {
+        this.color = color;
+    }
 
     HashMap<ResourceType, Integer> resources = new HashMap<>() {{
         put(ResourceType.LUMBER, 0);
@@ -33,6 +37,14 @@ abstract class PlayerAbstract {
 
     public void addResource(ResourceType resourceType, Integer amount) {
         resources.put(resourceType, resources.get(resourceType) + amount);
+    }
+
+    public Integer getResource(ResourceType resourceType) {
+        return resources.get(resourceType);
+    }
+
+    public Integer getTotalResource() {
+        return resources.values().stream().reduce(0, Integer::sum);
     }
 
 }
