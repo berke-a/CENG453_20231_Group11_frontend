@@ -1,6 +1,7 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
+import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
 import com.example.ceng453_20231_group11_frontend.enums.TurnState;
 import com.example.ceng453_20231_group11_frontend.models.*;
@@ -100,9 +101,9 @@ public class BoardController extends BoardControllerAbstract {
 
 
     private void initializeCpuPlayers() {
-        this.cpuPlayers[0] = new CPUPlayer();
-        this.cpuPlayers[1] = new CPUPlayer();
-        this.cpuPlayers[2] = new CPUPlayer();
+        this.cpuPlayers[0] = new CPUPlayer(PlayerColor.BLUE);
+        this.cpuPlayers[1] = new CPUPlayer(PlayerColor.GREEN);
+        this.cpuPlayers[2] = new CPUPlayer(PlayerColor.ORANGE);
     }
 
     private void distributeResources() {
