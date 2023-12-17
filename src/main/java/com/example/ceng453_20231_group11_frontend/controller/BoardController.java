@@ -38,6 +38,7 @@ public class BoardController extends BoardControllerAbstract {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             this.initializeTiles();
+            this.initializeCircles();
             this.initializeCpuPlayers();
             this.rollDiceButton.setDisable(true);
             this.gameManager.turnState = TurnState.ROLL_DICE;
@@ -155,7 +156,7 @@ public class BoardController extends BoardControllerAbstract {
                 Tile adjacentTile = this.polygonTileHashMap.get(polygon);
 
                 if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
-                    this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                    this.player.updateResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
                 }
             }
         }
@@ -165,7 +166,7 @@ public class BoardController extends BoardControllerAbstract {
                 Tile adjacentTile = this.polygonTileHashMap.get(polygon);
 
                 if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
-                    this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                    this.player.updateResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
                 }
             }
         }
@@ -178,7 +179,7 @@ public class BoardController extends BoardControllerAbstract {
                     Tile adjacentTile = this.polygonTileHashMap.get(polygon);
 
                     if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
-                        this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                        this.player.updateResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
                     }
                 }
             }
@@ -188,7 +189,7 @@ public class BoardController extends BoardControllerAbstract {
                     Tile adjacentTile = this.polygonTileHashMap.get(polygon);
 
                     if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
-                        this.player.addResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                        this.player.updateResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
                     }
                 }
             }
