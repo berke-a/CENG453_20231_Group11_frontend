@@ -939,7 +939,7 @@
                                         <Image url="@../images/cpu_card.png" />
                                     </image>
                                 </ImageView>
-                                <Text fx:id="CpuBlueCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Text fx:id="cpuBlueCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -982,7 +982,7 @@
                                         <Image url="@../images/cpu_card.png" />
                                     </image>
                                 </ImageView>
-                                <Text fx:id="CpuGreenCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                <Text fx:id="cpuGreenCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -1023,7 +1023,7 @@
                                         <Image url="@../images/cpu_card.png" />
                                     </image>
                                 </ImageView>
-                                <Text fx:id="CpuOrangeCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Text fx:id="cpuOrangeCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
