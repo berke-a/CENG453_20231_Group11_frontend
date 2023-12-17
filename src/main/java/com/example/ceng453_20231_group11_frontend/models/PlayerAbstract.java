@@ -9,7 +9,11 @@ import java.util.HashMap;
 abstract public class PlayerAbstract {
     Integer victoryPoint = 0;
     boolean hasLongestRoad = false;
-    PlayerColor color;
+    public PlayerColor color;
+
+    public PlayerAbstract(PlayerColor color) {
+        this.color = color;
+    }
 
     HashMap<ResourceType, Integer> resources = new HashMap<>() {{
         put(ResourceType.LUMBER, 0);
@@ -66,6 +70,14 @@ abstract public class PlayerAbstract {
         circleVertex.setHasCity(true);
 
         victoryPoint++;
+    }
+
+    public Integer getResource(ResourceType resourceType) {
+        return resources.get(resourceType);
+    }
+
+    public Integer getTotalResource() {
+        return resources.values().stream().reduce(0, Integer::sum);
     }
 
 }

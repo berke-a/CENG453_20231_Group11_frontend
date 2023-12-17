@@ -1,8 +1,8 @@
 package com.example.ceng453_20231_group11_frontend.models;
 
+import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import javafx.scene.shape.Circle;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashMap;
@@ -11,8 +11,10 @@ import java.util.Random;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class CPUPlayer extends PlayerAbstract {
+    public CPUPlayer(PlayerColor color) {
+        super(color);
+    }
 
     // TODO in the board call play
     // TODO then check and reassign the longest road boolean
