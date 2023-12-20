@@ -85,19 +85,29 @@ public class BoardController extends BoardControllerAbstract {
         // TODO: Implement Player Turn
         // TODO: RED Player is the user / Other players are CPU
         switch (this.gameManager.turnPlayerState) {
-            case TURN_BLUE:
-                break;
             case TURN_RED:
                 break;
-            case TURN_ORANGE:
+            case TURN_BLUE:
+                this.manageCpuTurn(0);
                 break;
             case TURN_GREEN:
+                this.manageCpuTurn(1);
+                break;
+            case TURN_ORANGE:
+                this.manageCpuTurn(2);
                 break;
         }
 
         this.gameManager.turnPlayerState = this.gameManager.turnPlayerState.next();
         this.gameManager.turnState = TurnState.ROLL_DICE;
         this.updateGameState();
+    }
+
+    private void manageCpuTurn(Integer cpuIndex) {
+        boolean canBuildRoad = false;  // TODO
+        boolean canBuildSettlement = this.gameManager.isAnySettlementBuildableByPlayer(this.cpuPlayers[cpuIndex], circleMap);
+        boolean canBuildCity = this.gameManager.isAnyCityBuildableByPlayer(this.cpuPlayers[cpuIndex]);
+        this.cpuPlayers[cpuIndex].play(circleMap, canBuildRoad, canBuildSettlement, canBuildCity);
     }
 
 
@@ -125,7 +135,7 @@ public class BoardController extends BoardControllerAbstract {
             this.animateDiceButton();
 
             // Start or restart the timer
-            startDiceRollTimer(10);
+            startDiceRollTimer(1000);
 
         } else {
             this.logTextArea.appendText("- Please Wait For Your Turn\n");

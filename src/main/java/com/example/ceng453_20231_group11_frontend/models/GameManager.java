@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -30,37 +31,12 @@ public class GameManager {
         return true;
     }
 
-    public boolean isAnySettlementBuildable(PlayerAbstract Player, HashMap<Circle, CircleVertex> circleMap) {
-        // TODO for loop icinde vertexleri dene alttaki helperla
-        return false;
-    }
-
-    private boolean isSettlementBuildable(PlayerAbstract Player, HashMap<Circle, CircleVertex> circleMap, CircleVertex circleVertex) {
-        if (Player.resources.get(ResourceType.LUMBER) >= 1 && Player.resources.get(ResourceType.BRICK) >= 1 &&
-                Player.resources.get(ResourceType.GRAIN) >= 1 && Player.resources.get(ResourceType.WOOL) >= 1 &&
-                !circleVertex.isHasCity() && !circleVertex.isHasSettlement()) {
-            boolean isAdjacentCircleHasBuilding = false;
-            for (Circle circle: circleVertex.getAdjacentCircles()) {
-                CircleVertex adjacentCircleVertex = circleMap.get(circle);
-                if (adjacentCircleVertex.isHasSettlement() || adjacentCircleVertex.isHasCity()) {
-                    isAdjacentCircleHasBuilding = true;
-                }
-            }
-            return !isAdjacentCircleHasBuilding;
-        }
-        return false;
-    }
-
-    public boolean isAnyCityBuildable(PlayerAbstract Player) {
-        // TODO for donecek alttaki helperla
-        return true;
-    }
-
-    private boolean isCityBuildable(PlayerAbstract Player, CircleVertex circleVertex) {
-        System.out.println("build " + circleVertex);
-        if (Player.resources.get(ResourceType.ORE) >= 3 && Player.resources.get(ResourceType.GRAIN) >= 2) {
-            for (CircleVertex settlement: Player.settlements) {
-                if (settlement.equals(circleVertex)) {
+    public boolean isAnySettlementBuildableByPlayer(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
+        if (player.resources.get(ResourceType.LUMBER) >= 1 && player.resources.get(ResourceType.BRICK) >= 1 &&
+                player.resources.get(ResourceType.GRAIN) >= 1 && player.resources.get(ResourceType.WOOL) >= 1) {
+            for (Map.Entry<Circle, CircleVertex> entry: circleMap.entrySet()) {
+                CircleVertex circleVertex = entry.getValue();
+                if (isSettlementBuildableToVertex(circleMap, circleVertex)) {
                     return true;
                 }
             }
@@ -68,5 +44,35 @@ public class GameManager {
         }
         return false;
     }
+
+    private boolean isSettlementBuildableToVertex(HashMap<Circle, CircleVertex> circleMap, CircleVertex circleVertex) {
+        if (!circleVertex.isHasSettlement() && !circleVertex.isHasCity()) {
+            for (Circle circle: circleVertex.getAdjacentCircles()) {
+                CircleVertex adjacentCircleVertex = circleMap.get(circle);
+                if (adjacentCircleVertex.isHasSettlement() || adjacentCircleVertex.isHasCity()) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isAnyCityBuildableByPlayer(PlayerAbstract player) {
+        return (player.resources.get(ResourceType.ORE) >= 3 && player.resources.get(ResourceType.GRAIN) >= 2 && !player.settlements.isEmpty());
+    }
+
+//    private boolean isCityBuildableToVertex(PlayerAbstract player, CircleVertex circleVertex) {
+//        System.out.println("build " + circleVertex);
+//        if (player.resources.get(ResourceType.ORE) >= 3 && player.resources.get(ResourceType.GRAIN) >= 2) {
+//            for (CircleVertex settlement: player.settlements) {
+//                if (settlement.equals(circleVertex)) {
+//                    return true;
+//                }
+//            }
+//            return false;
+//        }
+//        return false;
+//    }
 
 }
