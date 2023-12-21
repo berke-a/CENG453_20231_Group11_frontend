@@ -45,7 +45,7 @@ public class GameManager {
         return false;
     }
 
-    private boolean isSettlementBuildableToVertex(HashMap<Circle, CircleVertex> circleMap, CircleVertex circleVertex) {
+    public boolean isSettlementBuildableToVertex(HashMap<Circle, CircleVertex> circleMap, CircleVertex circleVertex) {
         if (!circleVertex.isHasSettlement() && !circleVertex.isHasCity()) {
             for (Circle circle: circleVertex.getAdjacentCircles()) {
                 CircleVertex adjacentCircleVertex = circleMap.get(circle);
@@ -62,17 +62,24 @@ public class GameManager {
         return (player.resources.get(ResourceType.ORE) >= 3 && player.resources.get(ResourceType.GRAIN) >= 2 && !player.settlements.isEmpty());
     }
 
-//    private boolean isCityBuildableToVertex(PlayerAbstract player, CircleVertex circleVertex) {
-//        System.out.println("build " + circleVertex);
-//        if (player.resources.get(ResourceType.ORE) >= 3 && player.resources.get(ResourceType.GRAIN) >= 2) {
-//            for (CircleVertex settlement: player.settlements) {
-//                if (settlement.equals(circleVertex)) {
-//                    return true;
-//                }
-//            }
-//            return false;
-//        }
-//        return false;
-//    }
+    public boolean isCityBuildableToVertex(PlayerAbstract player, CircleVertex circleVertex) {
+        // Check if the player has enough resources to build a city
+        if (player.resources.get(ResourceType.ORE) >= 3 && player.resources.get(ResourceType.GRAIN) >= 2) {
+            // Check if the circleVertex has a settlement that belongs to the player
+            return circleVertex.isHasSettlement() && circleVertex.getOwner() == player;
+        }
+        return false;
+    }
 
+    public boolean isTurnStateValidForBuilding() {
+        return this.turnState == TurnState.TURN_PLAYER;
+    }
+
+    public boolean isTurnStateValidForRolling() {
+        return this.turnState == TurnState.ROLL_DICE;
+    }
+
+    public TurnPlayerState getCurrentTurnPlayerState() {
+        return this.turnPlayerState;
+    }
 }
