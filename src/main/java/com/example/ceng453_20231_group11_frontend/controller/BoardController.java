@@ -3,17 +3,25 @@ package com.example.ceng453_20231_group11_frontend.controller;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
+import com.example.ceng453_20231_group11_frontend.enums.TurnPlayerState;
 import com.example.ceng453_20231_group11_frontend.enums.TurnState;
 import com.example.ceng453_20231_group11_frontend.models.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.fxml.FXML;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
+import javafx.scene.shape.Circle;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import static com.example.ceng453_20231_group11_frontend.enums.TurnPlayerState.TURN_RED;
 
 public class BoardController extends BoardControllerAbstract {
     // Hexagon
@@ -129,7 +137,7 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void manageDiceRoll() {
-        if (this.gameManager.turnPlayerState == this.gameManager.turnPlayerState.TURN_RED) {
+        if (this.gameManager.turnPlayerState == TURN_RED) {
             this.rollDiceButton.setDisable(false);
             this.logTextArea.appendText("- Please Roll Dice: 10 Seconds\n");
             this.animateDiceButton();
@@ -265,5 +273,152 @@ public class BoardController extends BoardControllerAbstract {
         st1.setAutoReverse(true);
 
         st1.play();
+    }
+
+    @FXML
+    private void onClickBuildRoad() {
+        if (gameManager.isTurnStateValidForBuilding()) {
+            PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
+            highlightAvailableRoadLocations(player, circleMap);
+        }
+    }
+
+    @FXML
+    private void onClickBuildSettlement() {
+        if (gameManager.isTurnStateValidForBuilding()) {
+            PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
+            highlightAvailableSettlementLocations(player, circleMap);
+        }
+    }
+
+    @FXML
+    private void onClickBuildCity() {
+        if (gameManager.isTurnStateValidForBuilding()) {
+            PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
+            highlightAvailableCityLocations(player, circleMap);
+        }
+    }
+
+
+    // Method to highlight circles where a road can be built
+    private void highlightAvailableRoadLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
+
+    }
+
+    // Method to highlight circles where a settlement can be built
+    private void highlightAvailableSettlementLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
+        // Check if the player has enough resources to build a settlement
+        if (gameManager.isAnySettlementBuildableByPlayer(player, circleMap)) {
+            // If yes, iterate through each circleVertex and highlight if buildable
+            for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
+                CircleVertex circleVertex = entry.getValue();
+                if (gameManager.isSettlementBuildableToVertex(circleMap, circleVertex)) {
+                    Circle circle = entry.getKey();
+                    highlightCircle(circle, true);
+                    circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
+                }
+            }
+        }
+    }
+
+    // Method to highlight circles where a city can be built
+    private void highlightAvailableCityLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
+        if (gameManager.isAnyCityBuildableByPlayer(player)) {
+            for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
+                CircleVertex circleVertex = entry.getValue();
+                if (gameManager.isCityBuildableToVertex(player, circleVertex)) {
+                    Circle circle = entry.getKey();
+                    highlightCircle(circle, true);
+                    circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
+                }
+            }
+        }
+    }
+
+    private void onCircleClickedSettlement(Circle circle, PlayerAbstract player) {
+        // Check if the circle is still valid for building (in case of concurrent actions)
+        if (gameManager.isSettlementBuildableToVertex(circleMap, circleMap.get(circle))) {
+            // Update the game state to reflect the new settlement
+            buildSettlement(player, circle);
+
+            // Visual update to indicate the settlement is built
+            circle.setFill(Color.RED); // Example: Change the color to red
+
+            // Deduct resources from the player
+            deductResourcesForSettlement(player);
+
+            // Reset the highlighting for buildable locations
+            resetHighlighting();
+        }
+    }
+
+
+    private void onCircleClickedCity(Circle circle, PlayerAbstract player) {
+        // Check if the circle is still valid for building (in case of concurrent actions)
+        if (gameManager.isSettlementBuildableToVertex(circleMap, circleMap.get(circle))) {
+            // Update the game state to reflect the new settlement
+            buildCity(player, circle);
+
+            // Visual update to indicate the settlement is built
+            circle.setFill(Color.RED); // Example: Change the color to red
+
+            // Deduct resources from the player
+            deductResourcesForCity(player);
+
+            // Reset the highlighting for buildable locations
+            resetHighlighting();
+        }
+    }
+
+    // Helper method to visually highlight a circle
+    private void highlightCircle(Circle circle, boolean highlight) {
+        if (highlight) {
+            // Set some visual properties to highlight the circle
+            circle.setStroke(Color.GREEN); // Example: Change the stroke to green to indicate it's selectable
+            circle.setStrokeWidth(3);
+        } else {
+            // Reset the visual properties of the circle
+            circle.setStroke(Color.BLACK); // Reset to default stroke color
+            circle.setStrokeWidth(1);
+        }
+    }
+
+    private void buildSettlement(PlayerAbstract player, Circle circle) {
+        // Logic to add a settlement to the player's properties
+    }
+
+    private void deductResourcesForSettlement(PlayerAbstract player) {
+        // Logic to deduct resources from the player
+    }
+
+    private void buildCity(PlayerAbstract player, Circle circle) {
+        // Logic to add a city to the player's properties
+    }
+
+    private void deductResourcesForCity(PlayerAbstract player) {
+        // Logic to deduct resources from the player
+    }
+
+    private void resetHighlighting() {
+        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
+            highlightCircle(entry.getKey(), false);
+            entry.getKey().setOnMouseClicked(null); // Remove the click event handler
+        }
+    }
+
+
+    private PlayerAbstract getPlayerByTurnState(TurnPlayerState turnPlayerState) {
+        switch (turnPlayerState) {
+            case TURN_RED:
+                return this.player;
+            case TURN_BLUE:
+                return this.cpuPlayers[0];
+            case TURN_GREEN:
+                return this.cpuPlayers[1];
+            case TURN_ORANGE:
+                return this.cpuPlayers[2];
+            default:
+                return null;
+        }
     }
 }
