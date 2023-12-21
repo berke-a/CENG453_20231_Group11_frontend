@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -62,6 +63,15 @@ abstract class BoardControllerAbstract implements Initializable {
 
     @FXML
     protected TextArea logTextArea;
+
+    @FXML
+    protected Rectangle settlement;
+
+    @FXML
+    protected Polygon city;
+
+    @FXML
+    protected Line road;
 
     protected Pair<Label, Text>[] tileLabelTextPairs;
 
