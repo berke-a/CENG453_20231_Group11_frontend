@@ -39,7 +39,7 @@
                 <Double fx:value="30.0" />
             </points>
         </Polygon>
-        <Group layoutX="169.0" layoutY="166.0">
+        <Group fx:id="boardGroup" layoutX="169.0" layoutY="166.0">
             <children>
                 <Polygon fx:id="tile1" fill="GREEN" layoutX="104.0" stroke="BLACK" strokeType="INSIDE">
                     <points>
@@ -856,19 +856,19 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Rectangle fx:id="settlement" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="78.0" stroke="BLACK" strokeType="INSIDE" width="77.0" onMouseClicked="#onClickBuildSettlement"/>
+                        <Rectangle fx:id="settlement" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="78.0" onMouseClicked="#onClickBuildSettlement" stroke="BLACK" strokeType="INSIDE" width="77.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settlement" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                         </Text>
-                        <Polygon fx:id="city" fill="#ff1f1f" points="66.8953857421875, 17.408203125, 16.8953857421875, 17.74029541015625, 41.11920166015625, -42.852294921875" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" onMouseClicked="#onClickBuildCity"/>
+                        <Polygon fx:id="city" fill="#ff1f1f" onMouseClicked="#onClickBuildCity" points="66.8953857421875, 17.408203125, 16.8953857421875, 17.74029541015625, 41.11920166015625, -42.852294921875" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                         </Text>
-                        <Line fx:id="road" endX="-38.944480895996094" endY="-0.14227294921875" startX="-100.0" stroke="#ff1f1f" strokeWidth="10.0" GridPane.columnIndex="2" onMouseClicked="#onClickBuildRoad"/>
+                        <Line fx:id="road" endX="-38.944480895996094" endY="-0.14227294921875" onMouseClicked="#onClickBuildRoad" startX="-100.0" stroke="#ff1f1f" strokeWidth="10.0" GridPane.columnIndex="2" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Road" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                             <font>
                                 <Font name="System Bold" size="16.0" />

@@ -47,6 +47,12 @@ public class BoardController extends BoardControllerAbstract {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            player.updateResource(ResourceType.LUMBER, 3);
+            player.updateResource(ResourceType.BRICK, 3);
+            player.updateResource(ResourceType.GRAIN, 3);
+            player.updateResource(ResourceType.WOOL, 3);
+            player.updateResource(ResourceType.ORE, 3);
+            this.updatePlayerResourceCount();
             this.initializeTiles();
             this.initializeCircles();
             this.initializeCpuPlayers();
@@ -290,6 +296,16 @@ public class BoardController extends BoardControllerAbstract {
 
     @FXML
     private void onClickBuildRoad() {
+
+        System.out.println("onClickBuildRoad");
+
+        Road road = new Road(
+                this.circle1,
+                this.circle14,
+                Color.RED,
+                this.boardGroup
+        );
+
         if (gameManager.isTurnStateValidForBuilding()) {
             PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
             highlightAvailableRoadLocations(player, circleMap);
