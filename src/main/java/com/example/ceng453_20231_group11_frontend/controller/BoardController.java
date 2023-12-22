@@ -158,8 +158,6 @@ public class BoardController extends BoardControllerAbstract {
             this.rollDiceButton.setDisable(true);
 
             setTimeOut(2, this::onClickRollDice);
-
-            // TODO: Implement CPU Dice Roll
         }
     }
 
