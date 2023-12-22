@@ -90,32 +90,36 @@ public class BoardController extends BoardControllerAbstract {
     private void managePlayerTurn() {
         this.logTextArea.appendText("- Player " + this.gameManager.turnPlayerState.toString() + " Turn\n");
         this.changePlayerBuildingColor(Color.GRAY);
-        // TODO: Implement Player Turn
-        // TODO: RED Player is the user / Other players are CPU
+
+        // Handle the turn based on the current player
         switch (this.gameManager.turnPlayerState) {
             case TURN_RED:
                 this.changePlayerBuildingColor(Color.RED);
                 this.setTimeOut(60, () -> {
-                    this.gameManager.turnPlayerState = this.gameManager.turnPlayerState.next();
-                    this.gameManager.turnState = TurnState.ROLL_DICE;
-                    this.updateGameState();
+                    advanceToNextTurn();
                 });
                 break;
             case TURN_BLUE:
                 this.manageCpuTurn(0);
+                advanceToNextTurn();
                 break;
             case TURN_GREEN:
                 this.manageCpuTurn(1);
+                advanceToNextTurn();
                 break;
             case TURN_ORANGE:
                 this.manageCpuTurn(2);
+                advanceToNextTurn();
                 break;
         }
+    }
 
+    private void advanceToNextTurn() {
         this.gameManager.turnPlayerState = this.gameManager.turnPlayerState.next();
         this.gameManager.turnState = TurnState.ROLL_DICE;
         this.updateGameState();
     }
+
 
     private void manageCpuTurn(Integer cpuIndex) {
         boolean canBuildRoad = false;  // TODO
