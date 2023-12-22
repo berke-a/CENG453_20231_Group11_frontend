@@ -95,6 +95,11 @@ public class BoardController extends BoardControllerAbstract {
         switch (this.gameManager.turnPlayerState) {
             case TURN_RED:
                 this.changePlayerBuildingColor(Color.RED);
+                this.setTimeOut(60, () -> {
+                    this.gameManager.turnPlayerState = this.gameManager.turnPlayerState.next();
+                    this.gameManager.turnState = TurnState.ROLL_DICE;
+                    this.updateGameState();
+                });
                 break;
             case TURN_BLUE:
                 this.manageCpuTurn(0);
@@ -144,14 +149,13 @@ public class BoardController extends BoardControllerAbstract {
             this.animateDiceButton();
 
             // Start or restart the timer
-            startDiceRollTimer(1000);
+            setTimeOut(10, this::onClickRollDice);
 
         } else {
             this.logTextArea.appendText("- Please Wait For Your Turn\n");
             this.rollDiceButton.setDisable(true);
 
-            startDiceRollTimer(2);
-
+            setTimeOut(2, this::onClickRollDice);
 
             // TODO: Implement CPU Dice Roll
         }
@@ -258,14 +262,14 @@ public class BoardController extends BoardControllerAbstract {
         this.road.setStroke(color);
     }
 
-    private void startDiceRollTimer(Integer seconds) {
+    private void setTimeOut(Integer seconds, Runnable onTimerFinish) {
         if (diceRollTimer != null) {
             diceRollTimer.stop(); // Stop any existing timer
         }
 
         diceRollTimer = new Timeline(new KeyFrame(
                 Duration.seconds(seconds),
-                ae -> onClickRollDice()
+                ae -> onTimerFinish.run()
         ));
 
         diceRollTimer.setCycleCount(1); // Only run once
