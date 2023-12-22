@@ -40,7 +40,7 @@ public class BoardController extends BoardControllerAbstract {
 
     private final GameManager gameManager = GameManager.getInstance();
 
-    private Timeline diceRollTimer;
+    private Timeline timer;
 
     private Player player = new Player(PlayerColor.RED);
     private CPUPlayer[] cpuPlayers = new CPUPlayer[3];
@@ -63,8 +63,8 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void onClickRollDice() {
-        if (diceRollTimer != null) {
-            diceRollTimer.stop(); // Stop the timer if the button is clicked
+        if (timer != null) {
+            timer.stop(); // Stop the timer if the button is clicked
         }
 
         this.manageDiceUpdate();
@@ -267,17 +267,17 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void setTimeOut(Integer seconds, Runnable onTimerFinish) {
-        if (diceRollTimer != null) {
-            diceRollTimer.stop(); // Stop any existing timer
+        if (timer != null) {
+            timer.stop(); // Stop any existing timer
         }
 
-        diceRollTimer = new Timeline(new KeyFrame(
+        timer = new Timeline(new KeyFrame(
                 Duration.seconds(seconds),
                 ae -> onTimerFinish.run()
         ));
 
-        diceRollTimer.setCycleCount(1); // Only run once
-        diceRollTimer.play();
+        timer.setCycleCount(1); // Only run once
+        timer.play();
     }
 
     private void animateDiceButton() {
