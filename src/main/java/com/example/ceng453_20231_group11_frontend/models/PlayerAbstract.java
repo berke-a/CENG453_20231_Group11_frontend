@@ -2,6 +2,7 @@ package com.example.ceng453_20231_group11_frontend.models;
 
 import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ abstract public class PlayerAbstract {
     }};
 
     // TODO: Update type to circles
-    Integer roads = 0; //TODO
+    public ArrayList<Pair<CircleVertex, CircleVertex>> roads = new ArrayList<>();
     public ArrayList<CircleVertex> settlements = new ArrayList<>();
     public ArrayList<CircleVertex> cities = new ArrayList<>();
 
