@@ -34,7 +34,7 @@ public class GameManager {
     public boolean isAnySettlementBuildableByPlayer(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
         if (player.resources.get(ResourceType.LUMBER) >= 1 && player.resources.get(ResourceType.BRICK) >= 1 &&
                 player.resources.get(ResourceType.GRAIN) >= 1 && player.resources.get(ResourceType.WOOL) >= 1) {
-            for (Map.Entry<Circle, CircleVertex> entry: circleMap.entrySet()) {
+            for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
                 CircleVertex circleVertex = entry.getValue();
                 if (isSettlementBuildableToVertex(circleMap, circleVertex)) {
                     return true;
@@ -47,7 +47,7 @@ public class GameManager {
 
     public boolean isSettlementBuildableToVertex(HashMap<Circle, CircleVertex> circleMap, CircleVertex circleVertex) {
         if (!circleVertex.isHasSettlement() && !circleVertex.isHasCity()) {
-            for (Circle circle: circleVertex.getAdjacentCircles()) {
+            for (Circle circle : circleVertex.getAdjacentCircles()) {
                 CircleVertex adjacentCircleVertex = circleMap.get(circle);
                 if (adjacentCircleVertex.isHasSettlement() || adjacentCircleVertex.isHasCity()) {
                     return false;
@@ -72,7 +72,7 @@ public class GameManager {
     }
 
     public boolean isTurnStateValidForBuilding() {
-        return this.turnState == TurnState.TURN_PLAYER;
+        return (this.turnState == TurnState.TURN_PLAYER && this.turnPlayerState == TurnPlayerState.TURN_RED);
     }
 
     public boolean isTurnStateValidForRolling() {
