@@ -95,9 +95,7 @@ public class BoardController extends BoardControllerAbstract {
         switch (this.gameManager.turnPlayerState) {
             case TURN_RED:
                 this.changePlayerBuildingColor(Color.RED);
-                this.setTimeOut(60, () -> {
-                    advanceToNextTurn();
-                });
+                this.setTimeOut(60, this::advanceToNextTurn);
                 break;
             case TURN_BLUE:
                 this.manageCpuTurn(0);
