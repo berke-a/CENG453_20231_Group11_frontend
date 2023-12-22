@@ -7,6 +7,7 @@ import com.example.ceng453_20231_group11_frontend.models.CircleVertex;
 import com.example.ceng453_20231_group11_frontend.models.Tile;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -22,6 +24,9 @@ import kotlin.Pair;
 import java.util.*;
 
 abstract class BoardControllerAbstract implements Initializable {
+    @FXML
+    protected Group boardGroup;
+
     @FXML
     protected Polygon tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10,
             tile11, tile12, tile13, tile14, tile15, tile16, tile17, tile18, tile19;
@@ -62,6 +67,15 @@ abstract class BoardControllerAbstract implements Initializable {
 
     @FXML
     protected TextArea logTextArea;
+
+    @FXML
+    protected Rectangle settlement;
+
+    @FXML
+    protected Polygon city;
+
+    @FXML
+    protected Line road;
 
     protected Pair<Label, Text>[] tileLabelTextPairs;
 

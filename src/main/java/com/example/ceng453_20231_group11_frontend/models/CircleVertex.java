@@ -17,11 +17,14 @@ public class CircleVertex {
     private boolean hasCity;
     private List<Circle> adjacentCircles;
     public List<Polygon> adjacentTiles;
+    private PlayerAbstract owner;
 
     public CircleVertex() {
         this.hasSettlement = false;
         this.hasCity = false;
         this.adjacentCircles = new ArrayList<>();
+        this.adjacentTiles = new ArrayList<>();
+        this.owner = null;
     }
 
     public CircleVertex(List<Circle> adjacentCircles, List<Polygon> adjacentTiles) {
@@ -29,5 +32,6 @@ public class CircleVertex {
         this.hasCity = false;
         this.adjacentCircles = adjacentCircles;
         this.adjacentTiles = adjacentTiles;
+        this.owner = null;
     }
 }

@@ -2,11 +2,13 @@ package com.example.ceng453_20231_group11_frontend.models;
 
 import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
+import javafx.util.Pair;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-abstract class PlayerAbstract {
-    Integer score = 0;
+abstract public class PlayerAbstract {
+    Integer victoryPoint = 0;
     boolean hasLongestRoad = false;
     public PlayerColor color;
 
@@ -22,21 +24,53 @@ abstract class PlayerAbstract {
         put(ResourceType.ORE, 0);
     }};
 
-    // TODO: Update type to circles
-    Integer roads = 0; //TODO
-    public CircleVertex[] settlements = new CircleVertex[0];
-    public CircleVertex[] cities = new CircleVertex[0];
 
-    abstract boolean hasWonTheGame();
+    public ArrayList<Pair<CircleVertex, CircleVertex>> roads = new ArrayList<>(); // circleStart - circleEnd
+    public ArrayList<CircleVertex> settlements = new ArrayList<>();
+    public ArrayList<CircleVertex> cities = new ArrayList<>();
 
-    abstract boolean isRoadBuildable(Integer edgeId);
+    boolean hasWonTheGame() {
+        if (hasLongestRoad) {
+            return victoryPoint >= 6;
+        } else {
+            return victoryPoint >= 8;
+        }
+    }
 
-    abstract boolean isCityBuildable(Integer edgeId);
-
-    abstract boolean isSettlementBuildable(Integer edgeId);
-
-    public void addResource(ResourceType resourceType, Integer amount) {
+    public void updateResource(ResourceType resourceType, Integer amount) {
         resources.put(resourceType, resources.get(resourceType) + amount);
+    }
+
+    public void buildRoad(Integer edgeId) {
+        this.updateResource(ResourceType.LUMBER, -1);
+        this.updateResource(ResourceType.BRICK, -1);
+
+
+        // TODO add road to board and roads of player
+    }
+
+    public void buildSettlement(CircleVertex circleVertex) {
+        this.updateResource(ResourceType.LUMBER, -1);
+        this.updateResource(ResourceType.BRICK, -1);
+        this.updateResource(ResourceType.GRAIN, -1);
+        this.updateResource(ResourceType.WOOL, -1);
+
+        this.settlements.add(circleVertex);
+        circleVertex.setHasSettlement(true);
+
+        this.victoryPoint++;
+    }
+
+    public void buildCity(CircleVertex circleVertex) {
+        this.updateResource(ResourceType.ORE, -3);
+        this.updateResource(ResourceType.GRAIN, -2);
+
+        this.settlements.remove(circleVertex);
+        this.cities.add(circleVertex);
+        circleVertex.setHasSettlement(false);
+        circleVertex.setHasCity(true);
+
+        victoryPoint++;
     }
 
     public Integer getResource(ResourceType resourceType) {
