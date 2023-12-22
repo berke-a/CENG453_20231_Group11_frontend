@@ -352,7 +352,7 @@ public class BoardController extends BoardControllerAbstract {
                 if (gameManager.isCityBuildableToVertex(player, circleVertex)) {
                     Circle circle = entry.getKey();
                     highlightCircle(circle, true);
-                    circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
+
                 }
             }
         }
@@ -368,7 +368,7 @@ public class BoardController extends BoardControllerAbstract {
             circle.setFill(Color.RED); // Example: Change the color to red
 
             // Deduct resources from the player
-            deductResourcesForSettlement(player);
+            player.buildSettlement(circleMap.get(circle));
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
@@ -384,9 +384,6 @@ public class BoardController extends BoardControllerAbstract {
 
             // Visual update to indicate the settlement is built
             circle.setFill(Color.RED); // Example: Change the color to red
-
-            // Deduct resources from the player
-            deductResourcesForCity(player);
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
@@ -407,11 +404,11 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void buildSettlement(PlayerAbstract player, Circle circle) {
-        // Logic to add a settlement to the player's properties
-    }
-
-    private void deductResourcesForSettlement(PlayerAbstract player) {
-        // Logic to deduct resources from the player
+        Settlement settlement = new Settlement(
+                circle,
+                player.color.getColor(),
+                this.boardGroup
+        );
     }
 
     private void buildCity(PlayerAbstract player, Circle circle) {
