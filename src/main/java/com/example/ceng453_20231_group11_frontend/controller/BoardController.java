@@ -120,6 +120,7 @@ public class BoardController extends BoardControllerAbstract {
 
 
     private void manageCpuTurn(Integer cpuIndex) {
+        // TODO: Use game manager inside cpu player
         boolean canBuildRoad = false;  // TODO
         boolean canBuildSettlement = this.gameManager.isAnySettlementBuildableByPlayer(this.cpuPlayers[cpuIndex], circleMap);
         boolean canBuildCity = this.gameManager.isAnyCityBuildableByPlayer(this.cpuPlayers[cpuIndex]);
