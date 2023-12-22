@@ -11,9 +11,9 @@ import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
-import javafx.scene.shape.Circle;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -89,11 +89,12 @@ public class BoardController extends BoardControllerAbstract {
 
     private void managePlayerTurn() {
         this.logTextArea.appendText("- Player " + this.gameManager.turnPlayerState.toString() + " Turn\n");
-
+        this.changePlayerBuildingColor(Color.GRAY);
         // TODO: Implement Player Turn
         // TODO: RED Player is the user / Other players are CPU
         switch (this.gameManager.turnPlayerState) {
             case TURN_RED:
+                this.changePlayerBuildingColor(Color.RED);
                 break;
             case TURN_BLUE:
                 this.manageCpuTurn(0);
@@ -249,6 +250,12 @@ public class BoardController extends BoardControllerAbstract {
         this.playerBrickCount.setText(this.player.getResource(ResourceType.BRICK).toString());
         this.playerGrainCount.setText(this.player.getResource(ResourceType.GRAIN).toString());
         this.playerOreCount.setText(this.player.getResource(ResourceType.ORE).toString());
+    }
+
+    private void changePlayerBuildingColor(Color color) {
+        this.settlement.setFill(color);
+        this.city.setFill(color);
+        this.road.setStroke(color);
     }
 
     private void startDiceRollTimer(Integer seconds) {
