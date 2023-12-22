@@ -167,6 +167,7 @@ public class BoardController extends BoardControllerAbstract {
     private void manageDiceUpdate() {
         dice.roll();
         this.updateDiceText();
+        this.rollDiceButton.setDisable(true);
         this.logTextArea.appendText("- Player " + this.gameManager.turnPlayerState.toString() + " rolled the dice.\n");
         this.logTextArea.appendText("- Dice Total: " + this.dice.getDiceTotal() + "\n");
         this.gameManager.turnState = TurnState.RESOURCE_DISTRIBUTION;
