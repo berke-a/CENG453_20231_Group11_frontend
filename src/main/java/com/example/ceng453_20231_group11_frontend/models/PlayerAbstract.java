@@ -24,8 +24,8 @@ abstract public class PlayerAbstract {
         put(ResourceType.ORE, 0);
     }};
 
-    // TODO: Update type to circles
-    public ArrayList<Pair<CircleVertex, CircleVertex>> roads = new ArrayList<>();
+
+    public ArrayList<Pair<CircleVertex, CircleVertex>> roads = new ArrayList<>(); // circleStart - circleEnd
     public ArrayList<CircleVertex> settlements = new ArrayList<>();
     public ArrayList<CircleVertex> cities = new ArrayList<>();
 
