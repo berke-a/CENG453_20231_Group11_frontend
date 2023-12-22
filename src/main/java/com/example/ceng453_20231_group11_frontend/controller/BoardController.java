@@ -47,12 +47,6 @@ public class BoardController extends BoardControllerAbstract {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            player.updateResource(ResourceType.LUMBER, 3);
-            player.updateResource(ResourceType.BRICK, 3);
-            player.updateResource(ResourceType.GRAIN, 3);
-            player.updateResource(ResourceType.WOOL, 3);
-            player.updateResource(ResourceType.ORE, 3);
-            this.updatePlayerResourceCount();
             this.initializeTiles();
             this.initializeCircles();
             this.initializeCpuPlayers();
