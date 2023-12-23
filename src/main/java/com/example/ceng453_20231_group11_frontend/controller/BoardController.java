@@ -98,15 +98,15 @@ public class BoardController extends BoardControllerAbstract {
                 this.setTimeOut(60, this::advanceToNextTurn);
                 break;
             case TURN_BLUE:
-                this.manageCpuTurn(0);
+                this.cpuPlayers[0].play(gameManager, circleMap, allRoads);
                 advanceToNextTurn();
                 break;
             case TURN_GREEN:
-                this.manageCpuTurn(1);
+                this.cpuPlayers[1].play(gameManager, circleMap, allRoads);
                 advanceToNextTurn();
                 break;
             case TURN_ORANGE:
-                this.manageCpuTurn(2);
+                this.cpuPlayers[2].play(gameManager, circleMap, allRoads);
                 advanceToNextTurn();
                 break;
         }
@@ -117,16 +117,6 @@ public class BoardController extends BoardControllerAbstract {
         this.gameManager.turnState = TurnState.ROLL_DICE;
         this.updateGameState();
     }
-
-
-    private void manageCpuTurn(Integer cpuIndex) {
-        // TODO: Use game manager inside cpu player
-        boolean canBuildRoad = false;  // TODO
-        boolean canBuildSettlement = this.gameManager.isAnySettlementBuildableByPlayer(this.cpuPlayers[cpuIndex], circleMap);
-        boolean canBuildCity = this.gameManager.isAnyCityBuildableByPlayer(this.cpuPlayers[cpuIndex]);
-        this.cpuPlayers[cpuIndex].play(circleMap, canBuildRoad, canBuildSettlement, canBuildCity);
-    }
-
 
     private void initializeCpuPlayers() {
         this.cpuPlayers[0] = new CPUPlayer(PlayerColor.BLUE);
@@ -335,7 +325,7 @@ public class BoardController extends BoardControllerAbstract {
             // If yes, iterate through each circleVertex and highlight if buildable
             for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
                 CircleVertex circleVertex = entry.getValue();
-                if (gameManager.isSettlementBuildableToVertex(circleMap, circleVertex)) {
+                if (gameManager.isSettlementBuildableToVertex(circleVertex, circleMap)) {
                     Circle circle = entry.getKey();
                     highlightCircle(circle, true);
                     circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
@@ -360,7 +350,7 @@ public class BoardController extends BoardControllerAbstract {
 
     private void onCircleClickedSettlement(Circle circle, PlayerAbstract player) {
         // Check if the circle is still valid for building (in case of concurrent actions)
-        if (gameManager.isSettlementBuildableToVertex(circleMap, circleMap.get(circle))) {
+        if (gameManager.isSettlementBuildableToVertex(circleMap.get(circle), circleMap)) {
             // Update the game state to reflect the new settlement
             buildSettlement(player, circle);
 
@@ -378,7 +368,7 @@ public class BoardController extends BoardControllerAbstract {
 
     private void onCircleClickedCity(Circle circle, PlayerAbstract player) {
         // Check if the circle is still valid for building (in case of concurrent actions)
-        if (gameManager.isSettlementBuildableToVertex(circleMap, circleMap.get(circle))) {
+        if (gameManager.isSettlementBuildableToVertex(circleMap.get(circle), circleMap)) {
             // Update the game state to reflect the new settlement
             buildCity(player, circle);
 

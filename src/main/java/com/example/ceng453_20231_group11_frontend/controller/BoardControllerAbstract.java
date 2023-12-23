@@ -83,7 +83,7 @@ abstract class BoardControllerAbstract implements Initializable {
 
     protected HashMap<Polygon, Pair<Label, Text>> tileLabelMap = new HashMap<Polygon, Pair<Label, Text>>();
     protected HashMap<Circle, CircleVertex> circleMap = new HashMap<>();
-
+    protected ArrayList<javafx.util.Pair<CircleVertex, CircleVertex>> allRoads = new ArrayList<>();
 
     protected void initializeTiles() {
         tileLabelTextPairs = new Pair[]{new Pair<>(tileLabel1, tileText1), new Pair<>(tileLabel2, tileText2), new Pair<>(tileLabel3, tileText3), new Pair<>(tileLabel4, tileText4), new Pair<>(tileLabel5, tileText5), new Pair<>(tileLabel6, tileText6), new Pair<>(tileLabel7, tileText7), new Pair<>(tileLabel8, tileText8), new Pair<>(tileLabel9, tileText9), new Pair<>(tileLabel10, tileText10),
