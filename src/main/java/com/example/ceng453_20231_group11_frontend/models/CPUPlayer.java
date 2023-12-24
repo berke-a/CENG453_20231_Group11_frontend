@@ -1,6 +1,5 @@
 package com.example.ceng453_20231_group11_frontend.models;
 
-import javafx.scene.shape.Circle;
 import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import javafx.scene.shape.Circle;
 import lombok.Getter;
@@ -24,7 +23,7 @@ public class CPUPlayer extends PlayerAbstract {
     public void play(HashMap<Circle, CircleVertex> circleMap, boolean canBuildRoad, boolean canBuildSettlement, boolean canBuildCity) {
         if (canBuildRoad) {
             Integer edgeId = this.getEdgeForRoad(circleMap);
-            this.buildRoad(edgeId);
+            // this.buildRoad(edgeId);
         }
         if (canBuildSettlement) {
             CircleVertex vertexToBuildSettlement = this.getVertexForSettlement(circleMap);
@@ -40,13 +39,13 @@ public class CPUPlayer extends PlayerAbstract {
     }
 
     private CircleVertex getVertexForSettlement(HashMap<Circle, CircleVertex> circleMap) {
-        for (Map.Entry<Circle, CircleVertex> entry: circleMap.entrySet()) {
+        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
             CircleVertex circleVertex = entry.getValue();
             if (circleVertex.isHasSettlement() || circleVertex.isHasCity()) {
                 continue;
             }
             boolean isAdjacentCircleHasBuilding = false;
-            for (Circle circle: circleVertex.getAdjacentCircles()) {
+            for (Circle circle : circleVertex.getAdjacentCircles()) {
                 CircleVertex adjacentCircleVertex = circleMap.get(circle);
                 if (adjacentCircleVertex.isHasSettlement() || adjacentCircleVertex.isHasCity()) {
                     isAdjacentCircleHasBuilding = true;
