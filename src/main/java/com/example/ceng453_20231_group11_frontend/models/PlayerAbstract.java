@@ -41,12 +41,11 @@ abstract public class PlayerAbstract {
         resources.put(resourceType, resources.get(resourceType) + amount);
     }
 
-    public void buildRoad(Integer edgeId) {
+    public void buildRoad(Pair<CircleVertex, CircleVertex> road) {
         this.updateResource(ResourceType.LUMBER, -1);
         this.updateResource(ResourceType.BRICK, -1);
 
-
-        // TODO add road to board and roads of player
+        this.roads.add(road);
     }
 
     public void buildSettlement(CircleVertex circleVertex) {
@@ -57,6 +56,7 @@ abstract public class PlayerAbstract {
 
         this.settlements.add(circleVertex);
         circleVertex.setHasSettlement(true);
+        circleVertex.setOwner(this);
 
         this.victoryPoint++;
     }
@@ -69,6 +69,7 @@ abstract public class PlayerAbstract {
         this.cities.add(circleVertex);
         circleVertex.setHasSettlement(false);
         circleVertex.setHasCity(true);
+        circleVertex.setOwner(this);
 
         victoryPoint++;
     }
