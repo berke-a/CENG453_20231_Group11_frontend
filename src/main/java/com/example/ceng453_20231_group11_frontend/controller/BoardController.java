@@ -47,6 +47,8 @@ public class BoardController extends BoardControllerAbstract {
         try {
             player.updateResource(ResourceType.LUMBER, 5);
             player.updateResource(ResourceType.BRICK, 5);
+            player.updateResource(ResourceType.GRAIN, 5);
+            player.updateResource(ResourceType.WOOL, 5);
             this.initializeTiles();
             this.initializeCircles();
             this.initializeCpuPlayers();
@@ -550,10 +552,12 @@ public class BoardController extends BoardControllerAbstract {
     private void highlightCircle(Circle circle, boolean highlight) {
         if (highlight) {
             // Set some visual properties to highlight the circle
+            circle.setRadius(20);
             circle.setStroke(Color.GREEN); // Example: Change the stroke to green to indicate it's selectable
-            circle.setStrokeWidth(3);
+            circle.setStrokeWidth(8);
         } else {
             // Reset the visual properties of the circle
+            circle.setRadius(12);
             circle.setStroke(Color.BLACK); // Reset to default stroke color
             circle.setStrokeWidth(1);
         }
