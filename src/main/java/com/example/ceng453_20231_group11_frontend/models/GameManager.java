@@ -27,8 +27,8 @@ public class GameManager {
     }
 
     // TODO: Create Player Class & Pass as a parameter
-    public static boolean isRoadBuildable(String PlayerColor) {
-        return true;
+    public boolean isRoadBuildableByPlayer(PlayerAbstract player) {
+        return (player.resources.get(ResourceType.LUMBER) >= 1 && player.resources.get(ResourceType.BRICK) >= 1);
     }
 
     public boolean isAnySettlementBuildableByPlayer(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
