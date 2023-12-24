@@ -84,6 +84,8 @@ abstract class BoardControllerAbstract implements Initializable {
     protected HashMap<Polygon, Pair<Label, Text>> tileLabelMap = new HashMap<Polygon, Pair<Label, Text>>();
     protected HashMap<Circle, CircleVertex> circleMap = new HashMap<>();
 
+    protected Set<javafx.util.Pair<Circle, Circle>> occupiedEdges = new HashSet<>();
+
 
     protected void initializeTiles() {
         tileLabelTextPairs = new Pair[]{new Pair<>(tileLabel1, tileText1), new Pair<>(tileLabel2, tileText2), new Pair<>(tileLabel3, tileText3), new Pair<>(tileLabel4, tileText4), new Pair<>(tileLabel5, tileText5), new Pair<>(tileLabel6, tileText6), new Pair<>(tileLabel7, tileText7), new Pair<>(tileLabel8, tileText8), new Pair<>(tileLabel9, tileText9), new Pair<>(tileLabel10, tileText10),
@@ -172,7 +174,7 @@ abstract class BoardControllerAbstract implements Initializable {
         circleMap.put(circle7, new CircleVertex(List.of(circle5, circle44, circle38), List.of(tile1, tile2, tile5)));
         circleMap.put(circle8, new CircleVertex(List.of(circle33, circle10, circle37), List.of(tile19, tile15, tile18)));
         circleMap.put(circle9, new CircleVertex(List.of(circle13, circle47, circle5), List.of(tile1, tile4)));
-        circleMap.put(circle10, new CircleVertex(List.of(circle8, circle28, circle21), List.of(tile19, tile18)));
+        circleMap.put(circle10, new CircleVertex(List.of(circle8, circle28, circle34), List.of(tile19, tile18)));
         circleMap.put(circle11, new CircleVertex(List.of(circle50, circle38, circle18), List.of(tile2, tile3, tile6)));
         circleMap.put(circle12, new CircleVertex(List.of(circle29, circle48, circle52), List.of(tile8, tile13)));
         circleMap.put(circle13, new CircleVertex(List.of(circle9, circle31), List.of(tile4)));

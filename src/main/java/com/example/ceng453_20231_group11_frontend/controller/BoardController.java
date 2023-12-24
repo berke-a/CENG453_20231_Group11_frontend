@@ -14,12 +14,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static com.example.ceng453_20231_group11_frontend.enums.TurnPlayerState.TURN_RED;
 
@@ -51,7 +49,7 @@ public class BoardController extends BoardControllerAbstract {
             this.initializeCircles();
             this.initializeCpuPlayers();
             this.rollDiceButton.setDisable(true);
-            this.gameManager.turnState = TurnState.ROLL_DICE;
+            this.gameManager.turnState = TurnState.INITIALIZATION;
             this.updateGameState();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -129,6 +127,7 @@ public class BoardController extends BoardControllerAbstract {
 
 
     private void initializeCpuPlayers() {
+        System.out.println("Initializing CPU Players");
         this.cpuPlayers[0] = new CPUPlayer(PlayerColor.BLUE);
         this.cpuPlayers[1] = new CPUPlayer(PlayerColor.GREEN);
         this.cpuPlayers[2] = new CPUPlayer(PlayerColor.ORANGE);
@@ -175,8 +174,108 @@ public class BoardController extends BoardControllerAbstract {
 
     private void playerInitialPlacement() {
         this.logTextArea.appendText("- Player Initial Placement\n");
-        // TODO: Implement Player Initial Placement
+
+        System.out.println("Placing initial settlement and road for player");
+        placeInitialSettlementAndRoad(player);
+        updatePlayerResourceCount();
+
+        System.out.println("Placing initial settlements and roads for CPU players");
+        System.out.println("CPU Players size: " + cpuPlayers.length);
+        for (CPUPlayer cpuPlayer : cpuPlayers) {
+            System.out.println("CPU Player Color: " + (cpuPlayer.color != null ? cpuPlayer.color.getColor() : "null"));
+            placeInitialSettlementAndRoad(cpuPlayer);
+        }
+
+        System.out.println("Exiting playerInitialPlacement");
         this.gameManager.turnState = TurnState.ROLL_DICE;
+        this.updateGameState();
+    }
+
+    private void placeInitialSettlementAndRoad(PlayerAbstract player) {
+        System.out.println("Entering placeInitialSettlementAndRoad for " + player.getClass().getSimpleName());
+
+        List<Circle> circleKeys = new ArrayList<>(circleMap.keySet());
+        Collections.shuffle(circleKeys);
+
+        Circle settlementCircle = null;
+        CircleVertex settlementCircleVertex = null;
+
+        // Find a valid CircleVertex for the settlement
+        for (Circle circle : circleKeys) {
+            CircleVertex circleVertex = circleMap.get(circle);
+            if (circleVertex != null && !circleVertex.isHasSettlement() && !circleVertex.isHasCity()) {
+                settlementCircle = circle;
+                settlementCircleVertex = circleVertex;
+                System.out.println("Found valid CircleVertex for settlement at " + circle);
+                break;
+            }
+        }
+
+        if (settlementCircle == null) {
+            System.out.println("No valid CircleVertex found for settlement");
+            return; // No valid location found
+        }
+
+        // Place the settlement
+        buildSettlement(player, settlementCircle);
+        player.settlements.add(settlementCircleVertex);
+        settlementCircleVertex.setHasSettlement(true);
+        settlementCircleVertex.setOwner(player);
+
+        // Select and place the road
+        if (!settlementCircleVertex.getAdjacentCircles().isEmpty()) {
+            List<Circle> adjacentCircles = new ArrayList<>(settlementCircleVertex.getAdjacentCircles());
+            Collections.shuffle(adjacentCircles);
+
+            for (Circle roadEndCircle : adjacentCircles) {
+                Pair<Circle, Circle> edge = createEdge(settlementCircle, roadEndCircle);
+                if (!occupiedEdges.contains(edge)) {
+                    Road road = new Road(settlementCircle, roadEndCircle, player.color.getColor(), boardGroup);
+                    player.roads.add(new Pair<>(settlementCircleVertex, circleMap.get(roadEndCircle)));
+                    occupiedEdges.add(edge);
+                    System.out.println("Road placed between " + settlementCircle + " and " + roadEndCircle);
+                    break; // Exit the loop once the road is successfully placed
+                }
+            }
+        }
+
+        // Update resources for initial settlement
+        updateInitialResources(player, settlementCircle);
+        System.out.println("Exiting placeInitialSettlementAndRoad for " + player.getClass().getSimpleName());
+    }
+
+    private void updateInitialResources(PlayerAbstract player, Circle settlementCircle) {
+        System.out.println("Updating initial resources for " + player.getClass().getSimpleName() + " with settlement circle: " + settlementCircle);
+
+        CircleVertex vertex = circleMap.get(settlementCircle);
+        if (vertex == null) {
+            System.out.println("CircleVertex is null for circle: " + settlementCircle);
+            return;
+        }
+
+        for (Polygon polygon : vertex.adjacentTiles) {
+            System.out.println("Processing adjacent tile: " + polygon);
+            Tile adjacentTile = polygonTileHashMap.get(polygon);
+            if (adjacentTile == null) {
+                System.out.println("Adjacent tile is null for polygon: " + polygon);
+                continue;
+            }
+
+            ResourceType resourceType = GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType());
+            if (resourceType == null) {
+                System.out.println("Resource type is null for tile type: " + adjacentTile.getTileType());
+                continue;
+            }
+
+            System.out.println("Updating resource " + resourceType + " for player: " + player.getClass().getSimpleName());
+            player.updateResource(resourceType, 1);
+        }
+
+        System.out.println("Initial resources updated for player: " + player.getClass().getSimpleName());
+    }
+
+    private Pair<Circle, Circle> createEdge(Circle c1, Circle c2) {
+        return c1.getId().compareTo(c2.getId()) <= 0 ? new Pair<>(c1, c2) : new Pair<>(c2, c1);
     }
 
     private void distributeResourcesPlayer() {
@@ -352,7 +451,7 @@ public class BoardController extends BoardControllerAbstract {
                 if (gameManager.isCityBuildableToVertex(player, circleVertex)) {
                     Circle circle = entry.getKey();
                     highlightCircle(circle, true);
-                    circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
+
                 }
             }
         }
@@ -368,7 +467,7 @@ public class BoardController extends BoardControllerAbstract {
             circle.setFill(Color.RED); // Example: Change the color to red
 
             // Deduct resources from the player
-            deductResourcesForSettlement(player);
+            player.buildSettlement(circleMap.get(circle));
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
@@ -384,9 +483,6 @@ public class BoardController extends BoardControllerAbstract {
 
             // Visual update to indicate the settlement is built
             circle.setFill(Color.RED); // Example: Change the color to red
-
-            // Deduct resources from the player
-            deductResourcesForCity(player);
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
@@ -407,11 +503,11 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void buildSettlement(PlayerAbstract player, Circle circle) {
-        // Logic to add a settlement to the player's properties
-    }
-
-    private void deductResourcesForSettlement(PlayerAbstract player) {
-        // Logic to deduct resources from the player
+        Settlement settlement = new Settlement(
+                circle,
+                player.color.getColor(),
+                this.boardGroup
+        );
     }
 
     private void buildCity(PlayerAbstract player, Circle circle) {
