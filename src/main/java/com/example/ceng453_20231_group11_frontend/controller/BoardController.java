@@ -127,7 +127,6 @@ public class BoardController extends BoardControllerAbstract {
 
 
     private void initializeCpuPlayers() {
-        System.out.println("Initializing CPU Players");
         this.cpuPlayers[0] = new CPUPlayer(PlayerColor.BLUE);
         this.cpuPlayers[1] = new CPUPlayer(PlayerColor.GREEN);
         this.cpuPlayers[2] = new CPUPlayer(PlayerColor.ORANGE);
@@ -175,25 +174,18 @@ public class BoardController extends BoardControllerAbstract {
     private void playerInitialPlacement() {
         this.logTextArea.appendText("- Player Initial Placement\n");
 
-        System.out.println("Placing initial settlement and road for player");
         placeInitialSettlementAndRoad(player);
         updatePlayerResourceCount();
 
-        System.out.println("Placing initial settlements and roads for CPU players");
-        System.out.println("CPU Players size: " + cpuPlayers.length);
         for (CPUPlayer cpuPlayer : cpuPlayers) {
-            System.out.println("CPU Player Color: " + (cpuPlayer.color != null ? cpuPlayer.color.getColor() : "null"));
             placeInitialSettlementAndRoad(cpuPlayer);
         }
 
-        System.out.println("Exiting playerInitialPlacement");
         this.gameManager.turnState = TurnState.ROLL_DICE;
         this.updateGameState();
     }
 
     private void placeInitialSettlementAndRoad(PlayerAbstract player) {
-        System.out.println("Entering placeInitialSettlementAndRoad for " + player.getClass().getSimpleName());
-
         List<Circle> circleKeys = new ArrayList<>(circleMap.keySet());
         Collections.shuffle(circleKeys);
 
@@ -206,13 +198,11 @@ public class BoardController extends BoardControllerAbstract {
             if (circleVertex != null && !circleVertex.isHasSettlement() && !circleVertex.isHasCity()) {
                 settlementCircle = circle;
                 settlementCircleVertex = circleVertex;
-                System.out.println("Found valid CircleVertex for settlement at " + circle);
                 break;
             }
         }
 
         if (settlementCircle == null) {
-            System.out.println("No valid CircleVertex found for settlement");
             return; // No valid location found
         }
 
@@ -233,7 +223,6 @@ public class BoardController extends BoardControllerAbstract {
                     Road road = new Road(settlementCircle, roadEndCircle, player.color.getColor(), boardGroup);
                     player.roads.add(new Pair<>(settlementCircleVertex, circleMap.get(roadEndCircle)));
                     occupiedEdges.add(edge);
-                    System.out.println("Road placed between " + settlementCircle + " and " + roadEndCircle);
                     break; // Exit the loop once the road is successfully placed
                 }
             }
@@ -241,37 +230,27 @@ public class BoardController extends BoardControllerAbstract {
 
         // Update resources for initial settlement
         updateInitialResources(player, settlementCircle);
-        System.out.println("Exiting placeInitialSettlementAndRoad for " + player.getClass().getSimpleName());
     }
 
     private void updateInitialResources(PlayerAbstract player, Circle settlementCircle) {
-        System.out.println("Updating initial resources for " + player.getClass().getSimpleName() + " with settlement circle: " + settlementCircle);
-
         CircleVertex vertex = circleMap.get(settlementCircle);
         if (vertex == null) {
-            System.out.println("CircleVertex is null for circle: " + settlementCircle);
             return;
         }
 
         for (Polygon polygon : vertex.adjacentTiles) {
-            System.out.println("Processing adjacent tile: " + polygon);
             Tile adjacentTile = polygonTileHashMap.get(polygon);
             if (adjacentTile == null) {
-                System.out.println("Adjacent tile is null for polygon: " + polygon);
                 continue;
             }
 
             ResourceType resourceType = GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType());
             if (resourceType == null) {
-                System.out.println("Resource type is null for tile type: " + adjacentTile.getTileType());
                 continue;
             }
 
-            System.out.println("Updating resource " + resourceType + " for player: " + player.getClass().getSimpleName());
             player.updateResource(resourceType, 1);
         }
-
-        System.out.println("Initial resources updated for player: " + player.getClass().getSimpleName());
     }
 
     private Pair<Circle, Circle> createEdge(Circle c1, Circle c2) {
@@ -389,9 +368,6 @@ public class BoardController extends BoardControllerAbstract {
 
     @FXML
     private void onClickBuildRoad() {
-
-        System.out.println("onClickBuildRoad");
-
 //        Road road = new Road(
 //                this.circle1,
 //                this.circle14,
