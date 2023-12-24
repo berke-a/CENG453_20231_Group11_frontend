@@ -425,6 +425,7 @@ public class BoardController extends BoardControllerAbstract {
     // Method to highlight circles where a road can be built
     private void highlightAvailableRoadLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
         if (!gameManager.isRoadBuildableByPlayer(player)) {
+            logTextArea.appendText("- Not Enough Resources To Build Road\n");
             return;
         }
         ArrayList<Circle> validCircles = new ArrayList<>();
@@ -513,29 +514,34 @@ public class BoardController extends BoardControllerAbstract {
     // Method to highlight circles where a settlement can be built
     private void highlightAvailableSettlementLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
         // Check if the player has enough resources to build a settlement
-        if (gameManager.isAnySettlementBuildableByPlayer(player, circleMap)) {
-            // If yes, iterate through each circleVertex and highlight if buildable
-            for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
-                CircleVertex circleVertex = entry.getValue();
-                if (gameManager.isSettlementBuildableToVertex(circleMap, circleVertex)) {
-                    Circle circle = entry.getKey();
-                    highlightCircle(circle, true);
-                    circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
-                }
+        if (!gameManager.isAnySettlementBuildableByPlayer(player, circleMap)) {
+            logTextArea.appendText("- Not Enough Resources To Build Settlement\n");
+            return;
+        }
+        // If yes, iterate through each circleVertex and highlight if buildable
+        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
+            CircleVertex circleVertex = entry.getValue();
+            if (gameManager.isSettlementBuildableToVertex(circleMap, circleVertex)) {
+                Circle circle = entry.getKey();
+                highlightCircle(circle, true);
+                circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
             }
         }
     }
 
     // Method to highlight circles where a city can be built
     private void highlightAvailableCityLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
-        if (gameManager.isAnyCityBuildableByPlayer(player)) {
-            for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
-                CircleVertex circleVertex = entry.getValue();
-                if (gameManager.isCityBuildableToVertex(player, circleVertex)) {
-                    Circle circle = entry.getKey();
-                    highlightCircle(circle, true);
+        if (!gameManager.isAnyCityBuildableByPlayer(player)) {
+            logTextArea.appendText("- Not Enough Resources To Build City\n");
+            return;
+        }
 
-                }
+        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
+            CircleVertex circleVertex = entry.getValue();
+            if (gameManager.isCityBuildableToVertex(player, circleVertex)) {
+                Circle circle = entry.getKey();
+                highlightCircle(circle, true);
+
             }
         }
     }
