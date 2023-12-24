@@ -172,7 +172,7 @@ abstract class BoardControllerAbstract implements Initializable {
         circleMap.put(circle7, new CircleVertex(List.of(circle5, circle44, circle38), List.of(tile1, tile2, tile5)));
         circleMap.put(circle8, new CircleVertex(List.of(circle33, circle10, circle37), List.of(tile19, tile15, tile18)));
         circleMap.put(circle9, new CircleVertex(List.of(circle13, circle47, circle5), List.of(tile1, tile4)));
-        circleMap.put(circle10, new CircleVertex(List.of(circle8, circle28, circle21), List.of(tile19, tile18)));
+        circleMap.put(circle10, new CircleVertex(List.of(circle8, circle28, circle34), List.of(tile19, tile18)));
         circleMap.put(circle11, new CircleVertex(List.of(circle50, circle38, circle18), List.of(tile2, tile3, tile6)));
         circleMap.put(circle12, new CircleVertex(List.of(circle29, circle48, circle52), List.of(tile8, tile13)));
         circleMap.put(circle13, new CircleVertex(List.of(circle9, circle31), List.of(tile4)));
