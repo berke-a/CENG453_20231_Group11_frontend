@@ -45,10 +45,6 @@ public class BoardController extends BoardControllerAbstract {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            player.updateResource(ResourceType.LUMBER, 5);
-            player.updateResource(ResourceType.BRICK, 5);
-            player.updateResource(ResourceType.GRAIN, 5);
-            player.updateResource(ResourceType.WOOL, 5);
             this.initializeTiles();
             this.initializeCircles();
             this.initializeCpuPlayers();
@@ -432,6 +428,7 @@ public class BoardController extends BoardControllerAbstract {
             return;
         }
         ArrayList<Circle> validCircles = new ArrayList<>();
+        ArrayList<Pair<Circle, Circle>> validRoads = new ArrayList<>();
 
         ArrayList<Pair<CircleVertex, CircleVertex>> playerRoads = player.roads;
 
@@ -447,17 +444,21 @@ public class BoardController extends BoardControllerAbstract {
             }
 
             for (Circle adjacentCircle : circleVertex.getAdjacentCircles()) {
+                Pair<Circle, Circle> edge = createEdge(circle, adjacentCircle);
+                if (occupiedEdges.contains(edge)) {
+                    continue;
+                }
+
                 CircleVertex adjacentCircleVertex = circleMap.get(adjacentCircle);
                 if (adjacentCircleVertex.getOwner() != null && adjacentCircleVertex.getOwner().equals(player)) {
-                    Pair<Circle, Circle> edge = createEdge(circle, adjacentCircle);
-                    if (!occupiedEdges.contains(edge)) {
-                        validCircles.add(circle);
-                        break;
-                    }
+                    validCircles.add(circle);
+                    validRoads.add(edge);
+                    break;
                 }
 
                 if (isVertexAtRoadEnd(player, adjacentCircleVertex)) {
                     validCircles.add(circle);
+                    validRoads.add(createEdge(circle, adjacentCircle));
                     break;
                 }
             }
@@ -465,7 +466,8 @@ public class BoardController extends BoardControllerAbstract {
 
         for (Circle circle : validCircles) {
             highlightCircle(circle, true);
-            circle.setOnMouseClicked(event -> onCircleClickedRoad(circle, player));
+            Pair<Circle, Circle> edge = validRoads.get(validCircles.indexOf(circle));
+            circle.setOnMouseClicked(event -> onCircleClickedRoad(edge));
         }
     }
 
@@ -473,17 +475,39 @@ public class BoardController extends BoardControllerAbstract {
         ArrayList<Pair<CircleVertex, CircleVertex>> roads = player.roads;
 
         for (Pair<CircleVertex, CircleVertex> road : roads) {
-            CircleVertex endVertex = road.getValue(); // Get the end vertex of the road
-            if (endVertex.equals(targetVertex)) {
+            CircleVertex roadVertex1 = road.getKey();
+            CircleVertex roadVertex2 = road.getValue();
+
+            if (roadVertex1.equals(targetVertex)) {
+                return true; // Found the targetVertex as an end of a road
+            }
+
+            if (roadVertex2.equals(targetVertex)) {
                 return true; // Found the targetVertex as an end of a road
             }
         }
         return false; // targetVertex is not an end in any of the roads
     }
 
+    private void buildRoad(Circle circleStart, Circle circleEnd) {
+        Road road = new Road(circleStart, circleEnd, player.color.getColor(), boardGroup);
+        player.roads.add(new Pair<>(circleMap.get(circleStart), circleMap.get(circleEnd)));
+        Pair<Circle, Circle> edge = createEdge(circleStart, circleEnd);
+        occupiedEdges.add(edge);
+    }
 
-    private void onCircleClickedRoad(Circle circle, PlayerAbstract player) {
-        System.out.println("onCircleClickedRoad circle is " + circle);
+
+    private void onCircleClickedRoad(Pair<Circle, Circle> roadEdge) {
+
+
+        // Update the game state to reflect the new road
+        buildRoad(roadEdge.getKey(), roadEdge.getValue());
+
+        player.buildRoad(new Pair<>(circleMap.get(roadEdge.getKey()), circleMap.get(roadEdge.getValue())));
+
+        // Reset the highlighting for buildable locations
+        resetHighlighting();
+        updatePlayerResourceCount();
     }
 
     // Method to highlight circles where a settlement can be built
