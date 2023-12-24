@@ -392,12 +392,12 @@ public class BoardController extends BoardControllerAbstract {
 
         System.out.println("onClickBuildRoad");
 
-        Road road = new Road(
-                this.circle1,
-                this.circle14,
-                Color.RED,
-                this.boardGroup
-        );
+//        Road road = new Road(
+//                this.circle1,
+//                this.circle14,
+//                Color.RED,
+//                this.boardGroup
+//        );
 
         if (gameManager.isTurnStateValidForBuilding()) {
             PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
@@ -424,35 +424,124 @@ public class BoardController extends BoardControllerAbstract {
 
     // Method to highlight circles where a road can be built
     private void highlightAvailableRoadLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
+        if (!gameManager.isRoadBuildableByPlayer(player)) {
+            logTextArea.appendText("- Not Enough Resources To Build Road\n");
+            return;
+        }
+        ArrayList<Circle> validCircles = new ArrayList<>();
+        ArrayList<Pair<Circle, Circle>> validRoads = new ArrayList<>();
 
+        ArrayList<Pair<CircleVertex, CircleVertex>> playerRoads = player.roads;
+
+        for (Circle circle : circleMap.keySet()) {
+            CircleVertex circleVertex = circleMap.get(circle);
+
+            if (circleVertex.isHasCity()) {
+                continue;
+            }
+
+            if (circleVertex.isHasSettlement()) {
+                continue;
+            }
+
+            for (Circle adjacentCircle : circleVertex.getAdjacentCircles()) {
+                Pair<Circle, Circle> edge = createEdge(circle, adjacentCircle);
+                if (occupiedEdges.contains(edge)) {
+                    continue;
+                }
+
+                CircleVertex adjacentCircleVertex = circleMap.get(adjacentCircle);
+                if (adjacentCircleVertex.getOwner() != null && adjacentCircleVertex.getOwner().equals(player)) {
+                    validCircles.add(circle);
+                    validRoads.add(edge);
+                    break;
+                }
+
+                if (isVertexAtRoadEnd(player, adjacentCircleVertex)) {
+                    validCircles.add(circle);
+                    validRoads.add(createEdge(circle, adjacentCircle));
+                    break;
+                }
+            }
+        }
+
+        for (Circle circle : validCircles) {
+            highlightCircle(circle, true);
+            Pair<Circle, Circle> edge = validRoads.get(validCircles.indexOf(circle));
+            circle.setOnMouseClicked(event -> onCircleClickedRoad(edge));
+        }
+    }
+
+    private boolean isVertexAtRoadEnd(PlayerAbstract player, CircleVertex targetVertex) {
+        ArrayList<Pair<CircleVertex, CircleVertex>> roads = player.roads;
+
+        for (Pair<CircleVertex, CircleVertex> road : roads) {
+            CircleVertex roadVertex1 = road.getKey();
+            CircleVertex roadVertex2 = road.getValue();
+
+            if (roadVertex1.equals(targetVertex)) {
+                return true; // Found the targetVertex as an end of a road
+            }
+
+            if (roadVertex2.equals(targetVertex)) {
+                return true; // Found the targetVertex as an end of a road
+            }
+        }
+        return false; // targetVertex is not an end in any of the roads
+    }
+
+    private void buildRoad(Circle circleStart, Circle circleEnd) {
+        Road road = new Road(circleStart, circleEnd, player.color.getColor(), boardGroup);
+        player.roads.add(new Pair<>(circleMap.get(circleStart), circleMap.get(circleEnd)));
+        Pair<Circle, Circle> edge = createEdge(circleStart, circleEnd);
+        occupiedEdges.add(edge);
+    }
+
+
+    private void onCircleClickedRoad(Pair<Circle, Circle> roadEdge) {
+
+
+        // Update the game state to reflect the new road
+        buildRoad(roadEdge.getKey(), roadEdge.getValue());
+
+        player.buildRoad(new Pair<>(circleMap.get(roadEdge.getKey()), circleMap.get(roadEdge.getValue())));
+
+        // Reset the highlighting for buildable locations
+        resetHighlighting();
+        updatePlayerResourceCount();
     }
 
     // Method to highlight circles where a settlement can be built
     private void highlightAvailableSettlementLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
         // Check if the player has enough resources to build a settlement
-        if (gameManager.isAnySettlementBuildableByPlayer(player, circleMap)) {
-            // If yes, iterate through each circleVertex and highlight if buildable
-            for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
-                CircleVertex circleVertex = entry.getValue();
-                if (gameManager.isSettlementBuildableToVertex(circleMap, circleVertex)) {
-                    Circle circle = entry.getKey();
-                    highlightCircle(circle, true);
-                    circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
-                }
+        if (!gameManager.isAnySettlementBuildableByPlayer(player, circleMap)) {
+            logTextArea.appendText("- Not Enough Resources To Build Settlement\n");
+            return;
+        }
+        // If yes, iterate through each circleVertex and highlight if buildable
+        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
+            CircleVertex circleVertex = entry.getValue();
+            if (gameManager.isSettlementBuildableToVertex(circleMap, circleVertex)) {
+                Circle circle = entry.getKey();
+                highlightCircle(circle, true);
+                circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
             }
         }
     }
 
     // Method to highlight circles where a city can be built
     private void highlightAvailableCityLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
-        if (gameManager.isAnyCityBuildableByPlayer(player)) {
-            for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
-                CircleVertex circleVertex = entry.getValue();
-                if (gameManager.isCityBuildableToVertex(player, circleVertex)) {
-                    Circle circle = entry.getKey();
-                    highlightCircle(circle, true);
+        if (!gameManager.isAnyCityBuildableByPlayer(player)) {
+            logTextArea.appendText("- Not Enough Resources To Build City\n");
+            return;
+        }
 
-                }
+        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
+            CircleVertex circleVertex = entry.getValue();
+            if (gameManager.isCityBuildableToVertex(player, circleVertex)) {
+                Circle circle = entry.getKey();
+                highlightCircle(circle, true);
+
             }
         }
     }
@@ -493,10 +582,12 @@ public class BoardController extends BoardControllerAbstract {
     private void highlightCircle(Circle circle, boolean highlight) {
         if (highlight) {
             // Set some visual properties to highlight the circle
+            circle.setRadius(20);
             circle.setStroke(Color.GREEN); // Example: Change the stroke to green to indicate it's selectable
-            circle.setStrokeWidth(3);
+            circle.setStrokeWidth(8);
         } else {
             // Reset the visual properties of the circle
+            circle.setRadius(12);
             circle.setStroke(Color.BLACK); // Reset to default stroke color
             circle.setStrokeWidth(1);
         }
