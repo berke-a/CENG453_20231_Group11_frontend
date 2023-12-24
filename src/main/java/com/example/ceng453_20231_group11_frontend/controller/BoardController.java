@@ -177,6 +177,7 @@ public class BoardController extends BoardControllerAbstract {
 
         System.out.println("Placing initial settlement and road for player");
         placeInitialSettlementAndRoad(player);
+        updatePlayerResourceCount();
 
         System.out.println("Placing initial settlements and roads for CPU players");
         System.out.println("CPU Players size: " + cpuPlayers.length);
@@ -191,49 +192,86 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void placeInitialSettlementAndRoad(PlayerAbstract player) {
-        // TODO: Fix bug where the same circle is selected for both settlement and road
-        // TODO: Fix the strange bug where it skips some of the players
-        System.out.println("Inside placeInitialSettlementAndRoad for " + player.getClass().getSimpleName());
+        System.out.println("Entering placeInitialSettlementAndRoad for " + player.getClass().getSimpleName());
 
-        // Randomly select a circle for the settlement
         List<Circle> circleKeys = new ArrayList<>(circleMap.keySet());
         Collections.shuffle(circleKeys);
-        Circle settlementCircle = circleKeys.get(0);
+
+        Circle settlementCircle = null;
+        CircleVertex settlementCircleVertex = null;
+
+        // Find a valid CircleVertex for the settlement
+        for (Circle circle : circleKeys) {
+            CircleVertex circleVertex = circleMap.get(circle);
+            if (circleVertex != null && !circleVertex.isHasSettlement() && !circleVertex.isHasCity()) {
+                settlementCircle = circle;
+                settlementCircleVertex = circleVertex;
+                System.out.println("Found valid CircleVertex for settlement at " + circle);
+                break;
+            }
+        }
+
+        if (settlementCircle == null) {
+            System.out.println("No valid CircleVertex found for settlement");
+            return; // No valid location found
+        }
 
         // Place the settlement
         buildSettlement(player, settlementCircle);
-        CircleVertex settlementCircleVertex = circleMap.get(settlementCircle);
         player.settlements.add(settlementCircleVertex);
         settlementCircleVertex.setHasSettlement(true);
         settlementCircleVertex.setOwner(player);
 
-        // Randomly select an adjacent circle for the road
-        CircleVertex circleVertex = circleMap.get(settlementCircle);
-        if (circleVertex != null && !circleVertex.getAdjacentCircles().isEmpty()) {
-            // Create a new list from the adjacent circles and shuffle it
-            List<Circle> adjacentCircles = new ArrayList<>(circleVertex.getAdjacentCircles());
+        // Select and place the road
+        if (!settlementCircleVertex.getAdjacentCircles().isEmpty()) {
+            List<Circle> adjacentCircles = new ArrayList<>(settlementCircleVertex.getAdjacentCircles());
             Collections.shuffle(adjacentCircles);
             Circle roadEndCircle = adjacentCircles.get(0);
 
-            // Create and place the road
             Road road = new Road(settlementCircle, roadEndCircle, player.color.getColor(), boardGroup);
             player.roads.add(new Pair<>(settlementCircleVertex, circleMap.get(roadEndCircle)));
+
+            System.out.println("Road placed between " + settlementCircle + " and " + roadEndCircle);
+        } else {
+            System.out.println("No adjacent circles available for road placement");
         }
 
         // Update resources for initial settlement
         updateInitialResources(player, settlementCircle);
+        System.out.println("Exiting placeInitialSettlementAndRoad for " + player.getClass().getSimpleName());
     }
-
-
-
 
     private void updateInitialResources(PlayerAbstract player, Circle settlementCircle) {
+        System.out.println("Updating initial resources for " + player.getClass().getSimpleName() + " with settlement circle: " + settlementCircle);
+
         CircleVertex vertex = circleMap.get(settlementCircle);
-        for (Polygon polygon : vertex.adjacentTiles) {
-            Tile adjacentTile = polygonTileHashMap.get(polygon);
-            player.updateResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+        if (vertex == null) {
+            System.out.println("CircleVertex is null for circle: " + settlementCircle);
+            return;
         }
+
+        for (Polygon polygon : vertex.adjacentTiles) {
+            System.out.println("Processing adjacent tile: " + polygon);
+            Tile adjacentTile = polygonTileHashMap.get(polygon);
+            if (adjacentTile == null) {
+                System.out.println("Adjacent tile is null for polygon: " + polygon);
+                continue;
+            }
+
+            ResourceType resourceType = GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType());
+            if (resourceType == null) {
+                System.out.println("Resource type is null for tile type: " + adjacentTile.getTileType());
+                continue;
+            }
+
+            System.out.println("Updating resource " + resourceType + " for player: " + player.getClass().getSimpleName());
+            player.updateResource(resourceType, 1);
+        }
+
+        System.out.println("Initial resources updated for player: " + player.getClass().getSimpleName());
     }
+
+
 
     private void distributeResourcesPlayer() {
         for (CircleVertex playerSettlement : this.player.settlements) {
