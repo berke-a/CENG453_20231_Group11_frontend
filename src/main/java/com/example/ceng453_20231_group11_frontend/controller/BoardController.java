@@ -226,14 +226,17 @@ public class BoardController extends BoardControllerAbstract {
         if (!settlementCircleVertex.getAdjacentCircles().isEmpty()) {
             List<Circle> adjacentCircles = new ArrayList<>(settlementCircleVertex.getAdjacentCircles());
             Collections.shuffle(adjacentCircles);
-            Circle roadEndCircle = adjacentCircles.get(0);
 
-            Road road = new Road(settlementCircle, roadEndCircle, player.color.getColor(), boardGroup);
-            player.roads.add(new Pair<>(settlementCircleVertex, circleMap.get(roadEndCircle)));
-
-            System.out.println("Road placed between " + settlementCircle + " and " + roadEndCircle);
-        } else {
-            System.out.println("No adjacent circles available for road placement");
+            for (Circle roadEndCircle : adjacentCircles) {
+                Pair<Circle, Circle> edge = createEdge(settlementCircle, roadEndCircle);
+                if (!occupiedEdges.contains(edge)) {
+                    Road road = new Road(settlementCircle, roadEndCircle, player.color.getColor(), boardGroup);
+                    player.roads.add(new Pair<>(settlementCircleVertex, circleMap.get(roadEndCircle)));
+                    occupiedEdges.add(edge);
+                    System.out.println("Road placed between " + settlementCircle + " and " + roadEndCircle);
+                    break; // Exit the loop once the road is successfully placed
+                }
+            }
         }
 
         // Update resources for initial settlement
@@ -271,7 +274,9 @@ public class BoardController extends BoardControllerAbstract {
         System.out.println("Initial resources updated for player: " + player.getClass().getSimpleName());
     }
 
-
+    private Pair<Circle, Circle> createEdge(Circle c1, Circle c2) {
+        return c1.getId().compareTo(c2.getId()) <= 0 ? new Pair<>(c1, c2) : new Pair<>(c2, c1);
+    }
 
     private void distributeResourcesPlayer() {
         for (CircleVertex playerSettlement : this.player.settlements) {
