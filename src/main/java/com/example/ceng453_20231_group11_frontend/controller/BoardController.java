@@ -69,6 +69,7 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void updateGameState() {
+        this.updateVpCounts();
         switch (gameManager.turnState) {
             case INITIALIZATION:
                 this.playerInitialPlacement();
@@ -209,6 +210,7 @@ public class BoardController extends BoardControllerAbstract {
         // Place the settlement
         buildSettlement(player, settlementCircle);
         player.settlements.add(settlementCircleVertex);
+        player.updateVictoryPoint(1);
         settlementCircleVertex.setHasSettlement(true);
         settlementCircleVertex.setOwner(player);
 
@@ -334,6 +336,13 @@ public class BoardController extends BoardControllerAbstract {
         this.playerBrickCount.setText(this.player.getResource(ResourceType.BRICK).toString());
         this.playerGrainCount.setText(this.player.getResource(ResourceType.GRAIN).toString());
         this.playerOreCount.setText(this.player.getResource(ResourceType.ORE).toString());
+    }
+
+    private void updateVpCounts() {
+        this.playerVpCount.setText(this.player.getVictoryPoint().toString());
+        this.cpuBlueVpCount.setText(this.cpuPlayers[0].getVictoryPoint().toString());
+        this.cpuGreenVpCount.setText(this.cpuPlayers[1].getVictoryPoint().toString());
+        this.cpuOrangeVpCount.setText(this.cpuPlayers[2].getVictoryPoint().toString());
     }
 
     private void changePlayerBuildingColor(Color color) {
