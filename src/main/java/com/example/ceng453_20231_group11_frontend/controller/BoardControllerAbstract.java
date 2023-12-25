@@ -86,7 +86,6 @@ abstract class BoardControllerAbstract implements Initializable {
 
     protected Set<javafx.util.Pair<Circle, Circle>> occupiedEdges = new HashSet<>();
 
-
     protected void initializeTiles() {
         tileLabelTextPairs = new Pair[]{new Pair<>(tileLabel1, tileText1), new Pair<>(tileLabel2, tileText2), new Pair<>(tileLabel3, tileText3), new Pair<>(tileLabel4, tileText4), new Pair<>(tileLabel5, tileText5), new Pair<>(tileLabel6, tileText6), new Pair<>(tileLabel7, tileText7), new Pair<>(tileLabel8, tileText8), new Pair<>(tileLabel9, tileText9), new Pair<>(tileLabel10, tileText10),
                 new Pair<>(tileLabel11, tileText11), new Pair<>(tileLabel12, tileText12), new Pair<>(tileLabel13, tileText13), new Pair<>(tileLabel14, tileText14), new Pair<>(tileLabel15, tileText15), new Pair<>(tileLabel16, tileText16), new Pair<>(tileLabel17, tileText17), new Pair<>(tileLabel18, tileText18), new Pair<>(tileLabel19, tileText19)};

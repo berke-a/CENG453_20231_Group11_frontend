@@ -1,13 +1,13 @@
 package com.example.ceng453_20231_group11_frontend.models;
 
-import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import javafx.scene.shape.Circle;
+import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
+import javafx.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,47 +20,17 @@ public class CPUPlayer extends PlayerAbstract {
     // TODO then check and reassign the longest road boolean
     // TODO then call hasWonTheGame
 
-    public void play(HashMap<Circle, CircleVertex> circleMap, boolean canBuildRoad, boolean canBuildSettlement, boolean canBuildCity) {
-        if (canBuildRoad) {
-            Integer edgeId = this.getEdgeForRoad(circleMap);
-            // this.buildRoad(edgeId);
+    public void play(GameManager gameManager, HashMap<Circle, CircleVertex> circleMap, Set<Pair<Circle, Circle>> occupiedEdges) {
+        if (gameManager.isAnyRoadBuildableByPlayer(this, circleMap, occupiedEdges)) {
+            Pair<CircleVertex, CircleVertex> roadCircleVertexPair = gameManager.getCircleVertexPairToBuildRoad(this, circleMap, occupiedEdges);
+            this.buildRoad(roadCircleVertexPair);
         }
-        if (canBuildSettlement) {
-            CircleVertex vertexToBuildSettlement = this.getVertexForSettlement(circleMap);
+        if (gameManager.isAnySettlementBuildableByPlayer(this, circleMap)) {
+            CircleVertex vertexToBuildSettlement = gameManager.getVertexToBuildSettlement(this, circleMap);
             this.buildSettlement(vertexToBuildSettlement);
-        } else if (canBuildCity) {
-            CircleVertex vertexToBuildCity = this.getVertexForCity();
+        } else if (gameManager.isAnyCityBuildableByPlayer(this)) {
+            CircleVertex vertexToBuildCity = gameManager.getVertexToBuildCity(this);
             this.buildCity(vertexToBuildCity);
         }
-    }
-
-    private Integer getEdgeForRoad(HashMap<Circle, CircleVertex> circleMap) {
-        return 0; // TODO RETURN a random suitable edgeId for road
-    }
-
-    private CircleVertex getVertexForSettlement(HashMap<Circle, CircleVertex> circleMap) {
-        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
-            CircleVertex circleVertex = entry.getValue();
-            if (circleVertex.isHasSettlement() || circleVertex.isHasCity()) {
-                continue;
-            }
-            boolean isAdjacentCircleHasBuilding = false;
-            for (Circle circle : circleVertex.getAdjacentCircles()) {
-                CircleVertex adjacentCircleVertex = circleMap.get(circle);
-                if (adjacentCircleVertex.isHasSettlement() || adjacentCircleVertex.isHasCity()) {
-                    isAdjacentCircleHasBuilding = true;
-                }
-            }
-            if (!isAdjacentCircleHasBuilding) {
-                return circleVertex;
-            }
-        }
-        return null; // should not happen since checked before
-    }
-
-    private CircleVertex getVertexForCity() {
-        Random random = new Random();
-        int settlementIndex = random.nextInt(this.settlements.size());
-        return this.settlements.get(settlementIndex);
     }
 }
