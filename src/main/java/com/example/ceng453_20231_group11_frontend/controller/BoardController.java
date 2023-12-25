@@ -49,6 +49,7 @@ public class BoardController extends BoardControllerAbstract {
             this.initializeCircles();
             this.initializeCpuPlayers();
             this.rollDiceButton.setDisable(true);
+            this.helpContentTable.setVisible(false);
             this.gameManager.turnState = TurnState.INITIALIZATION;
             this.updateGameState();
         } catch (Exception e) {
@@ -57,7 +58,14 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void onClickHelpButton() {
-        this.helpContentTable.setVisible(!this.helpContentTable.isVisible());
+        boolean isVisible = !this.helpContentTable.isVisible();
+        this.helpContentTable.setVisible(isVisible);
+
+        if (isVisible) {
+            this.helpContentTable.toFront();
+        } else {
+            this.helpContentTable.toBack();
+        }
     }
 
     public void onClickRollDice() {
