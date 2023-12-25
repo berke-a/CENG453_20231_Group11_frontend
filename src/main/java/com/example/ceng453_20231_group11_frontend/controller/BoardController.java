@@ -14,12 +14,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static com.example.ceng453_20231_group11_frontend.enums.TurnPlayerState.TURN_RED;
 
@@ -52,7 +50,8 @@ public class BoardController extends BoardControllerAbstract {
             this.initializeCpuPlayers();
             this.rollDiceButton.setDisable(true);
             this.endTurnButton.setDisable(true);
-            this.gameManager.turnState = TurnState.ROLL_DICE;
+            this.helpContentTable.setVisible(false);
+            this.gameManager.turnState = TurnState.INITIALIZATION;
             this.updateGameState();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -60,7 +59,14 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void onClickHelpButton() {
-        this.helpContentTable.setVisible(!this.helpContentTable.isVisible());
+        boolean isVisible = !this.helpContentTable.isVisible();
+        this.helpContentTable.setVisible(isVisible);
+
+        if (isVisible) {
+            this.helpContentTable.toFront();
+        } else {
+            this.helpContentTable.toBack();
+        }
     }
 
     public void onClickRollDice() {
@@ -107,15 +113,15 @@ public class BoardController extends BoardControllerAbstract {
                 this.setTimeOut(60, this::advanceToNextTurn);
                 break;
             case TURN_BLUE:
-                this.manageCpuTurn(0);
+                this.cpuPlayers[0].play(gameManager, circleMap, occupiedEdges);
                 advanceToNextTurn();
                 break;
             case TURN_GREEN:
-                this.manageCpuTurn(1);
+                this.cpuPlayers[1].play(gameManager, circleMap, occupiedEdges);
                 advanceToNextTurn();
                 break;
             case TURN_ORANGE:
-                this.manageCpuTurn(2);
+                this.cpuPlayers[2].play(gameManager, circleMap, occupiedEdges);
                 advanceToNextTurn();
                 break;
         }
@@ -128,16 +134,6 @@ public class BoardController extends BoardControllerAbstract {
         this.gameManager.turnState = TurnState.ROLL_DICE;
         this.updateGameState();
     }
-
-
-    private void manageCpuTurn(Integer cpuIndex) {
-        // TODO: Use game manager inside cpu player
-        boolean canBuildRoad = false;  // TODO
-        boolean canBuildSettlement = this.gameManager.isAnySettlementBuildableByPlayer(this.cpuPlayers[cpuIndex], circleMap);
-        boolean canBuildCity = this.gameManager.isAnyCityBuildableByPlayer(this.cpuPlayers[cpuIndex]);
-        this.cpuPlayers[cpuIndex].play(circleMap, canBuildRoad, canBuildSettlement, canBuildCity);
-    }
-
 
     private void initializeCpuPlayers() {
         this.cpuPlayers[0] = new CPUPlayer(PlayerColor.BLUE);
@@ -186,8 +182,88 @@ public class BoardController extends BoardControllerAbstract {
 
     private void playerInitialPlacement() {
         this.logTextArea.appendText("- Player Initial Placement\n");
-        // TODO: Implement Player Initial Placement
+
+        placeInitialSettlementAndRoad(player);
+        updatePlayerResourceCount();
+
+        for (CPUPlayer cpuPlayer : cpuPlayers) {
+            placeInitialSettlementAndRoad(cpuPlayer);
+        }
+
         this.gameManager.turnState = TurnState.ROLL_DICE;
+        this.updateGameState();
+    }
+
+    private void placeInitialSettlementAndRoad(PlayerAbstract player) {
+        List<Circle> circleKeys = new ArrayList<>(circleMap.keySet());
+        Collections.shuffle(circleKeys);
+
+        Circle settlementCircle = null;
+        CircleVertex settlementCircleVertex = null;
+
+        // Find a valid CircleVertex for the settlement
+        for (Circle circle : circleKeys) {
+            CircleVertex circleVertex = circleMap.get(circle);
+            if (circleVertex != null && !circleVertex.isHasSettlement() && !circleVertex.isHasCity()) {
+                settlementCircle = circle;
+                settlementCircleVertex = circleVertex;
+                break;
+            }
+        }
+
+        if (settlementCircle == null) {
+            return; // No valid location found
+        }
+
+        // Place the settlement
+        buildSettlement(player, settlementCircle);
+        player.settlements.add(settlementCircleVertex);
+        settlementCircleVertex.setHasSettlement(true);
+        settlementCircleVertex.setOwner(player);
+
+        // Select and place the road
+        if (!settlementCircleVertex.getAdjacentCircles().isEmpty()) {
+            List<Circle> adjacentCircles = new ArrayList<>(settlementCircleVertex.getAdjacentCircles());
+            Collections.shuffle(adjacentCircles);
+
+            for (Circle roadEndCircle : adjacentCircles) {
+                Pair<Circle, Circle> edge = createEdge(settlementCircle, roadEndCircle);
+                if (!occupiedEdges.contains(edge)) {
+                    Road road = new Road(settlementCircle, roadEndCircle, player.color.getColor(), boardGroup);
+                    player.roads.add(new Pair<>(settlementCircleVertex, circleMap.get(roadEndCircle)));
+                    occupiedEdges.add(edge);
+                    break; // Exit the loop once the road is successfully placed
+                }
+            }
+        }
+
+        // Update resources for initial settlement
+        updateInitialResources(player, settlementCircle);
+    }
+
+    private void updateInitialResources(PlayerAbstract player, Circle settlementCircle) {
+        CircleVertex vertex = circleMap.get(settlementCircle);
+        if (vertex == null) {
+            return;
+        }
+
+        for (Polygon polygon : vertex.adjacentTiles) {
+            Tile adjacentTile = polygonTileHashMap.get(polygon);
+            if (adjacentTile == null) {
+                continue;
+            }
+
+            ResourceType resourceType = GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType());
+            if (resourceType == null) {
+                continue;
+            }
+
+            player.updateResource(resourceType, 1);
+        }
+    }
+
+    private Pair<Circle, Circle> createEdge(Circle c1, Circle c2) {
+        return c1.getId().compareTo(c2.getId()) <= 0 ? new Pair<>(c1, c2) : new Pair<>(c2, c1);
     }
 
     private void distributeResourcesPlayer() {
@@ -301,15 +377,12 @@ public class BoardController extends BoardControllerAbstract {
 
     @FXML
     private void onClickBuildRoad() {
-
-        System.out.println("onClickBuildRoad");
-
-        Road road = new Road(
-                this.circle1,
-                this.circle14,
-                Color.RED,
-                this.boardGroup
-        );
+//        Road road = new Road(
+//                this.circle1,
+//                this.circle14,
+//                Color.RED,
+//                this.boardGroup
+//        );
 
         if (gameManager.isTurnStateValidForBuilding()) {
             PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
@@ -336,42 +409,131 @@ public class BoardController extends BoardControllerAbstract {
 
     // Method to highlight circles where a road can be built
     private void highlightAvailableRoadLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
+        if (!gameManager.isPlayerHasResourceForRoad(player)) {
+            logTextArea.appendText("- Not Enough Resources To Build Road\n");
+            return;
+        }
+        ArrayList<Circle> validCircles = new ArrayList<>();
+        ArrayList<Pair<Circle, Circle>> validRoads = new ArrayList<>();
 
+        ArrayList<Pair<CircleVertex, CircleVertex>> playerRoads = player.roads;
+
+        for (Circle circle : circleMap.keySet()) {
+            CircleVertex circleVertex = circleMap.get(circle);
+
+            if (circleVertex.isHasCity()) {
+                continue;
+            }
+
+            if (circleVertex.isHasSettlement()) {
+                continue;
+            }
+
+            for (Circle adjacentCircle : circleVertex.getAdjacentCircles()) {
+                Pair<Circle, Circle> edge = createEdge(circle, adjacentCircle);
+                if (occupiedEdges.contains(edge)) {
+                    continue;
+                }
+
+                CircleVertex adjacentCircleVertex = circleMap.get(adjacentCircle);
+                if (adjacentCircleVertex.getOwner() != null && adjacentCircleVertex.getOwner().equals(player)) {
+                    validCircles.add(circle);
+                    validRoads.add(edge);
+                    break;
+                }
+
+                if (isVertexAtRoadEnd(player, adjacentCircleVertex)) {
+                    validCircles.add(circle);
+                    validRoads.add(createEdge(circle, adjacentCircle));
+                    break;
+                }
+            }
+        }
+
+        for (Circle circle : validCircles) {
+            highlightCircle(circle, true);
+            Pair<Circle, Circle> edge = validRoads.get(validCircles.indexOf(circle));
+            circle.setOnMouseClicked(event -> onCircleClickedRoad(edge));
+        }
+    }
+
+    private boolean isVertexAtRoadEnd(PlayerAbstract player, CircleVertex targetVertex) {
+        ArrayList<Pair<CircleVertex, CircleVertex>> roads = player.roads;
+
+        for (Pair<CircleVertex, CircleVertex> road : roads) {
+            CircleVertex roadVertex1 = road.getKey();
+            CircleVertex roadVertex2 = road.getValue();
+
+            if (roadVertex1.equals(targetVertex)) {
+                return true; // Found the targetVertex as an end of a road
+            }
+
+            if (roadVertex2.equals(targetVertex)) {
+                return true; // Found the targetVertex as an end of a road
+            }
+        }
+        return false; // targetVertex is not an end in any of the roads
+    }
+
+    private void buildRoad(Circle circleStart, Circle circleEnd) {
+        Road road = new Road(circleStart, circleEnd, player.color.getColor(), boardGroup);
+        player.roads.add(new Pair<>(circleMap.get(circleStart), circleMap.get(circleEnd)));
+        Pair<Circle, Circle> edge = createEdge(circleStart, circleEnd);
+        occupiedEdges.add(edge);
+    }
+
+
+    private void onCircleClickedRoad(Pair<Circle, Circle> roadEdge) {
+
+
+        // Update the game state to reflect the new road
+        buildRoad(roadEdge.getKey(), roadEdge.getValue());
+
+        player.buildRoad(new Pair<>(circleMap.get(roadEdge.getKey()), circleMap.get(roadEdge.getValue())));
+
+        // Reset the highlighting for buildable locations
+        resetHighlighting();
+        updatePlayerResourceCount();
     }
 
     // Method to highlight circles where a settlement can be built
     private void highlightAvailableSettlementLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
         // Check if the player has enough resources to build a settlement
-        if (gameManager.isAnySettlementBuildableByPlayer(player, circleMap)) {
-            // If yes, iterate through each circleVertex and highlight if buildable
-            for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
-                CircleVertex circleVertex = entry.getValue();
-                if (gameManager.isSettlementBuildableToVertex(circleMap, circleVertex)) {
-                    Circle circle = entry.getKey();
-                    highlightCircle(circle, true);
-                    circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
-                }
+        if (!gameManager.isAnySettlementBuildableByPlayer(player, circleMap)) {
+            logTextArea.appendText("- Not Enough Resources To Build Settlement\n");
+            return;
+        }
+        // If yes, iterate through each circleVertex and highlight if buildable
+        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
+            CircleVertex circleVertex = entry.getValue();
+            if (gameManager.isSettlementBuildableToVertex(circleVertex, circleMap)) {
+                Circle circle = entry.getKey();
+                highlightCircle(circle, true);
+                circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
             }
         }
     }
 
     // Method to highlight circles where a city can be built
     private void highlightAvailableCityLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
-        if (gameManager.isAnyCityBuildableByPlayer(player)) {
-            for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
-                CircleVertex circleVertex = entry.getValue();
-                if (gameManager.isCityBuildableToVertex(player, circleVertex)) {
-                    Circle circle = entry.getKey();
-                    highlightCircle(circle, true);
-                    circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
-                }
+        if (!gameManager.isAnyCityBuildableByPlayer(player)) {
+            logTextArea.appendText("- Not Enough Resources To Build City\n");
+            return;
+        }
+
+        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
+            CircleVertex circleVertex = entry.getValue();
+            if (gameManager.isCityBuildableToVertex(player, circleVertex)) {
+                Circle circle = entry.getKey();
+                highlightCircle(circle, true);
+
             }
         }
     }
 
     private void onCircleClickedSettlement(Circle circle, PlayerAbstract player) {
         // Check if the circle is still valid for building (in case of concurrent actions)
-        if (gameManager.isSettlementBuildableToVertex(circleMap, circleMap.get(circle))) {
+        if (gameManager.isSettlementBuildableToVertex(circleMap.get(circle), circleMap)) {
             // Update the game state to reflect the new settlement
             buildSettlement(player, circle);
 
@@ -379,7 +541,7 @@ public class BoardController extends BoardControllerAbstract {
             circle.setFill(Color.RED); // Example: Change the color to red
 
             // Deduct resources from the player
-            deductResourcesForSettlement(player);
+            player.buildSettlement(circleMap.get(circle));
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
@@ -389,15 +551,12 @@ public class BoardController extends BoardControllerAbstract {
 
     private void onCircleClickedCity(Circle circle, PlayerAbstract player) {
         // Check if the circle is still valid for building (in case of concurrent actions)
-        if (gameManager.isSettlementBuildableToVertex(circleMap, circleMap.get(circle))) {
+        if (gameManager.isSettlementBuildableToVertex(circleMap.get(circle), circleMap)) {
             // Update the game state to reflect the new settlement
             buildCity(player, circle);
 
             // Visual update to indicate the settlement is built
             circle.setFill(Color.RED); // Example: Change the color to red
-
-            // Deduct resources from the player
-            deductResourcesForCity(player);
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
@@ -408,21 +567,23 @@ public class BoardController extends BoardControllerAbstract {
     private void highlightCircle(Circle circle, boolean highlight) {
         if (highlight) {
             // Set some visual properties to highlight the circle
+            circle.setRadius(20);
             circle.setStroke(Color.GREEN); // Example: Change the stroke to green to indicate it's selectable
-            circle.setStrokeWidth(3);
+            circle.setStrokeWidth(8);
         } else {
             // Reset the visual properties of the circle
+            circle.setRadius(12);
             circle.setStroke(Color.BLACK); // Reset to default stroke color
             circle.setStrokeWidth(1);
         }
     }
 
     private void buildSettlement(PlayerAbstract player, Circle circle) {
-        // Logic to add a settlement to the player's properties
-    }
-
-    private void deductResourcesForSettlement(PlayerAbstract player) {
-        // Logic to deduct resources from the player
+        Settlement settlement = new Settlement(
+                circle,
+                player.color.getColor(),
+                this.boardGroup
+        );
     }
 
     private void buildCity(PlayerAbstract player, Circle circle) {
