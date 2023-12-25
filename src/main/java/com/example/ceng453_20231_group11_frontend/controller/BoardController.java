@@ -129,6 +129,7 @@ public class BoardController extends BoardControllerAbstract {
 
     private void advanceToNextTurn() {
         this.endTurnButton.setDisable(true);
+        this.resetHighlighting();
         this.changePlayerBuildingColor(Color.GRAY);
         this.gameManager.turnPlayerState = this.gameManager.turnPlayerState.next();
         this.gameManager.turnState = TurnState.ROLL_DICE;
@@ -344,9 +345,27 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void changePlayerBuildingColor(Color color) {
-        this.settlement.setFill(color);
-        this.city.setFill(color);
-        this.road.setStroke(color);
+        if (color.equals(Color.RED)) {
+            if (this.gameManager.isAnySettlementBuildableByPlayer(this.player, circleMap)) {
+                this.settlement.setFill(color);
+            } else {
+                this.settlement.setFill(Color.GRAY);
+            }
+            if (this.gameManager.isAnyCityBuildableByPlayer(this.player)) {
+                this.city.setFill(color);
+            } else {
+                this.city.setFill(Color.GRAY);
+            }
+            if (this.gameManager.isAnyRoadBuildableByPlayer(this.player, circleMap, occupiedEdges)) {
+                this.road.setStroke(color);
+            } else {
+                this.road.setStroke(Color.GRAY);
+            }
+        } else {
+            this.settlement.setFill(color);
+            this.city.setFill(color);
+            this.road.setStroke(color);
+        }
     }
 
     private void setTimeOut(Integer seconds, Runnable onTimerFinish) {
@@ -381,7 +400,7 @@ public class BoardController extends BoardControllerAbstract {
 //                Color.RED,
 //                this.boardGroup
 //        );
-
+        resetHighlighting();
         if (gameManager.isTurnStateValidForBuilding()) {
             PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
             highlightAvailableRoadLocations(player, circleMap);
@@ -390,6 +409,7 @@ public class BoardController extends BoardControllerAbstract {
 
     @FXML
     private void onClickBuildSettlement() {
+        resetHighlighting();
         if (gameManager.isTurnStateValidForBuilding()) {
             PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
             highlightAvailableSettlementLocations(player, circleMap);
@@ -398,6 +418,7 @@ public class BoardController extends BoardControllerAbstract {
 
     @FXML
     private void onClickBuildCity() {
+        resetHighlighting();
         if (gameManager.isTurnStateValidForBuilding()) {
             PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
             highlightAvailableCityLocations(player, circleMap);
@@ -492,20 +513,27 @@ public class BoardController extends BoardControllerAbstract {
         // Reset the highlighting for buildable locations
         resetHighlighting();
         updatePlayerResourceCount();
+        changePlayerBuildingColor(Color.RED);
     }
 
     // Method to highlight circles where a settlement can be built
     private void highlightAvailableSettlementLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
         // Check if the player has enough resources to build a settlement
-        if (!gameManager.isAnySettlementBuildableByPlayer(player, circleMap)) {
+        if (!gameManager.isPlayerHasResourceForSettlement(player)) {
             logTextArea.appendText("- Not Enough Resources To Build Settlement\n");
             return;
         }
-        // If yes, iterate through each circleVertex and highlight if buildable
-        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
-            CircleVertex circleVertex = entry.getValue();
-            if (gameManager.isSettlementBuildableToVertex(circleVertex, circleMap)) {
-                Circle circle = entry.getKey();
+        // If yes, iterate through each circleVertex that player reaches and highlight if buildable
+        for (Pair<CircleVertex, CircleVertex> road : player.roads) {
+            CircleVertex startVertex = road.getKey();
+            CircleVertex endVertex = road.getValue();
+            if (gameManager.isSettlementBuildableToVertex(startVertex, circleMap)) {
+                Circle circle = gameManager.getCircleFromCircleVertex(startVertex, circleMap);
+                highlightCircle(circle, true);
+                circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
+            }
+            if (gameManager.isSettlementBuildableToVertex(endVertex, circleMap)) {
+                Circle circle = gameManager.getCircleFromCircleVertex(endVertex, circleMap);
                 highlightCircle(circle, true);
                 circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
             }
@@ -514,7 +542,7 @@ public class BoardController extends BoardControllerAbstract {
 
     // Method to highlight circles where a city can be built
     private void highlightAvailableCityLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
-        if (!gameManager.isAnyCityBuildableByPlayer(player)) {
+        if (!gameManager.isPlayerHasResourceForCity(player)) {
             logTextArea.appendText("- Not Enough Resources To Build City\n");
             return;
         }
@@ -543,6 +571,8 @@ public class BoardController extends BoardControllerAbstract {
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
+            updatePlayerResourceCount();
+            changePlayerBuildingColor(Color.RED);
         }
     }
 
@@ -558,6 +588,8 @@ public class BoardController extends BoardControllerAbstract {
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
+            updatePlayerResourceCount();
+            changePlayerBuildingColor(Color.RED);
         }
     }
 

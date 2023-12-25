@@ -31,6 +31,15 @@ public class GameManager {
         return (player.resources.get(ResourceType.LUMBER) >= 1 && player.resources.get(ResourceType.BRICK) >= 1);
     }
 
+    public boolean isPlayerHasResourceForSettlement(PlayerAbstract player) {
+        return (player.resources.get(ResourceType.LUMBER) >= 1 && player.resources.get(ResourceType.BRICK) >= 1 &&
+                player.resources.get(ResourceType.GRAIN) >= 1 && player.resources.get(ResourceType.WOOL) >= 1);
+    }
+
+    public boolean isPlayerHasResourceForCity(PlayerAbstract player) {
+        return (player.resources.get(ResourceType.ORE) >= 3 && player.resources.get(ResourceType.GRAIN) >= 2);
+    }
+
     public boolean isAnyRoadBuildableByPlayer(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap, Set<Pair<Circle, Circle>> occupiedEdges) {
         boolean buildable = false;
         if (player.resources.get(ResourceType.LUMBER) >= 1 && player.resources.get(ResourceType.BRICK) >= 1) {
