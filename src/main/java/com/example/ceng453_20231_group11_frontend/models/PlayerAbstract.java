@@ -3,11 +3,13 @@ package com.example.ceng453_20231_group11_frontend.models;
 import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
 import javafx.util.Pair;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 abstract public class PlayerAbstract {
+    @Getter
     Integer victoryPoint = 0;
     boolean hasLongestRoad = false;
     public PlayerColor color;
@@ -39,6 +41,10 @@ abstract public class PlayerAbstract {
 
     public void updateResource(ResourceType resourceType, Integer amount) {
         resources.put(resourceType, resources.get(resourceType) + amount);
+    }
+
+    public void updateVictoryPoint(Integer amount) {
+        victoryPoint += amount;
     }
 
     public void buildRoad(Pair<CircleVertex, CircleVertex> road) {
