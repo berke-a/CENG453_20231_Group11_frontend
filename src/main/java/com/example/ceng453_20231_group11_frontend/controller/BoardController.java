@@ -319,11 +319,9 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void updateCardCounts() {
+        this.updatePlayerResourceCount();
         for (CPUPlayer cpuPlayer : this.cpuPlayers) {
             switch (cpuPlayer.color) {
-                case RED:
-                    this.updatePlayerResourceCount();
-                    break;
                 case BLUE:
                     this.cpuBlueCardCount.setText(cpuPlayer.getTotalResource().toString());
                     break;
