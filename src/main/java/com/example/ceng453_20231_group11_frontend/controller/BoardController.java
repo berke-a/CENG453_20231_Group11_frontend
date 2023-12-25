@@ -49,6 +49,7 @@ public class BoardController extends BoardControllerAbstract {
             this.initializeCircles();
             this.initializeCpuPlayers();
             this.rollDiceButton.setDisable(true);
+            this.endTurnButton.setDisable(true);
             this.helpContentTable.setVisible(false);
             this.gameManager.turnState = TurnState.INITIALIZATION;
             this.updateGameState();
@@ -76,6 +77,14 @@ public class BoardController extends BoardControllerAbstract {
         this.manageDiceUpdate();
     }
 
+    public void onClickEndTurn() {
+        if (timer != null) {
+            timer.stop();
+        }
+        this.changePlayerBuildingColor(Color.GRAY);
+        this.advanceToNextTurn();
+    }
+
     private void updateGameState() {
         switch (gameManager.turnState) {
             case INITIALIZATION:
@@ -94,12 +103,12 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void managePlayerTurn() {
-        this.logTextArea.appendText("- Player " + this.gameManager.turnPlayerState.toString() + " Turn\n");
-        this.changePlayerBuildingColor(Color.GRAY);
+        this.logTextArea.appendText("- Player " + this.gameManager.turnPlayerState.toString() + " is Playing\n");
 
         // Handle the turn based on the current player
         switch (this.gameManager.turnPlayerState) {
             case TURN_RED:
+                this.endTurnButton.setDisable(false);
                 this.changePlayerBuildingColor(Color.RED);
                 this.setTimeOut(60, this::advanceToNextTurn);
                 break;
@@ -119,6 +128,8 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void advanceToNextTurn() {
+        this.endTurnButton.setDisable(true);
+        this.changePlayerBuildingColor(Color.GRAY);
         this.gameManager.turnPlayerState = this.gameManager.turnPlayerState.next();
         this.gameManager.turnState = TurnState.ROLL_DICE;
         this.updateGameState();
@@ -355,9 +366,9 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void animateDiceButton() {
-        ScaleTransition st1 = new ScaleTransition(Duration.millis(1000), this.rollDiceButton);
-        st1.setByX(1.05);
-        st1.setByY(1.05);
+        ScaleTransition st1 = new ScaleTransition(Duration.millis(500), this.rollDiceButton);
+        st1.setByX(0.30);
+        st1.setByY(0.30);
         st1.setCycleCount((int) 4f);
         st1.setAutoReverse(true);
 
