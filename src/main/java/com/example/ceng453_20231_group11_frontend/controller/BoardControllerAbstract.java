@@ -54,6 +54,9 @@ abstract class BoardControllerAbstract implements Initializable {
     protected Text cpuBlueCardCount, cpuOrangeCardCount, cpuGreenCardCount;
 
     @FXML
+    protected Text cpuBlueVpCount, cpuOrangeVpCount, cpuGreenVpCount, playerVpCount;
+
+    @FXML
     protected Pane helpContentTable;
 
     @FXML
