@@ -51,6 +51,8 @@ public class BoardController extends BoardControllerAbstract {
             this.initializeCircles();
             this.initializeCpuPlayers();
             this.rollDiceButton.setDisable(true);
+            this.endTurnButton.setDisable(true);
+            this.helpContentTable.setVisible(false);
             this.gameManager.turnState = TurnState.INITIALIZATION;
             this.updateGameState();
         } catch (Exception e) {
@@ -59,7 +61,14 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void onClickHelpButton() {
-        this.helpContentTable.setVisible(!this.helpContentTable.isVisible());
+        boolean isVisible = !this.helpContentTable.isVisible();
+        this.helpContentTable.setVisible(isVisible);
+
+        if (isVisible) {
+            this.helpContentTable.toFront();
+        } else {
+            this.helpContentTable.toBack();
+        }
     }
 
     public void onClickRollDice() {
@@ -68,6 +77,14 @@ public class BoardController extends BoardControllerAbstract {
         }
 
         this.manageDiceUpdate();
+    }
+
+    public void onClickEndTurn() {
+        if (timer != null) {
+            timer.stop();
+        }
+        this.changePlayerBuildingColor(Color.GRAY);
+        this.advanceToNextTurn();
     }
 
     private void updateGameState() {
@@ -89,45 +106,38 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void managePlayerTurn() {
-        this.logTextArea.appendText("- Player " + this.gameManager.turnPlayerState.toString() + " Turn\n");
-        this.changePlayerBuildingColor(Color.GRAY);
+        this.logTextArea.appendText("- Player " + this.gameManager.turnPlayerState.toString() + " is Playing\n");
 
         // Handle the turn based on the current player
         switch (this.gameManager.turnPlayerState) {
             case TURN_RED:
+                this.endTurnButton.setDisable(false);
                 this.changePlayerBuildingColor(Color.RED);
                 this.setTimeOut(60, this::advanceToNextTurn);
                 break;
             case TURN_BLUE:
-                this.manageCpuTurn(0);
+                this.cpuPlayers[0].play(gameManager, circleMap, occupiedEdges);
                 advanceToNextTurn();
                 break;
             case TURN_GREEN:
-                this.manageCpuTurn(1);
+                this.cpuPlayers[1].play(gameManager, circleMap, occupiedEdges);
                 advanceToNextTurn();
                 break;
             case TURN_ORANGE:
-                this.manageCpuTurn(2);
+                this.cpuPlayers[2].play(gameManager, circleMap, occupiedEdges);
                 advanceToNextTurn();
                 break;
         }
     }
 
     private void advanceToNextTurn() {
+        this.endTurnButton.setDisable(true);
+        this.resetHighlighting();
+        this.changePlayerBuildingColor(Color.GRAY);
         this.gameManager.turnPlayerState = this.gameManager.turnPlayerState.next();
         this.gameManager.turnState = TurnState.ROLL_DICE;
         this.updateGameState();
     }
-
-
-    private void manageCpuTurn(Integer cpuIndex) {
-        // TODO: Use game manager inside cpu player
-        boolean canBuildRoad = false;  // TODO
-        boolean canBuildSettlement = this.gameManager.isAnySettlementBuildableByPlayer(this.cpuPlayers[cpuIndex], circleMap);
-        boolean canBuildCity = this.gameManager.isAnyCityBuildableByPlayer(this.cpuPlayers[cpuIndex]);
-        this.cpuPlayers[cpuIndex].play(circleMap, canBuildRoad, canBuildSettlement, canBuildCity);
-    }
-
 
     private void initializeCpuPlayers() {
         this.cpuPlayers[0] = new CPUPlayer(PlayerColor.BLUE);
@@ -314,11 +324,9 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void updateCardCounts() {
+        this.updatePlayerResourceCount();
         for (CPUPlayer cpuPlayer : this.cpuPlayers) {
             switch (cpuPlayer.color) {
-                case RED:
-                    this.updatePlayerResourceCount();
-                    break;
                 case BLUE:
                     this.cpuBlueCardCount.setText(cpuPlayer.getTotalResource().toString());
                     break;
@@ -348,9 +356,27 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void changePlayerBuildingColor(Color color) {
-        this.settlement.setFill(color);
-        this.city.setFill(color);
-        this.road.setStroke(color);
+        if (color.equals(Color.RED)) {
+            if (this.gameManager.isAnySettlementBuildableByPlayer(this.player, circleMap)) {
+                this.settlement.setFill(color);
+            } else {
+                this.settlement.setFill(Color.GRAY);
+            }
+            if (this.gameManager.isAnyCityBuildableByPlayer(this.player)) {
+                this.city.setFill(color);
+            } else {
+                this.city.setFill(Color.GRAY);
+            }
+            if (this.gameManager.isAnyRoadBuildableByPlayer(this.player, circleMap, occupiedEdges)) {
+                this.road.setStroke(color);
+            } else {
+                this.road.setStroke(Color.GRAY);
+            }
+        } else {
+            this.settlement.setFill(color);
+            this.city.setFill(color);
+            this.road.setStroke(color);
+        }
     }
 
     private void setTimeOut(Integer seconds, Runnable onTimerFinish) {
@@ -368,9 +394,9 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void animateDiceButton() {
-        ScaleTransition st1 = new ScaleTransition(Duration.millis(1000), this.rollDiceButton);
-        st1.setByX(1.05);
-        st1.setByY(1.05);
+        ScaleTransition st1 = new ScaleTransition(Duration.millis(500), this.rollDiceButton);
+        st1.setByX(0.30);
+        st1.setByY(0.30);
         st1.setCycleCount((int) 4f);
         st1.setAutoReverse(true);
 
@@ -379,6 +405,7 @@ public class BoardController extends BoardControllerAbstract {
 
     @FXML
     private void onClickBuildRoad() {
+        resetHighlighting();
         if (gameManager.isTurnStateValidForBuilding()) {
             PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
             highlightAvailableRoadLocations(player, circleMap);
@@ -387,6 +414,7 @@ public class BoardController extends BoardControllerAbstract {
 
     @FXML
     private void onClickBuildSettlement() {
+        resetHighlighting();
         if (gameManager.isTurnStateValidForBuilding()) {
             PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
             highlightAvailableSettlementLocations(player, circleMap);
@@ -395,6 +423,7 @@ public class BoardController extends BoardControllerAbstract {
 
     @FXML
     private void onClickBuildCity() {
+        resetHighlighting();
         if (gameManager.isTurnStateValidForBuilding()) {
             PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
             highlightAvailableCityLocations(player, circleMap);
@@ -404,7 +433,7 @@ public class BoardController extends BoardControllerAbstract {
 
     // Method to highlight circles where a road can be built
     private void highlightAvailableRoadLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
-        if (!gameManager.isRoadBuildableByPlayer(player)) {
+        if (!gameManager.isPlayerHasResourceForRoad(player)) {
             logTextArea.appendText("- Not Enough Resources To Build Road\n");
             return;
         }
@@ -491,6 +520,7 @@ public class BoardController extends BoardControllerAbstract {
         // Reset the highlighting for buildable locations
         resetHighlighting();
         updatePlayerResourceCount();
+        changePlayerBuildingColor(Color.RED);
     }
 
     private void updateLongestRoadPlayerIfEligible(PlayerAbstract newPlayer) {
@@ -521,15 +551,21 @@ public class BoardController extends BoardControllerAbstract {
     // Method to highlight circles where a settlement can be built
     private void highlightAvailableSettlementLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
         // Check if the player has enough resources to build a settlement
-        if (!gameManager.isAnySettlementBuildableByPlayer(player, circleMap)) {
+        if (!gameManager.isPlayerHasResourceForSettlement(player)) {
             logTextArea.appendText("- Not Enough Resources To Build Settlement\n");
             return;
         }
-        // If yes, iterate through each circleVertex and highlight if buildable
-        for (Map.Entry<Circle, CircleVertex> entry : circleMap.entrySet()) {
-            CircleVertex circleVertex = entry.getValue();
-            if (gameManager.isSettlementBuildableToVertex(circleMap, circleVertex)) {
-                Circle circle = entry.getKey();
+        // If yes, iterate through each circleVertex that player reaches and highlight if buildable
+        for (Pair<CircleVertex, CircleVertex> road : player.roads) {
+            CircleVertex startVertex = road.getKey();
+            CircleVertex endVertex = road.getValue();
+            if (gameManager.isSettlementBuildableToVertex(startVertex, circleMap)) {
+                Circle circle = gameManager.getCircleFromCircleVertex(startVertex, circleMap);
+                highlightCircle(circle, true);
+                circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
+            }
+            if (gameManager.isSettlementBuildableToVertex(endVertex, circleMap)) {
+                Circle circle = gameManager.getCircleFromCircleVertex(endVertex, circleMap);
                 highlightCircle(circle, true);
                 circle.setOnMouseClicked(event -> onCircleClickedSettlement(circle, player));
             }
@@ -538,7 +574,7 @@ public class BoardController extends BoardControllerAbstract {
 
     // Method to highlight circles where a city can be built
     private void highlightAvailableCityLocations(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
-        if (!gameManager.isAnyCityBuildableByPlayer(player)) {
+        if (!gameManager.isPlayerHasResourceForCity(player)) {
             logTextArea.appendText("- Not Enough Resources To Build City\n");
             return;
         }
@@ -555,7 +591,7 @@ public class BoardController extends BoardControllerAbstract {
 
     private void onCircleClickedSettlement(Circle circle, PlayerAbstract player) {
         // Check if the circle is still valid for building (in case of concurrent actions)
-        if (gameManager.isSettlementBuildableToVertex(circleMap, circleMap.get(circle))) {
+        if (gameManager.isSettlementBuildableToVertex(circleMap.get(circle), circleMap)) {
             // Update the game state to reflect the new settlement
             buildSettlement(player, circle);
 
@@ -567,13 +603,15 @@ public class BoardController extends BoardControllerAbstract {
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
+            updatePlayerResourceCount();
+            changePlayerBuildingColor(Color.RED);
         }
     }
 
 
     private void onCircleClickedCity(Circle circle, PlayerAbstract player) {
         // Check if the circle is still valid for building (in case of concurrent actions)
-        if (gameManager.isSettlementBuildableToVertex(circleMap, circleMap.get(circle))) {
+        if (gameManager.isSettlementBuildableToVertex(circleMap.get(circle), circleMap)) {
             // Update the game state to reflect the new settlement
             buildCity(player, circle);
 
@@ -582,6 +620,8 @@ public class BoardController extends BoardControllerAbstract {
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
+            updatePlayerResourceCount();
+            changePlayerBuildingColor(Color.RED);
         }
     }
 

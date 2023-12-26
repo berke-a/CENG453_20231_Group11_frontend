@@ -39,7 +39,7 @@ abstract public class PlayerAbstract {
     public ArrayList<CircleVertex> settlements = new ArrayList<>();
     public ArrayList<CircleVertex> cities = new ArrayList<>();
 
-    boolean hasWonTheGame() {
+    public boolean hasWonTheGame() {
         if (hasLongestRoad) {
             return victoryPoint >= 6;
         } else {
