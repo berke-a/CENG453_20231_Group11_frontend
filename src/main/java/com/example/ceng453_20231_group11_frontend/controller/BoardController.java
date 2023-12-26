@@ -22,19 +22,7 @@ import java.util.*;
 import static com.example.ceng453_20231_group11_frontend.enums.TurnPlayerState.TURN_RED;
 
 public class BoardController extends BoardControllerAbstract {
-    // Hexagon
-    // Player
-    // Dice
-    // Card
-
     Dice dice = new Dice();
-
-
-    // Initialize Hexagons
-    // Initialize Players
-
-    // Roll Dice Action Listener
-    // Buy Game Piece Action Listener
 
     private final GameManager gameManager = GameManager.getInstance();
 
