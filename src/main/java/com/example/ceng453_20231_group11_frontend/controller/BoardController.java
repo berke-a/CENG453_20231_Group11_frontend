@@ -43,6 +43,8 @@ public class BoardController extends BoardControllerAbstract {
     private Player player = new Player(PlayerColor.RED);
     private CPUPlayer[] cpuPlayers = new CPUPlayer[3];
 
+    private Player longestRoadPlayer = null;
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             this.initializeTiles();
@@ -377,13 +379,6 @@ public class BoardController extends BoardControllerAbstract {
 
     @FXML
     private void onClickBuildRoad() {
-//        Road road = new Road(
-//                this.circle1,
-//                this.circle14,
-//                Color.RED,
-//                this.boardGroup
-//        );
-
         if (gameManager.isTurnStateValidForBuilding()) {
             PlayerAbstract player = getPlayerByTurnState(gameManager.turnPlayerState);
             highlightAvailableRoadLocations(player, circleMap);
@@ -491,9 +486,36 @@ public class BoardController extends BoardControllerAbstract {
 
         player.buildRoad(new Pair<>(circleMap.get(roadEdge.getKey()), circleMap.get(roadEdge.getValue())));
 
+        updateLongestRoadPlayerIfEligible(player);
+
         // Reset the highlighting for buildable locations
         resetHighlighting();
         updatePlayerResourceCount();
+    }
+
+    private void updateLongestRoadPlayerIfEligible(PlayerAbstract newPlayer) {
+        Integer consecutiveRoads = player.calculateLongestRoad();
+
+        if (consecutiveRoads >= 5) {
+            if (longestRoadPlayer != null) {
+                Integer opponentConsecutiveRoads = longestRoadPlayer.calculateLongestRoad();
+                if (consecutiveRoads > opponentConsecutiveRoads) {
+                    longestRoadPlayer.setHasLongestRoad(false);
+
+                    // Set the new player as the longest road player
+                    longestRoadPlayer = player;
+                    longestRoadPlayer.setHasLongestRoad(true);
+                    this.updateVpCounts();
+                    logTextArea.appendText("- Player " + longestRoadPlayer.color.toString() + " has the longest road.\n");
+                }
+            } else {
+                // Set the new player as the longest road player
+                longestRoadPlayer = player;
+                longestRoadPlayer.setHasLongestRoad(true);
+                this.updateVpCounts();
+                logTextArea.appendText("- Player " + longestRoadPlayer.color.toString() + " has the longest road.\n");
+            }
+        }
     }
 
     // Method to highlight circles where a settlement can be built
