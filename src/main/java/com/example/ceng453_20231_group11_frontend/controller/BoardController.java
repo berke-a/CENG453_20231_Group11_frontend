@@ -584,7 +584,7 @@ public class BoardController extends BoardControllerAbstract {
             buildSettlement(player, circle);
 
             // Visual update to indicate the settlement is built
-            circle.setFill(Color.RED); // Example: Change the color to red
+            circle.setFill(Color.RED);
 
             // Deduct resources from the player
             player.buildSettlement(circleMap.get(circle));
@@ -604,7 +604,9 @@ public class BoardController extends BoardControllerAbstract {
             buildCity(player, circle);
 
             // Visual update to indicate the settlement is built
-            circle.setFill(Color.RED); // Example: Change the color to red
+            circle.setFill(Color.RED);
+
+            player.buildCity(circleMap.get(circle));
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
@@ -634,14 +636,15 @@ public class BoardController extends BoardControllerAbstract {
                 player.color.getColor(),
                 this.boardGroup
         );
+        settlement.setMouseTransparent(true);
     }
 
     private void buildCity(PlayerAbstract player, Circle circle) {
-        // Logic to add a city to the player's properties
-    }
-
-    private void deductResourcesForCity(PlayerAbstract player) {
-        // Logic to deduct resources from the player
+        City city = new City(
+                circle,
+                player.color.getColor(),
+                this.boardGroup
+        );
     }
 
     private void resetHighlighting() {
