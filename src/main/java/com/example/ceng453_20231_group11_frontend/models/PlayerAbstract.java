@@ -3,11 +3,17 @@ package com.example.ceng453_20231_group11_frontend.models;
 import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
 import javafx.util.Pair;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
+@Getter
+@Setter
 abstract public class PlayerAbstract {
+    @Getter
     Integer victoryPoint = 0;
     boolean hasLongestRoad = false;
     public PlayerColor color;
@@ -24,6 +30,10 @@ abstract public class PlayerAbstract {
         put(ResourceType.ORE, 0);
     }};
 
+    public Integer getVictoryPoint() {
+        return hasLongestRoad ? victoryPoint + 2 : victoryPoint;
+    }
+
 
     public ArrayList<Pair<CircleVertex, CircleVertex>> roads = new ArrayList<>(); // circleStart - circleEnd
     public ArrayList<CircleVertex> settlements = new ArrayList<>();
@@ -37,8 +47,27 @@ abstract public class PlayerAbstract {
         }
     }
 
+    public Integer calculateLongestRoad() {
+        HashMap<CircleVertex, ArrayList<CircleVertex>> graph = convertRoadsToGraph();
+        int longestRoadLength = 0;
+
+        for (Pair<CircleVertex, CircleVertex> road : roads) {
+            // Start DFS from both ends of each road segment
+            int lengthFromStart = longestRoadDFS(road.getKey(), null, graph, new HashSet<>());
+            int lengthFromEnd = longestRoadDFS(road.getValue(), null, graph, new HashSet<>());
+
+            // Update the longest road length if a longer one is found
+            longestRoadLength = Math.max(longestRoadLength, Math.max(lengthFromStart, lengthFromEnd));
+        }
+        return longestRoadLength;
+    }
+
     public void updateResource(ResourceType resourceType, Integer amount) {
         resources.put(resourceType, resources.get(resourceType) + amount);
+    }
+
+    public void updateVictoryPoint(Integer amount) {
+        victoryPoint += amount;
     }
 
     public void buildRoad(Pair<CircleVertex, CircleVertex> road) {
@@ -82,4 +111,28 @@ abstract public class PlayerAbstract {
         return resources.values().stream().reduce(0, Integer::sum);
     }
 
+    private HashMap<CircleVertex, ArrayList<CircleVertex>> convertRoadsToGraph() {
+        HashMap<CircleVertex, ArrayList<CircleVertex>> graph = new HashMap<>();
+        for (Pair<CircleVertex, CircleVertex> road : roads) {
+            graph.putIfAbsent(road.getKey(), new ArrayList<>());
+            graph.putIfAbsent(road.getValue(), new ArrayList<>());
+
+            graph.get(road.getKey()).add(road.getValue());
+            graph.get(road.getValue()).add(road.getKey());
+        }
+        return graph;
+    }
+
+    private int longestRoadDFS(CircleVertex current, CircleVertex parent, HashMap<CircleVertex, ArrayList<CircleVertex>> graph, HashSet<CircleVertex> visited) {
+        if (visited.contains(current)) return 0; // Already visited this vertex
+        visited.add(current);
+
+        int longest = 0;
+        for (CircleVertex neighbor : graph.getOrDefault(current, new ArrayList<>())) {
+            if (neighbor.equals(parent)) continue; // Avoid going back to parent
+            int length = longestRoadDFS(neighbor, current, graph, visited);
+            longest = Math.max(longest, length);
+        }
+        return longest + 1;
+    }
 }

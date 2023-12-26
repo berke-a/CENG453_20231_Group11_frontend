@@ -888,7 +888,7 @@
                 </GridPane>
                 <Line endX="-100.0" endY="146.0" layoutX="646.0" layoutY="-3.0" startX="-100.0" startY="6.4993896484375" strokeWidth="5.0" />
                 <Line endX="-100.0" endY="146.0" layoutX="899.0" layoutY="-5.0" startX="-100.0" startY="6.4993896484375" strokeWidth="5.0" />
-                <Text fx:id="playerVictoryPointsText" layoutX="820.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="67.28836621953792">
+                <Text fx:id="playerVpCount" layoutX="820.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="67.28836621953792">
                     <font>
                         <Font name="System Bold" size="36.0" />
                     </font>
@@ -939,7 +939,7 @@
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Text fx:id="cpuBlueVpCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -949,7 +949,7 @@
                                         <Image url="@../images/cpu_card.png" />
                                     </image>
                                 </ImageView>
-                                <Text fx:id="cpuBlueCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Text fx:id="cpuBlueCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -982,7 +982,7 @@
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                <Text fx:id="cpuGreenVpCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -992,7 +992,7 @@
                                         <Image url="@../images/cpu_card.png" />
                                     </image>
                                 </ImageView>
-                                <Text fx:id="cpuGreenCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                <Text fx:id="cpuGreenCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -1023,7 +1023,7 @@
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Text fx:id="cpuOrangeVpCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 VP" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
@@ -1033,7 +1033,7 @@
                                         <Image url="@../images/cpu_card.png" />
                                     </image>
                                 </ImageView>
-                                <Text fx:id="cpuOrangeCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Text fx:id="cpuOrangeCardCount" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU1 Cards" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
