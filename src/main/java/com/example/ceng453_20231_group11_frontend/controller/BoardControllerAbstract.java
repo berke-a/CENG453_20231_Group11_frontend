@@ -72,6 +72,9 @@ abstract class BoardControllerAbstract implements Initializable {
     protected Button endTurnButton;
 
     @FXML
+    protected Button returnToHomeButton;
+
+    @FXML
     protected TextArea logTextArea;
 
     @FXML
