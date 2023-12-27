@@ -22,7 +22,8 @@ public class City extends Polygon {
         });
 
         this.setFill(color);
-
+        this.setStroke(Color.BLACK);
+        this.setStrokeWidth(2.0);
         // Add the polygon (this city) to the board
         board.getChildren().add(this);
     }

@@ -11,6 +11,8 @@ public class Settlement extends Rectangle {
     public Settlement(Circle circle, Color color, Group board) {
         super(circle.getLayoutX() - 12.5, circle.getLayoutY() - 12.5, 25, 25);
         this.setFill(color);
+        this.setStroke(Color.BLACK);
+        this.setStrokeWidth(2.0);
         board.getChildren().add(this);
     }
 }
