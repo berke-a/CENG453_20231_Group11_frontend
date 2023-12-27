@@ -15,6 +15,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import javafx.scene.Node;
 
 import java.net.URL;
 import java.util.*;
@@ -38,6 +39,8 @@ public class BoardController extends BoardControllerAbstract {
             this.initializeTiles();
             this.initializeCircles();
             this.initializeCpuPlayers();
+            player.updateResource(ResourceType.ORE, 5);
+            player.updateResource(ResourceType.GRAIN, 5);
             this.rollDiceButton.setDisable(true);
             this.endTurnButton.setDisable(true);
             this.helpContentTable.setVisible(false);
@@ -572,7 +575,7 @@ public class BoardController extends BoardControllerAbstract {
             if (gameManager.isCityBuildableToVertex(player, circleVertex)) {
                 Circle circle = entry.getKey();
                 highlightCircle(circle, true);
-
+                circle.setOnMouseClicked(event -> onCircleClickedCity(circle, player));
             }
         }
     }
@@ -599,7 +602,7 @@ public class BoardController extends BoardControllerAbstract {
 
     private void onCircleClickedCity(Circle circle, PlayerAbstract player) {
         // Check if the circle is still valid for building (in case of concurrent actions)
-        if (gameManager.isSettlementBuildableToVertex(circleMap.get(circle), circleMap)) {
+        if (gameManager.isCityBuildableToVertex(player, circleMap.get(circle))) {
             // Update the game state to reflect the new settlement
             buildCity(player, circle);
 
@@ -637,9 +640,16 @@ public class BoardController extends BoardControllerAbstract {
                 this.boardGroup
         );
         settlement.setMouseTransparent(true);
+        settlementsMap.put(circle, settlement);
     }
 
     private void buildCity(PlayerAbstract player, Circle circle) {
+        Settlement settlement = settlementsMap.get(circle);
+        if (settlement != null) {
+            boardGroup.getChildren().remove(settlement);
+            settlementsMap.remove(circle);
+        }
+
         City city = new City(
                 circle,
                 player.color.getColor(),
