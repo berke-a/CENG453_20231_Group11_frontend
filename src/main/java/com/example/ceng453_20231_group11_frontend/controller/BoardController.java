@@ -1,5 +1,6 @@
 package com.example.ceng453_20231_group11_frontend.controller;
 
+import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
@@ -9,6 +10,7 @@ import com.example.ceng453_20231_group11_frontend.models.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -40,6 +42,7 @@ public class BoardController extends BoardControllerAbstract {
             this.initializeCpuPlayers();
             this.rollDiceButton.setDisable(true);
             this.endTurnButton.setDisable(true);
+            this.returnToHomeButton.setDisable(true);
             this.helpContentTable.setVisible(false);
             this.gameManager.turnState = TurnState.INITIALIZATION;
             this.updateGameState();
@@ -75,6 +78,11 @@ public class BoardController extends BoardControllerAbstract {
         this.advanceToNextTurn();
     }
 
+    public void onClickReturnToHome(ActionEvent event) {
+        // TODO: Calculate score and update the database
+        Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
+    }
+
     private void updateGameState() {
         this.updateVpCounts();
         switch (gameManager.turnState) {
@@ -89,6 +97,9 @@ public class BoardController extends BoardControllerAbstract {
                 break;
             case TURN_PLAYER:
                 this.managePlayerTurn();
+                break;
+            case GAME_OVER:
+                this.handleGameOver();
                 break;
         }
     }
@@ -341,6 +352,34 @@ public class BoardController extends BoardControllerAbstract {
         this.cpuBlueVpCount.setText(this.cpuPlayers[0].getVictoryPoint().toString());
         this.cpuGreenVpCount.setText(this.cpuPlayers[1].getVictoryPoint().toString());
         this.cpuOrangeVpCount.setText(this.cpuPlayers[2].getVictoryPoint().toString());
+
+        PlayerAbstract winner = getTheWinner();
+        if (winner != null) {
+            this.logTextArea.appendText("- Player " + winner.color.toString() + " has won the game.\n");
+            this.gameManager.turnState = TurnState.GAME_OVER;
+            this.updateGameState();
+        }
+    }
+
+    private void handleGameOver() {
+        this.logTextArea.appendText("- Game Over\n");
+        this.rollDiceButton.setDisable(true);
+        this.endTurnButton.setDisable(true);
+        this.returnToHomeButton.setDisable(false);
+    }
+
+    private PlayerAbstract getTheWinner() {
+        if (this.player.hasWonTheGame()) {
+            return this.player;
+        }
+
+        for (CPUPlayer cpuPlayer : this.cpuPlayers) {
+            if (cpuPlayer.hasWonTheGame()) {
+                return cpuPlayer;
+            }
+        }
+
+        return null;
     }
 
     private void changePlayerBuildingColor(Color color) {
