@@ -4,6 +4,7 @@ import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.enums.TileType;
 import com.example.ceng453_20231_group11_frontend.models.CircleVertex;
+import com.example.ceng453_20231_group11_frontend.models.Settlement;
 import com.example.ceng453_20231_group11_frontend.models.Tile;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -91,6 +92,8 @@ abstract class BoardControllerAbstract implements Initializable {
     protected HashMap<Circle, CircleVertex> circleMap = new HashMap<>();
 
     protected Set<javafx.util.Pair<Circle, Circle>> occupiedEdges = new HashSet<>();
+
+    protected HashMap<Circle, Settlement> settlementsMap = new HashMap<>();
 
     protected void initializeTiles() {
         tileLabelTextPairs = new Pair[]{new Pair<>(tileLabel1, tileText1), new Pair<>(tileLabel2, tileText2), new Pair<>(tileLabel3, tileText3), new Pair<>(tileLabel4, tileText4), new Pair<>(tileLabel5, tileText5), new Pair<>(tileLabel6, tileText6), new Pair<>(tileLabel7, tileText7), new Pair<>(tileLabel8, tileText8), new Pair<>(tileLabel9, tileText9), new Pair<>(tileLabel10, tileText10),
