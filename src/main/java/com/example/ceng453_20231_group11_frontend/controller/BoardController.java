@@ -7,6 +7,7 @@ import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
 import com.example.ceng453_20231_group11_frontend.enums.TurnPlayerState;
 import com.example.ceng453_20231_group11_frontend.enums.TurnState;
 import com.example.ceng453_20231_group11_frontend.models.*;
+import com.example.ceng453_20231_group11_frontend.service.LeaderboardService;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
@@ -79,7 +80,6 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     public void onClickReturnToHome(ActionEvent event) {
-        // TODO: Calculate score and update the database
         Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
     }
 
@@ -362,10 +362,18 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void handleGameOver() {
+        this.addPlayerScoreToDatabase();
+        
         this.logTextArea.appendText("- Game Over\n");
         this.rollDiceButton.setDisable(true);
         this.endTurnButton.setDisable(true);
         this.returnToHomeButton.setDisable(false);
+    }
+
+    private void addPlayerScoreToDatabase() {
+        String username = Utils.getUsername();
+        Integer score = this.player.getVictoryPoint();
+        LeaderboardService.addScore(username, score);
     }
 
     private PlayerAbstract getTheWinner() {
