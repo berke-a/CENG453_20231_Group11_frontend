@@ -49,4 +49,16 @@ public class LeaderboardService {
         }
         return null;
     }
+
+    public static void addScore(String username, Integer score) {
+        try {
+            HttpResponse<JsonNode> apiResponse = Unirest.post(GeneralConstants.BACKEND_BASE_URL + "/scoreboard")
+                    .field("username", username)
+                    .field("score", score)
+                    .asJson();
+            System.out.println(apiResponse.getBody().toString());
+        } catch (UnirestException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
