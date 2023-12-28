@@ -608,7 +608,7 @@
                         <Text fx:id="tileText16" strokeType="OUTSIDE" strokeWidth="0.0" text="*****" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER" />
                     </children>
                 </StackPane>
-                <Pane fx:id="helpContentTable" visible="false" layoutX="-149.0" layoutY="-126.0" prefHeight="240.0" prefWidth="296.0" style="-fx-background-color: #dfe6ed;">
+                <Pane fx:id="helpContentTable" layoutX="-149.0" layoutY="-126.0" prefHeight="240.0" prefWidth="296.0" style="-fx-background-color: #dfe6ed;" visible="false">
                     <children>
                         <GridPane layoutX="3.0" layoutY="1.0" prefHeight="239.0" prefWidth="291.0">
                             <columnConstraints>
@@ -1077,5 +1077,10 @@
                 <Font size="19.0" />
             </font>
         </Text>
+      <Button fx:id="returnToHomeButton" layoutX="592.0" layoutY="603.0" mnemonicParsing="false" onAction="#onClickReturnToHome" text="Return To Home">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

@@ -4,5 +4,6 @@ public enum TurnState {
     INITIALIZATION,
     ROLL_DICE,
     RESOURCE_DISTRIBUTION,
-    TURN_PLAYER;
+    TURN_PLAYER,
+    GAME_OVER;
 }
