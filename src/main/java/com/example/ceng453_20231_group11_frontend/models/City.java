@@ -12,7 +12,7 @@ public class City extends Polygon {
         // Calculate the vertices for the triangle
         double x = circle.getLayoutX();
         double y = circle.getLayoutY();
-        double size = 20; // Size of the triangle
+        double size = 40; // Size of the triangle
 
         // Define the vertices of the triangle
         getPoints().addAll(new Double[]{
