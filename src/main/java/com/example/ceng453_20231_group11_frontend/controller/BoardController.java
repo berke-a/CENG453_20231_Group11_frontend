@@ -299,7 +299,7 @@ public class BoardController extends BoardControllerAbstract {
                     Tile adjacentTile = this.polygonTileHashMap.get(polygon);
 
                     if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
-                        this.player.updateResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                        cpuPlayer.updateResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
                     }
                 }
             }
@@ -309,7 +309,7 @@ public class BoardController extends BoardControllerAbstract {
                     Tile adjacentTile = this.polygonTileHashMap.get(polygon);
 
                     if (Objects.equals(adjacentTile.getNumberToken(), this.dice.getDiceTotal())) {
-                        this.player.updateResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
+                        cpuPlayer.updateResource(GeneralConstants.tileTypeToResourceType.get(adjacentTile.getTileType()), 1);
                     }
                 }
             }
