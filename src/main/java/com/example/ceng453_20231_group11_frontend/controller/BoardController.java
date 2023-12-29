@@ -630,6 +630,7 @@ public class BoardController extends BoardControllerAbstract {
             // Update the game state to reflect the new settlement
             buildSettlement(player, circle);
 
+            // TODO: remove circle when settlement or city is built
             // Visual update to indicate the settlement is built
             circle.setFill(Color.RED);
 
