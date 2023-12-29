@@ -18,7 +18,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 import javafx.util.Pair;
-import javafx.scene.Node;
 
 import java.net.URL;
 import java.util.*;
@@ -42,8 +41,6 @@ public class BoardController extends BoardControllerAbstract {
             this.initializeTiles();
             this.initializeCircles();
             this.initializeCpuPlayers();
-            player.updateResource(ResourceType.ORE, 5);
-            player.updateResource(ResourceType.GRAIN, 5);
             this.rollDiceButton.setDisable(true);
             this.endTurnButton.setDisable(true);
             this.returnToHomeButton.setVisible(false);
