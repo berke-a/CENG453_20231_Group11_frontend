@@ -13,7 +13,6 @@ import java.util.HashSet;
 @Getter
 @Setter
 abstract public class PlayerAbstract {
-    @Getter
     Integer victoryPoint = 0;
     boolean hasLongestRoad = false;
     public PlayerColor color;
