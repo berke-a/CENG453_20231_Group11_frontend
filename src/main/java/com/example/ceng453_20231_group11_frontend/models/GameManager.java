@@ -76,7 +76,7 @@ public class GameManager {
         return null; // should not happen
     }
 
-    public Pair<CircleVertex, CircleVertex> getCircleVertexPairToBuildRoad(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap, Set<Pair<Circle, Circle>> occupiedEdges) {
+    public Pair<Circle, Circle> getCirclePairToBuildRoad(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap, Set<Pair<Circle, Circle>> occupiedEdges) {
         for (Pair<CircleVertex, CircleVertex> road : player.roads) {
             CircleVertex startVertex = road.getKey();
             CircleVertex endVertex = road.getValue();
@@ -87,7 +87,7 @@ public class GameManager {
                     Pair<Circle, Circle> circlePair = new Pair<>(startCircle, adjacentCircle);
                     Pair<Circle, Circle> circlePairReverse = new Pair<>(adjacentCircle, startCircle);
                     if (!(occupiedEdges.contains(circlePair) || occupiedEdges.contains(circlePairReverse))) {
-                        return new Pair<>(circleMap.get(circlePair.getKey()), circleMap.get(circlePair.getValue()));
+                        return circlePair;
                     }
                 }
             }
@@ -96,7 +96,7 @@ public class GameManager {
                     Pair<Circle, Circle> circlePair = new Pair<>(endCircle, adjacentCircle);
                     Pair<Circle, Circle> circlePairReverse = new Pair<>(adjacentCircle, endCircle);
                     if (!(occupiedEdges.contains(circlePair) || occupiedEdges.contains(circlePairReverse))) {
-                        return new Pair<>(circleMap.get(circlePair.getKey()), circleMap.get(circlePair.getValue()));
+                        return circlePair;
                     }
                 }
             }
@@ -135,15 +135,15 @@ public class GameManager {
         return false;
     }
 
-    public CircleVertex getVertexToBuildSettlement(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
+    public Circle getCircleToBuildSettlement(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
         for (Pair<CircleVertex, CircleVertex> road: player.roads) {
             CircleVertex startVertex = road.getKey();
             CircleVertex endVertex = road.getValue();
             if (isSettlementBuildableToVertex(startVertex, circleMap)) {
-                return startVertex;
+                return getCircleFromCircleVertex(startVertex, circleMap);
             }
             if (isSettlementBuildableToVertex(endVertex, circleMap)) {
-                return endVertex;
+                return getCircleFromCircleVertex(endVertex, circleMap);
             }
         }
         return null; // should not happen since checked before
@@ -165,10 +165,10 @@ public class GameManager {
         return false;
     }
 
-    public CircleVertex getVertexToBuildCity(PlayerAbstract player) {
+    public Circle getCircleToBuildCity(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap) {
         Random random = new Random();
         int settlementIndex = random.nextInt(player.settlements.size());
-        return player.settlements.get(settlementIndex);
+        return getCircleFromCircleVertex(player.settlements.get(settlementIndex), circleMap);
     }
 
 
