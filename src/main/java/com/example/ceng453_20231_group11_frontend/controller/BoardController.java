@@ -190,14 +190,23 @@ public class BoardController extends BoardControllerAbstract {
         this.logTextArea.appendText("- Player Initial Placement\n");
 
         placeInitialSettlementAndRoad(player);
+        giveInitialResources(player);
         updatePlayerResourceCount();
 
         for (CPUPlayer cpuPlayer : cpuPlayers) {
             placeInitialSettlementAndRoad(cpuPlayer);
+            giveInitialResources(cpuPlayer);
         }
 
         this.gameManager.turnState = TurnState.ROLL_DICE;
         this.updateGameState();
+    }
+
+    private void giveInitialResources(PlayerAbstract player) {
+        player.updateResource(ResourceType.LUMBER, 3);
+        player.updateResource(ResourceType.BRICK, 3);
+        player.updateResource(ResourceType.GRAIN, 1);
+        player.updateResource(ResourceType.WOOL, 1);
     }
 
     private void placeInitialSettlementAndRoad(PlayerAbstract player) {
