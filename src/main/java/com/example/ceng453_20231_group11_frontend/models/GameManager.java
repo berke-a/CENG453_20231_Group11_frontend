@@ -77,24 +77,26 @@ public class GameManager {
     }
 
     public Pair<Circle, Circle> getCirclePairToBuildRoad(PlayerAbstract player, HashMap<Circle, CircleVertex> circleMap, Set<Pair<Circle, Circle>> occupiedEdges) {
-        for (Pair<CircleVertex, CircleVertex> road : player.roads) {
+        ArrayList<Pair<CircleVertex, CircleVertex>> roadsReversed = new ArrayList<>(player.roads);
+        Collections.reverse(roadsReversed);
+        for (Pair<CircleVertex, CircleVertex> road : roadsReversed) {
             CircleVertex startVertex = road.getKey();
             CircleVertex endVertex = road.getValue();
             Circle startCircle = getCircleFromCircleVertex(startVertex, circleMap);
             Circle endCircle = getCircleFromCircleVertex(endVertex, circleMap);
-            if (isVertexHasEmptyEdge(startVertex, circleMap, occupiedEdges)) {
-                for (Circle adjacentCircle : startVertex.getAdjacentCircles()) {
-                    Pair<Circle, Circle> circlePair = new Pair<>(startCircle, adjacentCircle);
-                    Pair<Circle, Circle> circlePairReverse = new Pair<>(adjacentCircle, startCircle);
+            if (isVertexHasEmptyEdge(endVertex, circleMap, occupiedEdges)) {
+                for (Circle adjacentCircle : endVertex.getAdjacentCircles()) {
+                    Pair<Circle, Circle> circlePair = new Pair<>(endCircle, adjacentCircle);
+                    Pair<Circle, Circle> circlePairReverse = new Pair<>(adjacentCircle, endCircle);
                     if (!(occupiedEdges.contains(circlePair) || occupiedEdges.contains(circlePairReverse))) {
                         return circlePair;
                     }
                 }
             }
-            if (isVertexHasEmptyEdge(endVertex, circleMap, occupiedEdges)) {
-                for (Circle adjacentCircle : endVertex.getAdjacentCircles()) {
-                    Pair<Circle, Circle> circlePair = new Pair<>(endCircle, adjacentCircle);
-                    Pair<Circle, Circle> circlePairReverse = new Pair<>(adjacentCircle, endCircle);
+            if (isVertexHasEmptyEdge(startVertex, circleMap, occupiedEdges)) {
+                for (Circle adjacentCircle : startVertex.getAdjacentCircles()) {
+                    Pair<Circle, Circle> circlePair = new Pair<>(startCircle, adjacentCircle);
+                    Pair<Circle, Circle> circlePairReverse = new Pair<>(adjacentCircle, startCircle);
                     if (!(occupiedEdges.contains(circlePair) || occupiedEdges.contains(circlePairReverse))) {
                         return circlePair;
                     }
