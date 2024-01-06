@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,7 +14,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.Label?>
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
          prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="282.0"
          xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
@@ -44,7 +44,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="WEEKLY LEADERBOARD"
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="WEEKLY LEADERBOARD" underline="true"
                                       GridPane.columnIndex="2">
                                     <font>
                                         <Font size="36.0"/>
@@ -82,7 +82,7 @@
                 </Pane>
             </content>
         </Tab>
-        <Tab fx:id="monthlyTab" onSelectionChanged="#onMonthlySelectionChange" closable="false" text="MONTHLY">
+        <Tab fx:id="monthlyTab" closable="false" onSelectionChanged="#onMonthlySelectionChange" text="MONTHLY">
             <content>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
@@ -107,7 +107,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MONTHLY LEADERBOARD"
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MONTHLY LEADERBOARD" underline="true"
                                       GridPane.columnIndex="2">
                                     <font>
                                         <Font size="36.0"/>
@@ -145,7 +145,7 @@
                 </Pane>
             </content>
         </Tab>
-        <Tab fx:id="alltimeTab" onSelectionChanged="#onAlltimeSelectionChange" closable="false" text="ALL-TIME">
+        <Tab fx:id="alltimeTab" closable="false" onSelectionChanged="#onAlltimeSelectionChange" text="ALL-TIME">
             <content>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
@@ -171,7 +171,7 @@
                             </rowConstraints>
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ALL-TIME LEADERBOARD"
-                                      GridPane.columnIndex="2">
+                                      underline="true" GridPane.columnIndex="2">
                                     <font>
                                         <Font size="36.0"/>
                                     </font>

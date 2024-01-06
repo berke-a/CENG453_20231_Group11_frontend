@@ -90,4 +90,9 @@ public class HomeController implements Initializable {
         Utils.routeToPage(event, GeneralConstants.FORGOT_PASSWORD_PAGE);
     }
 
+    @FXML
+    protected void onClickRouteGameRules(ActionEvent event) {
+        Utils.routeToPage(event, GeneralConstants.GAME_RULES_PAGE);
+    }
+
 }

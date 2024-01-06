@@ -24,7 +24,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Text fx:id="registerTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" underline="true" wrappingWidth="124.3125" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Text fx:id="registerTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" textAlignment="CENTER" underline="true" wrappingWidth="162.3125" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
