@@ -233,7 +233,7 @@ public class BoardController extends BoardControllerAbstract {
         player.updateResource(ResourceType.GRAIN, 1);
         player.updateResource(ResourceType.LUMBER, 1);
         player.updateResource(ResourceType.WOOL, 1);
-        player.buildSettlement(settlementCircle, circleMap,boardGroup, settlementsMap);
+        player.buildSettlement(settlementCircle, circleMap, boardGroup, settlementsMap);
 
         // Select and place the road
         if (!settlementCircleVertex.getAdjacentCircles().isEmpty()) {
@@ -631,6 +631,7 @@ public class BoardController extends BoardControllerAbstract {
             // Reset the highlighting for buildable locations
             resetHighlighting();
             updatePlayerResourceCount();
+            updateVpCounts();
             changePlayerBuildingColor(Color.RED);
         }
     }
@@ -644,6 +645,7 @@ public class BoardController extends BoardControllerAbstract {
             // Reset the highlighting for buildable locations
             resetHighlighting();
             updatePlayerResourceCount();
+            updateVpCounts();
             changePlayerBuildingColor(Color.RED);
         }
     }
