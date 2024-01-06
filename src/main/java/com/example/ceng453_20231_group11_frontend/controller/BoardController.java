@@ -40,15 +40,9 @@ public class BoardController extends BoardControllerAbstract {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            this.player.setVictoryPoint(7);
             this.initializeTiles();
             this.initializeCircles();
             this.initializeCpuPlayers();
-            this.cpuPlayers[0].updateResource(ResourceType.LUMBER, 15);
-            this.cpuPlayers[0].updateResource(ResourceType.BRICK, 15);
-            this.cpuPlayers[0].updateResource(ResourceType.GRAIN, 15);
-            this.cpuPlayers[0].updateResource(ResourceType.WOOL, 15);
-            this.cpuPlayers[0].updateResource(ResourceType.ORE, 15);
             this.rollDiceButton.setDisable(true);
             this.endTurnButton.setDisable(true);
             this.helpContentTable.setVisible(false);
