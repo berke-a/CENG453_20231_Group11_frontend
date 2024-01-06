@@ -48,6 +48,8 @@ public class BoardController extends BoardControllerAbstract {
             this.updateGameState();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            logTextArea.appendText("- Error while initializing the game.\n");
+            onClickReturnToHome(null);
         }
     }
 
