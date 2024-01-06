@@ -87,6 +87,12 @@ abstract class BoardControllerAbstract implements Initializable {
     @FXML
     protected Line road;
 
+    @FXML
+    protected Pane winnerPane;
+
+    @FXML
+    protected Text winnerText;
+    
     protected Pair<Label, Text>[] tileLabelTextPairs;
 
     protected HashMap<Polygon, Tile> polygonTileHashMap = new HashMap<Polygon, Tile>();

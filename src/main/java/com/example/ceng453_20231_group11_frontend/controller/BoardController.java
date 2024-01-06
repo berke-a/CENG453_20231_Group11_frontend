@@ -36,14 +36,23 @@ public class BoardController extends BoardControllerAbstract {
 
     private PlayerAbstract longestRoadPlayer = null;
 
+    private boolean isGameOver = false;
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            this.player.setVictoryPoint(7);
             this.initializeTiles();
             this.initializeCircles();
             this.initializeCpuPlayers();
+            this.cpuPlayers[0].updateResource(ResourceType.LUMBER, 15);
+            this.cpuPlayers[0].updateResource(ResourceType.BRICK, 15);
+            this.cpuPlayers[0].updateResource(ResourceType.GRAIN, 15);
+            this.cpuPlayers[0].updateResource(ResourceType.WOOL, 15);
+            this.cpuPlayers[0].updateResource(ResourceType.ORE, 15);
             this.rollDiceButton.setDisable(true);
             this.endTurnButton.setDisable(true);
             this.helpContentTable.setVisible(false);
+            this.winnerPane.setVisible(false);
             this.gameManager.turnState = TurnState.INITIALIZATION;
             this.updateGameState();
         } catch (Exception e) {
@@ -84,7 +93,15 @@ public class BoardController extends BoardControllerAbstract {
         Utils.routeToPage(event, GeneralConstants.HOME_PAGE);
     }
 
+    public void onClickPlayAgain(ActionEvent event) {
+        Utils.routeToPage(event, GeneralConstants.BOARD_PAGE);
+    }
+
     private void updateGameState() {
+        if (isGameOver) {
+            return;
+        }
+
         switch (gameManager.turnState) {
             case INITIALIZATION:
                 this.playerInitialPlacement();
@@ -136,6 +153,10 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void advanceToNextTurn() {
+        if (isGameOver) {
+            return;
+        }
+
         this.endTurnButton.setDisable(true);
         this.resetHighlighting();
         this.changePlayerBuildingColor(Color.GRAY);
@@ -370,6 +391,11 @@ public class BoardController extends BoardControllerAbstract {
         PlayerAbstract winner = getTheWinner();
         if (winner != null) {
             this.logTextArea.appendText("- Player " + winner.color.toString() + " has won the game.\n");
+
+            this.winnerPane.setVisible(true);
+            this.winnerPane.toFront();
+            this.winnerText.setText("Player " + winner.color.toString() + " has won the game!");
+
             this.gameManager.turnState = TurnState.GAME_OVER;
             this.updateGameState();
         }
@@ -378,16 +404,23 @@ public class BoardController extends BoardControllerAbstract {
     private void handleGameOver() {
         this.addPlayerScoreToDatabase();
 
+        if (timer != null) {
+            timer.stop();
+        }
+
+        isGameOver = true;
+
         this.logTextArea.appendText("- Game Over\n");
         this.rollDiceButton.setVisible(false);
         this.endTurnButton.setVisible(false);
+        this.returnToHomeButton.setVisible(false);
     }
 
     private void addPlayerScoreToDatabase() {
         String username = Utils.getUsername();
         Integer score = this.player.getVictoryPoint();
         boolean result = LeaderboardService.addScore(username, score);
-
+        System.out.println("score is added to the database");
         if (result) {
             this.logTextArea.appendText("- Score added to the database.\n");
         } else {
