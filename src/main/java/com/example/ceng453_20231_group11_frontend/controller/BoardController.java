@@ -145,8 +145,6 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void distributeResources() {
-        this.logTextArea.appendText("- Distribute Resources\n");
-
         this.distributeResourcesPlayer();
         this.distributeResourcesCPU();
         this.updateCardCounts();
