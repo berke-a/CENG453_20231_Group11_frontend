@@ -43,7 +43,6 @@ public class BoardController extends BoardControllerAbstract {
             this.initializeCpuPlayers();
             this.rollDiceButton.setDisable(true);
             this.endTurnButton.setDisable(true);
-            this.returnToHomeButton.setVisible(false);
             this.helpContentTable.setVisible(false);
             this.gameManager.turnState = TurnState.INITIALIZATION;
             this.updateGameState();
@@ -381,7 +380,6 @@ public class BoardController extends BoardControllerAbstract {
         this.logTextArea.appendText("- Game Over\n");
         this.rollDiceButton.setVisible(false);
         this.endTurnButton.setVisible(false);
-        this.returnToHomeButton.setVisible(true);
     }
 
     private void addPlayerScoreToDatabase() {
