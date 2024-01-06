@@ -2,6 +2,8 @@ package com.example.ceng453_20231_group11_frontend.models;
 
 import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import com.example.ceng453_20231_group11_frontend.enums.ResourceType;
+import javafx.scene.Group;
+import javafx.scene.shape.Circle;
 import javafx.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +11,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -65,23 +68,31 @@ abstract public class PlayerAbstract {
         resources.put(resourceType, resources.get(resourceType) + amount);
     }
 
-    public void updateVictoryPoint(Integer amount) {
-        victoryPoint += amount;
-    }
-
-    public void buildRoad(Pair<CircleVertex, CircleVertex> road) {
+    public void buildRoad(Pair<Circle, Circle> roadEdge, HashMap<Circle, CircleVertex> circleMap, Group boardGroup, Set<Pair<Circle, Circle>> occupiedEdges) {
         this.updateResource(ResourceType.LUMBER, -1);
         this.updateResource(ResourceType.BRICK, -1);
 
-        this.roads.add(road);
+        Road road = new Road(roadEdge.getKey(), roadEdge.getValue(), this.color.getColor(), boardGroup);
+        this.roads.add(new Pair<>(circleMap.get(roadEdge.getKey()), circleMap.get(roadEdge.getValue())));
+        Pair<Circle, Circle> edge = createEdge(roadEdge.getKey(), roadEdge.getValue());
+        occupiedEdges.add(edge);
     }
 
-    public void buildSettlement(CircleVertex circleVertex) {
+    public void buildSettlement(Circle circle, HashMap<Circle, CircleVertex> circleMap, Group boardGroup, HashMap<Circle, Settlement> settlementsMap) {
         this.updateResource(ResourceType.LUMBER, -1);
         this.updateResource(ResourceType.BRICK, -1);
         this.updateResource(ResourceType.GRAIN, -1);
         this.updateResource(ResourceType.WOOL, -1);
 
+        Settlement settlement = new Settlement(
+                circle,
+                this.color.getColor(),
+                boardGroup
+        );
+        settlement.setMouseTransparent(true);
+        settlementsMap.put(circle, settlement);
+
+        CircleVertex circleVertex = circleMap.get(circle);
         this.settlements.add(circleVertex);
         circleVertex.setHasSettlement(true);
         circleVertex.setOwner(this);
@@ -89,10 +100,23 @@ abstract public class PlayerAbstract {
         this.victoryPoint++;
     }
 
-    public void buildCity(CircleVertex circleVertex) {
+    public void buildCity(Circle circle, HashMap<Circle, CircleVertex> circleMap, Group boardGroup, HashMap<Circle, Settlement> settlementsMap) {
         this.updateResource(ResourceType.ORE, -3);
         this.updateResource(ResourceType.GRAIN, -2);
 
+        Settlement settlement = settlementsMap.get(circle);
+        if (settlement != null) {
+            boardGroup.getChildren().remove(settlement);
+            settlementsMap.remove(circle);
+        }
+        City city = new City(
+                circle,
+                this.color.getColor(),
+                boardGroup
+        );
+        circle.setVisible(false);
+
+        CircleVertex circleVertex = circleMap.get(circle);
         this.settlements.remove(circleVertex);
         this.cities.add(circleVertex);
         circleVertex.setHasSettlement(false);
@@ -133,5 +157,9 @@ abstract public class PlayerAbstract {
             longest = Math.max(longest, length);
         }
         return longest + 1;
+    }
+
+    private Pair<Circle, Circle> createEdge(Circle c1, Circle c2) {
+        return c1.getId().compareTo(c2.getId()) <= 0 ? new Pair<>(c1, c2) : new Pair<>(c2, c1);
     }
 }

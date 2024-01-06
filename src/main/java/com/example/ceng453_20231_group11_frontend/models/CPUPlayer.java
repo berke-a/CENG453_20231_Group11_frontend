@@ -1,5 +1,6 @@
 package com.example.ceng453_20231_group11_frontend.models;
 
+import javafx.scene.Group;
 import javafx.scene.shape.Circle;
 import com.example.ceng453_20231_group11_frontend.enums.PlayerColor;
 import javafx.util.Pair;
@@ -16,21 +17,17 @@ public class CPUPlayer extends PlayerAbstract {
         super(color);
     }
 
-    // TODO in the board call play
-    // TODO then check and reassign the longest road boolean
-    // TODO then call hasWonTheGame
-
-    public void play(GameManager gameManager, HashMap<Circle, CircleVertex> circleMap, Set<Pair<Circle, Circle>> occupiedEdges) {
+    public void play(GameManager gameManager, HashMap<Circle, CircleVertex> circleMap, Group boardGroup, Set<Pair<Circle, Circle>> occupiedEdges, HashMap<Circle, Settlement> settlementsMap) {
         if (gameManager.isAnyRoadBuildableByPlayer(this, circleMap, occupiedEdges)) {
-            Pair<CircleVertex, CircleVertex> roadCircleVertexPair = gameManager.getCircleVertexPairToBuildRoad(this, circleMap, occupiedEdges);
-            this.buildRoad(roadCircleVertexPair);
+            Pair<Circle, Circle> roadEdge = gameManager.getCirclePairToBuildRoad(this, circleMap, occupiedEdges);
+            this.buildRoad(roadEdge, circleMap, boardGroup, occupiedEdges);
         }
         if (gameManager.isAnySettlementBuildableByPlayer(this, circleMap)) {
-            CircleVertex vertexToBuildSettlement = gameManager.getVertexToBuildSettlement(this, circleMap);
-            this.buildSettlement(vertexToBuildSettlement);
+            Circle circleToBuildSettlement = gameManager.getCircleToBuildSettlement(this, circleMap);
+            this.buildSettlement(circleToBuildSettlement, circleMap, boardGroup, settlementsMap);
         } else if (gameManager.isAnyCityBuildableByPlayer(this)) {
-            CircleVertex vertexToBuildCity = gameManager.getVertexToBuildCity(this);
-            this.buildCity(vertexToBuildCity);
+            Circle circleToBuildCity = gameManager.getCircleToBuildCity(this, circleMap);
+            this.buildCity(circleToBuildCity, circleMap, boardGroup, settlementsMap);
         }
     }
 }

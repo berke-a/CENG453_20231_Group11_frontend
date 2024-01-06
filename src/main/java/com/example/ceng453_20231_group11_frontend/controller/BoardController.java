@@ -34,7 +34,7 @@ public class BoardController extends BoardControllerAbstract {
     private Player player = new Player(PlayerColor.RED);
     private CPUPlayer[] cpuPlayers = new CPUPlayer[3];
 
-    private Player longestRoadPlayer = null;
+    private PlayerAbstract longestRoadPlayer = null;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -115,15 +115,18 @@ public class BoardController extends BoardControllerAbstract {
                 this.setTimeOut(60, this::advanceToNextTurn);
                 break;
             case TURN_BLUE:
-                this.cpuPlayers[0].play(gameManager, circleMap, occupiedEdges);
+                this.cpuPlayers[0].play(gameManager, circleMap, boardGroup, occupiedEdges, settlementsMap);
+                updateLongestRoadPlayerIfEligible(this.cpuPlayers[0]);
                 advanceToNextTurn();
                 break;
             case TURN_GREEN:
-                this.cpuPlayers[1].play(gameManager, circleMap, occupiedEdges);
+                this.cpuPlayers[1].play(gameManager, circleMap, boardGroup, occupiedEdges, settlementsMap);
+                updateLongestRoadPlayerIfEligible(this.cpuPlayers[1]);
                 advanceToNextTurn();
                 break;
             case TURN_ORANGE:
-                this.cpuPlayers[2].play(gameManager, circleMap, occupiedEdges);
+                this.cpuPlayers[2].play(gameManager, circleMap, boardGroup, occupiedEdges, settlementsMap);
+                updateLongestRoadPlayerIfEligible(this.cpuPlayers[2]);
                 advanceToNextTurn();
                 break;
         }
@@ -185,14 +188,23 @@ public class BoardController extends BoardControllerAbstract {
         this.logTextArea.appendText("- Player Initial Placement\n");
 
         placeInitialSettlementAndRoad(player);
+        giveInitialResources(player);
         updatePlayerResourceCount();
 
         for (CPUPlayer cpuPlayer : cpuPlayers) {
             placeInitialSettlementAndRoad(cpuPlayer);
+            giveInitialResources(cpuPlayer);
         }
 
         this.gameManager.turnState = TurnState.ROLL_DICE;
         this.updateGameState();
+    }
+
+    private void giveInitialResources(PlayerAbstract player) {
+        player.updateResource(ResourceType.LUMBER, 3);
+        player.updateResource(ResourceType.BRICK, 3);
+        player.updateResource(ResourceType.GRAIN, 1);
+        player.updateResource(ResourceType.WOOL, 1);
     }
 
     private void placeInitialSettlementAndRoad(PlayerAbstract player) {
@@ -216,12 +228,12 @@ public class BoardController extends BoardControllerAbstract {
             return; // No valid location found
         }
 
-        // Place the settlement
-        buildSettlement(player, settlementCircle);
-        player.settlements.add(settlementCircleVertex);
-        player.updateVictoryPoint(1);
-        settlementCircleVertex.setHasSettlement(true);
-        settlementCircleVertex.setOwner(player);
+        // Place the settlement with no cost
+        player.updateResource(ResourceType.BRICK, 1);
+        player.updateResource(ResourceType.GRAIN, 1);
+        player.updateResource(ResourceType.LUMBER, 1);
+        player.updateResource(ResourceType.WOOL, 1);
+        player.buildSettlement(settlementCircle, circleMap,boardGroup, settlementsMap);
 
         // Select and place the road
         if (!settlementCircleVertex.getAdjacentCircles().isEmpty()) {
@@ -231,9 +243,10 @@ public class BoardController extends BoardControllerAbstract {
             for (Circle roadEndCircle : adjacentCircles) {
                 Pair<Circle, Circle> edge = createEdge(settlementCircle, roadEndCircle);
                 if (!occupiedEdges.contains(edge)) {
-                    Road road = new Road(settlementCircle, roadEndCircle, player.color.getColor(), boardGroup);
-                    player.roads.add(new Pair<>(settlementCircleVertex, circleMap.get(roadEndCircle)));
-                    occupiedEdges.add(edge);
+                    // Build road with no cost
+                    player.updateResource(ResourceType.LUMBER, 1);
+                    player.updateResource(ResourceType.BRICK, 1);
+                    player.buildRoad(edge, circleMap, boardGroup, occupiedEdges);
                     break; // Exit the loop once the road is successfully placed
                 }
             }
@@ -532,21 +545,9 @@ public class BoardController extends BoardControllerAbstract {
         return false; // targetVertex is not an end in any of the roads
     }
 
-    private void buildRoad(Circle circleStart, Circle circleEnd) {
-        Road road = new Road(circleStart, circleEnd, player.color.getColor(), boardGroup);
-        player.roads.add(new Pair<>(circleMap.get(circleStart), circleMap.get(circleEnd)));
-        Pair<Circle, Circle> edge = createEdge(circleStart, circleEnd);
-        occupiedEdges.add(edge);
-    }
-
 
     private void onCircleClickedRoad(Pair<Circle, Circle> roadEdge) {
-
-
-        // Update the game state to reflect the new road
-        buildRoad(roadEdge.getKey(), roadEdge.getValue());
-
-        player.buildRoad(new Pair<>(circleMap.get(roadEdge.getKey()), circleMap.get(roadEdge.getValue())));
+        player.buildRoad(roadEdge, circleMap, boardGroup, occupiedEdges);
 
         updateLongestRoadPlayerIfEligible(player);
 
@@ -557,23 +558,23 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void updateLongestRoadPlayerIfEligible(PlayerAbstract newPlayer) {
-        Integer consecutiveRoads = player.calculateLongestRoad();
+        Integer consecutiveRoads = newPlayer.calculateLongestRoad();
 
-        if (consecutiveRoads >= 5) {
+        if (consecutiveRoads >= 6) {
             if (longestRoadPlayer != null) {
                 Integer opponentConsecutiveRoads = longestRoadPlayer.calculateLongestRoad();
                 if (consecutiveRoads > opponentConsecutiveRoads) {
                     longestRoadPlayer.setHasLongestRoad(false);
 
                     // Set the new player as the longest road player
-                    longestRoadPlayer = player;
+                    longestRoadPlayer = newPlayer;
                     longestRoadPlayer.setHasLongestRoad(true);
                     this.updateVpCounts();
                     logTextArea.appendText("- Player " + longestRoadPlayer.color.toString() + " has the longest road.\n");
                 }
             } else {
                 // Set the new player as the longest road player
-                longestRoadPlayer = player;
+                longestRoadPlayer = newPlayer;
                 longestRoadPlayer.setHasLongestRoad(true);
                 this.updateVpCounts();
                 logTextArea.appendText("- Player " + longestRoadPlayer.color.toString() + " has the longest road.\n");
@@ -625,15 +626,7 @@ public class BoardController extends BoardControllerAbstract {
     private void onCircleClickedSettlement(Circle circle, PlayerAbstract player) {
         // Check if the circle is still valid for building (in case of concurrent actions)
         if (gameManager.isSettlementBuildableToVertex(circleMap.get(circle), circleMap)) {
-            // Update the game state to reflect the new settlement
-            buildSettlement(player, circle);
-
-            // TODO: remove circle when settlement or city is built
-            // Visual update to indicate the settlement is built
-            circle.setFill(Color.RED);
-
-            // Deduct resources from the player
-            player.buildSettlement(circleMap.get(circle));
+            player.buildSettlement(circle, circleMap, boardGroup, settlementsMap);
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
@@ -646,13 +639,7 @@ public class BoardController extends BoardControllerAbstract {
     private void onCircleClickedCity(Circle circle, PlayerAbstract player) {
         // Check if the circle is still valid for building (in case of concurrent actions)
         if (gameManager.isCityBuildableToVertex(player, circleMap.get(circle))) {
-            // Update the game state to reflect the new settlement
-            buildCity(player, circle);
-
-            // Visual update to indicate the settlement is built
-            circle.setFill(Color.RED);
-
-            player.buildCity(circleMap.get(circle));
+            player.buildCity(circle, circleMap, boardGroup, settlementsMap);
 
             // Reset the highlighting for buildable locations
             resetHighlighting();
@@ -674,30 +661,6 @@ public class BoardController extends BoardControllerAbstract {
             circle.setStroke(Color.BLACK); // Reset to default stroke color
             circle.setStrokeWidth(1);
         }
-    }
-
-    private void buildSettlement(PlayerAbstract player, Circle circle) {
-        Settlement settlement = new Settlement(
-                circle,
-                player.color.getColor(),
-                this.boardGroup
-        );
-        settlement.setMouseTransparent(true);
-        settlementsMap.put(circle, settlement);
-    }
-
-    private void buildCity(PlayerAbstract player, Circle circle) {
-        Settlement settlement = settlementsMap.get(circle);
-        if (settlement != null) {
-            boardGroup.getChildren().remove(settlement);
-            settlementsMap.remove(circle);
-        }
-
-        City city = new City(
-                circle,
-                player.color.getColor(),
-                this.boardGroup
-        );
     }
 
     private void resetHighlighting() {
