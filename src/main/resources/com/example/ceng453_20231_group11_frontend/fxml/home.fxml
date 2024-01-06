@@ -30,9 +30,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-            <Text fx:id="welcomeText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="155.9240379333496" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Text fx:id="welcomeText" fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" textAlignment="CENTER" wrappingWidth="155.9240379333496" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
-                  <Font size="16.0" />
+                  <Font size="18.0" />
                </font>
             </Text>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HexaLands" textAlignment="CENTER" visible="false" wrappingWidth="300.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -114,9 +114,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Berke Sina Ahlatci&#10;Atinc Utku Alparslan&#10;Oguzhan Gumus" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="Berke Sina Ahlatci&#10;Atinc Utku Alparslan&#10;Oguzhan Gumus" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
-                        <Font name="System Italic" size="16.0" />
+                        <Font name="System Italic" size="18.0" />
                      </font>
                   </Text>
                   <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onClickLogout" text="Logout" textFill="#c60404" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
