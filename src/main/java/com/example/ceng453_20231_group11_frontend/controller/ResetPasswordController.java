@@ -16,11 +16,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -41,9 +44,15 @@ public class ResetPasswordController implements Initializable {
     @FXML
     private ProgressIndicator loader;
 
+    @FXML
+    private ImageView backgroundImage;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         Platform.runLater(() -> pane.requestFocus());
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.RESET_PASSWORD_BACKGROUND_IMAGE)));
+        backgroundImage.setImage(image);
     }
 
     @FXML

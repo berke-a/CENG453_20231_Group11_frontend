@@ -16,11 +16,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -37,9 +40,15 @@ public class LoginController implements Initializable {
     @FXML
     private ProgressIndicator loader;
 
+    @FXML
+    private ImageView backgroundImage;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         Platform.runLater(() -> pane.requestFocus());
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.LOGIN_BACKGROUND_IMAGE)));
+        backgroundImage.setImage(image);
     }
 
     @FXML

@@ -36,6 +36,11 @@ public class GeneralConstants {
     public static final String RESOURCE_ORE = "/com/example/ceng453_20231_group11_frontend/images/resource_ore.png";
     public static final String RESOURCE_WOOL = "/com/example/ceng453_20231_group11_frontend/images/resource_wool.png";
     public static final String RESOURCE_GRAIN = "/com/example/ceng453_20231_group11_frontend/images/resource_grain.png";
+    public static final String HOME_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/home.jpeg";
+    public static final String LOGIN_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/login.jpeg";
+    public static final String REGISTER_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/register.jpeg";
+    public static final String FORGOT_PASSWORD_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/forgot_password.jpeg";
+    public static final String RESET_PASSWORD_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/reset_password.jpeg";
 
 
     // Constant Data
