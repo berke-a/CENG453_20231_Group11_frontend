@@ -85,19 +85,15 @@ public class BoardController extends BoardControllerAbstract {
     private void updateGameState() {
         switch (gameManager.turnState) {
             case INITIALIZATION:
-                this.updateVpCounts();
                 this.playerInitialPlacement();
                 break;
             case ROLL_DICE:
-                this.updateVpCounts();
                 this.manageDiceRoll();
                 break;
             case RESOURCE_DISTRIBUTION:
-                this.updateVpCounts();
                 this.distributeResources();
                 break;
             case TURN_PLAYER:
-                this.updateVpCounts();
                 this.managePlayerTurn();
                 break;
             case GAME_OVER:
@@ -119,16 +115,19 @@ public class BoardController extends BoardControllerAbstract {
             case TURN_BLUE:
                 this.cpuPlayers[0].play(gameManager, circleMap, boardGroup, occupiedEdges, settlementsMap);
                 updateLongestRoadPlayerIfEligible(this.cpuPlayers[0]);
+                updateVpCounts();
                 advanceToNextTurn();
                 break;
             case TURN_GREEN:
                 this.cpuPlayers[1].play(gameManager, circleMap, boardGroup, occupiedEdges, settlementsMap);
                 updateLongestRoadPlayerIfEligible(this.cpuPlayers[1]);
+                updateVpCounts();
                 advanceToNextTurn();
                 break;
             case TURN_ORANGE:
                 this.cpuPlayers[2].play(gameManager, circleMap, boardGroup, occupiedEdges, settlementsMap);
                 updateLongestRoadPlayerIfEligible(this.cpuPlayers[2]);
+                updateVpCounts();
                 advanceToNextTurn();
                 break;
         }
@@ -570,14 +569,14 @@ public class BoardController extends BoardControllerAbstract {
                     // Set the new player as the longest road player
                     longestRoadPlayer = newPlayer;
                     longestRoadPlayer.setHasLongestRoad(true);
-                    this.updateVpCounts();
+                    updateVpCounts();
                     logTextArea.appendText("- Player " + longestRoadPlayer.color.toString() + " has the longest road.\n");
                 }
             } else {
                 // Set the new player as the longest road player
                 longestRoadPlayer = newPlayer;
                 longestRoadPlayer.setHasLongestRoad(true);
-                this.updateVpCounts();
+                updateVpCounts();
                 logTextArea.appendText("- Player " + longestRoadPlayer.color.toString() + " has the longest road.\n");
             }
         }
