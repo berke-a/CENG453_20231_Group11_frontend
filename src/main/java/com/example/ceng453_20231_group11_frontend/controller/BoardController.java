@@ -84,18 +84,21 @@ public class BoardController extends BoardControllerAbstract {
     }
 
     private void updateGameState() {
-        this.updateVpCounts();
         switch (gameManager.turnState) {
             case INITIALIZATION:
+                this.updateVpCounts();
                 this.playerInitialPlacement();
                 break;
             case ROLL_DICE:
+                this.updateVpCounts();
                 this.manageDiceRoll();
                 break;
             case RESOURCE_DISTRIBUTION:
+                this.updateVpCounts();
                 this.distributeResources();
                 break;
             case TURN_PLAYER:
+                this.updateVpCounts();
                 this.managePlayerTurn();
                 break;
             case GAME_OVER:
