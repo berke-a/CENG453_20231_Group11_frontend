@@ -386,7 +386,13 @@ public class BoardController extends BoardControllerAbstract {
     private void addPlayerScoreToDatabase() {
         String username = Utils.getUsername();
         Integer score = this.player.getVictoryPoint();
-        LeaderboardService.addScore(username, score);
+        boolean result = LeaderboardService.addScore(username, score);
+
+        if (result) {
+            this.logTextArea.appendText("- Score added to the database.\n");
+        } else {
+            this.logTextArea.appendText("- Error while adding score to the database.\n");
+        }
     }
 
     private PlayerAbstract getTheWinner() {

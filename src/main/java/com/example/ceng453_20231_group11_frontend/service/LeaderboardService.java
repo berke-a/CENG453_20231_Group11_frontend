@@ -50,15 +50,21 @@ public class LeaderboardService {
         return null;
     }
 
-    public static void addScore(String username, Integer score) {
+    public static boolean addScore(String username, Integer score) {
         try {
             HttpResponse<JsonNode> apiResponse = Unirest.post(GeneralConstants.BACKEND_BASE_URL + "/scoreboard")
                     .field("username", username)
                     .field("score", score)
                     .asJson();
-            System.out.println(apiResponse.getBody().toString());
+
+            if (apiResponse.getStatus() != 200) {
+                return false;
+            }
+
+            return apiResponse.getBody().getObject().get("result").equals("success");
         } catch (UnirestException e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 }
