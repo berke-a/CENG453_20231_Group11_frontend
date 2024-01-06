@@ -414,7 +414,7 @@ public class BoardController extends BoardControllerAbstract {
         String username = Utils.getUsername();
         Integer score = this.player.getVictoryPoint();
         boolean result = LeaderboardService.addScore(username, score);
-        System.out.println("score is added to the database");
+
         if (result) {
             this.logTextArea.appendText("- Score added to the database.\n");
         } else {
