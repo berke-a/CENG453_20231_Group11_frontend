@@ -7,9 +7,12 @@ import com.example.ceng453_20231_group11_frontend.service.LeaderboardService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
@@ -45,6 +48,9 @@ public class LeaderboardController implements Initializable {
     @FXML
     private ImageView backgroundImage;
 
+    @FXML
+    private ProgressIndicator loader;
+
     private boolean monthlyDataFetched = false;
     private boolean alltimeDataFetched = false;
 
@@ -58,44 +64,101 @@ public class LeaderboardController implements Initializable {
     }
 
     public void getWeekly() {
-        List<Map<String, Object>> leaderboard = LeaderboardService.getWeeklyLeaderboard();
-        if (leaderboard != null) {
-            ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
-            for (Map<String, Object> leaderboardItemMap : leaderboard) {
-                LeaderboardItem newItem = new LeaderboardItem(leaderboardItemMap);
-                leaderboardItemList.add(newItem);
+        loader.setVisible(true);
+
+        Task<List<Map<String, Object>>> getWeeklyLeaderboardTask = new Task<List<Map<String, Object>>>() {
+            @Override
+            protected List<Map<String, Object>> call() {
+                return LeaderboardService.getWeeklyLeaderboard();
             }
-            weeklyTableView.getItems().clear();
-            weeklyTableView.setItems(leaderboardItemList);
-        }
+        };
+
+        getWeeklyLeaderboardTask.setOnSucceeded(e -> {
+            loader.setVisible(false);
+            List<Map<String, Object>> leaderboard = getWeeklyLeaderboardTask.getValue();
+            if (leaderboard != null) {
+                ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
+                for (Map<String, Object> leaderboardItemMap : leaderboard) {
+                    LeaderboardItem newItem = new LeaderboardItem(leaderboardItemMap);
+                    leaderboardItemList.add(newItem);
+                }
+                weeklyTableView.getItems().clear();
+                weeklyTableView.setItems(leaderboardItemList);
+            }
+        });
+
+        getWeeklyLeaderboardTask.setOnFailed(e -> {
+            loader.setVisible(false);
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "An error occurred during retrieving leaderboard.");
+        });
+
+        new Thread(getWeeklyLeaderboardTask).start();
     }
 
     public void getMonthly() {
-        List<Map<String, Object>> leaderboard = LeaderboardService.getMonthlyLeaderboard();
-        if (leaderboard != null) {
-            ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
-            for (Map<String, Object> leaderboardItemMap : leaderboard) {
-                LeaderboardItem newItem = new LeaderboardItem(leaderboardItemMap);
-                leaderboardItemList.add(newItem);
+        loader.setVisible(true);
+
+        Task<List<Map<String, Object>>> getMonthlyLeaderboardTask = new Task<List<Map<String, Object>>>() {
+            @Override
+            protected List<Map<String, Object>> call() {
+                return LeaderboardService.getMonthlyLeaderboard();
             }
-            monthlyTableView.getItems().clear();
-            monthlyTableView.setItems(leaderboardItemList);
-            monthlyDataFetched = true;
-        }
+        };
+
+        getMonthlyLeaderboardTask.setOnSucceeded(e -> {
+            loader.setVisible(false);
+            List<Map<String, Object>> leaderboard = getMonthlyLeaderboardTask.getValue();
+            if (leaderboard != null) {
+                ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
+                for (Map<String, Object> leaderboardItemMap : leaderboard) {
+                    LeaderboardItem newItem = new LeaderboardItem(leaderboardItemMap);
+                    leaderboardItemList.add(newItem);
+                }
+                monthlyTableView.getItems().clear();
+                monthlyTableView.setItems(leaderboardItemList);
+                monthlyDataFetched = true;
+            }
+        });
+
+        getMonthlyLeaderboardTask.setOnFailed(e -> {
+            loader.setVisible(false);
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "An error occurred during retrieving leaderboard.");
+        });
+
+        new Thread(getMonthlyLeaderboardTask).start();
     }
 
     public void getAlltime() {
-        List<Map<String, Object>> leaderboard = LeaderboardService.getAlltimeLeaderboard();
-        if (leaderboard != null) {
-            ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
-            for (Map<String, Object> leaderboardItemMap: leaderboard) {
-                LeaderboardItem newItem = new LeaderboardItem(leaderboardItemMap);
-                leaderboardItemList.add(newItem);
+        loader.setVisible(true);
+
+        Task<List<Map<String, Object>>> getAlltimeLeaderboardTask = new Task<List<Map<String, Object>>>() {
+            @Override
+            protected List<Map<String, Object>> call() {
+                return LeaderboardService.getAlltimeLeaderboard();
             }
-            alltimeTableView.getItems().clear();
-            alltimeTableView.setItems(leaderboardItemList);
-            alltimeDataFetched = true;
-        }
+        };
+
+        getAlltimeLeaderboardTask.setOnSucceeded(e -> {
+            loader.setVisible(false);
+            List<Map<String, Object>> leaderboard = getAlltimeLeaderboardTask.getValue();
+            if (leaderboard != null) {
+                ObservableList<LeaderboardItem> leaderboardItemList = FXCollections.observableArrayList();
+                for (Map<String, Object> leaderboardItemMap: leaderboard) {
+                    LeaderboardItem newItem = new LeaderboardItem(leaderboardItemMap);
+                    leaderboardItemList.add(newItem);
+                }
+                alltimeTableView.getItems().clear();
+                alltimeTableView.setItems(leaderboardItemList);
+                alltimeDataFetched = true;
+            }
+        });
+
+        getAlltimeLeaderboardTask.setOnFailed(e -> {
+            loader.setVisible(false);
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "An error occurred during retrieving leaderboard.");
+        });
+
+        new Thread(getAlltimeLeaderboardTask).start();
     }
 
     @FXML
