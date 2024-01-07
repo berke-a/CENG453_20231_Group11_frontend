@@ -23,9 +23,8 @@ public class GameRulesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         Platform.runLater(() -> pane.requestFocus());
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.REGISTER_BACKGROUND_IMAGE)));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.GAME_RULES_BACKGROUND_IMAGE)));
         backgroundImage.setImage(image);
     }
 

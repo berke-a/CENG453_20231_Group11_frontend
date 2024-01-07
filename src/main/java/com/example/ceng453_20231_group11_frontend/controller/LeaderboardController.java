@@ -4,6 +4,7 @@ import com.example.ceng453_20231_group11_frontend.Utils;
 import com.example.ceng453_20231_group11_frontend.constants.GeneralConstants;
 import com.example.ceng453_20231_group11_frontend.models.LeaderboardItem;
 import com.example.ceng453_20231_group11_frontend.service.LeaderboardService;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,10 +12,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LeaderboardController implements Initializable {
@@ -34,11 +39,20 @@ public class LeaderboardController implements Initializable {
     @FXML
     private TableView<LeaderboardItem> alltimeTableView;
 
+    @FXML
+    private Pane pane;
+
+    @FXML
+    private ImageView backgroundImage;
+
     private boolean monthlyDataFetched = false;
     private boolean alltimeDataFetched = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        Platform.runLater(() -> pane.requestFocus());
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.LEADERBOARD_BACKGROUND_IMAGE)));
+        backgroundImage.setImage(image);
         getWeekly();
         // TODO loader gosterilecek
     }

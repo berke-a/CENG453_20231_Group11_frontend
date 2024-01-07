@@ -42,6 +42,8 @@ public class GeneralConstants {
     public static final String REGISTER_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/register.jpeg";
     public static final String FORGOT_PASSWORD_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/forgot_password.jpeg";
     public static final String RESET_PASSWORD_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/reset_password.jpeg";
+    public static final String LEADERBOARD_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/leaderboard.jpeg";
+    public static final String GAME_RULES_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/game-rules.jpeg";
 
 
     // Constant Data
