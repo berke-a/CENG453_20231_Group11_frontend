@@ -4,7 +4,7 @@ This is the Group11 frontend application of the CENG453 Term Project. In this fr
 
 ## How to run the application
 
-After cloning the project to your local machine, in the project directory, use `mvn clean install` command on your terminal to build the frontend application. Then you can run the CatanApplication.java from your IDE (preferably Intellij IDEA). Backend application is currently hosted at `https://ceng453-20231-group11-backend.onrender.com` hence there is no need to run the backend application to play the game. 
+After cloning the project to your local machine, in the project directory, use `mvn clean install` command on your terminal to build the frontend application. Then you can run the CatanApplication.java from your IDE (preferably Intellij IDEA). Backend application is currently hosted at `https://ceng453-20231-group11-backend.onrender.com` hence there is no need to run the backend application to play the game. But since Render spins down the projects when they are not used, it is advised to open the backend link on your browser for a smooth experience. 
 
 ## Existing Users
 
