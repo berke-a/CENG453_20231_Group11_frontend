@@ -216,6 +216,6 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <ProgressIndicator fx:id="loader" translateX="420.0" translateY="150.0" visible="false"/>
+        <ProgressIndicator fx:id="loader" translateX="420.0" translateY="350.0" visible="false"/>
     </children>
 </Pane>

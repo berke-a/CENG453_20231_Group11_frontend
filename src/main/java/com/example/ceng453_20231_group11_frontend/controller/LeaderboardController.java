@@ -60,7 +60,6 @@ public class LeaderboardController implements Initializable {
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(GeneralConstants.LEADERBOARD_BACKGROUND_IMAGE)));
         backgroundImage.setImage(image);
         getWeekly();
-        // TODO loader gosterilecek
     }
 
     public void getWeekly() {

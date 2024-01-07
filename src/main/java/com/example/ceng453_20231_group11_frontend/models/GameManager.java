@@ -26,7 +26,6 @@ public class GameManager {
         return instance;
     }
 
-    // TODO: Create Player Class & Pass as a parameter
     public boolean isPlayerHasResourceForRoad(PlayerAbstract player) {
         return (player.resources.get(ResourceType.LUMBER) >= 1 && player.resources.get(ResourceType.BRICK) >= 1);
     }
