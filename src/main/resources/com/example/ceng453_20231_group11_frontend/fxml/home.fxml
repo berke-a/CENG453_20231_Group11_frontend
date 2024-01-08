@@ -124,6 +124,11 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#onClickRouteGameRules" prefHeight="37.0" prefWidth="102.0" text="Game Rules" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
                </children>
             </GridPane>
             <ImageView fitHeight="238.0" fitWidth="253.0" translateX="322.0" translateY="-50.0" GridPane.rowIndex="1">
@@ -131,11 +136,6 @@
                   <Image url="@../images/hexalands-removebg-preview.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#onClickRouteGameRules" text="Game Rules" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Button>
             </children>
         </GridPane>
     </children>
