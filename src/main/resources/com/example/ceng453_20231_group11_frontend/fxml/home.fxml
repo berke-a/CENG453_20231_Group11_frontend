@@ -85,9 +85,14 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="playButton" mnemonicParsing="false" onAction="#onClickPlay" text="Play" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button fx:id="playButton" mnemonicParsing="false" onAction="#onClickPlay" text="Play" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <font>
                                 <Font size="28.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="multiplayerButton" mnemonicParsing="false" onAction="#onClickMultiplayer" text="Multiplayer" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                            <font>
+                                <Font size="20.0" />
                             </font>
                         </Button>
                     </children>

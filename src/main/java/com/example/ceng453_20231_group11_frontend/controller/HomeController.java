@@ -22,6 +22,9 @@ public class HomeController implements Initializable {
     private Button playButton;
 
     @FXML
+    private Button multiplayerButton;
+
+    @FXML
     private Button routeRegisterButton;
 
     @FXML
@@ -55,6 +58,7 @@ public class HomeController implements Initializable {
             welcomeText.setText("Welcome, " + Utils.getUsername());
         } else {
             playButton.setVisible(false);
+            multiplayerButton.setVisible(false);
             logoutButton.setVisible(false);
         }
     }
@@ -62,6 +66,11 @@ public class HomeController implements Initializable {
     @FXML
     protected void onClickPlay(ActionEvent event) {
         Utils.routeToPage(event, GeneralConstants.BOARD_PAGE);
+    }
+
+    @FXML
+    protected void onClickMultiplayer(ActionEvent event) {
+        Utils.routeToPage(event, GeneralConstants.MULTIPLAYER_PAGE);
     }
 
     @FXML

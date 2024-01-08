@@ -23,6 +23,7 @@ public class GeneralConstants {
     public static final String RESET_PASSWORD_PAGE = "fxml/reset-password.fxml";
     public static final String GAME_RULES_PAGE = "fxml/game-rules.fxml";
     public static final String BOARD_PAGE = "fxml/board.fxml";
+    public static final String MULTIPLAYER_PAGE = "fxml/multiplayer.fxml";
 
     // Image Locations
     public static final String TILE_BRICK = "/com/example/ceng453_20231_group11_frontend/images/tile_brick.png";
@@ -44,6 +45,7 @@ public class GeneralConstants {
     public static final String RESET_PASSWORD_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/reset_password.jpeg";
     public static final String LEADERBOARD_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/leaderboard.jpeg";
     public static final String GAME_RULES_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/game-rules.jpeg";
+    public static final String GAME_LOBBY_BACKGROUND_IMAGE = "/com/example/ceng453_20231_group11_frontend/images/game_lobby.png";
 
 
     // Constant Data
