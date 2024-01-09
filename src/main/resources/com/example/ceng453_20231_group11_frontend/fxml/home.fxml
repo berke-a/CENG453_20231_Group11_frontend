@@ -67,8 +67,8 @@
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="104.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="141.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="189.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="123.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="128.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="192.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="63.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
@@ -90,9 +90,9 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="multiplayerButton" mnemonicParsing="false" onAction="#onClickMultiplayer" text="Multiplayer" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button fx:id="multiplayerButton" mnemonicParsing="false" onAction="#onClickMultiplayer" prefHeight="53.0" prefWidth="207.0" text="Multiplayer" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <font>
-                                <Font size="20.0" />
+                                <Font size="28.0" />
                             </font>
                         </Button>
                     </children>
