@@ -61,6 +61,11 @@ public class ResetPasswordController implements Initializable {
         String confirmPassword = confirmPasswordField.getText();
         String token = tokenField.getText();
 
+        if (newPassword.isEmpty() || confirmPassword.isEmpty() || token.isEmpty()) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields.");
+            return;
+        }
+
         if (!newPassword.equals(confirmPassword)) {
             Utils.showAlert(Alert.AlertType.ERROR, "Error", "Passwords do not match.");
             return;
