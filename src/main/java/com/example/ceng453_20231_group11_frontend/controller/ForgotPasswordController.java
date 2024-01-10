@@ -49,6 +49,11 @@ public class ForgotPasswordController implements Initializable {
     private void onClickSubmitButton(ActionEvent event) {
         String email = emailField.getText();
 
+        if (email.isEmpty()) {
+            Utils.showAlert(Alert.AlertType.ERROR, "Error", "Please enter your email address.");
+            return;
+        }
+
         // Show the loader
         loader.setVisible(true);
 
